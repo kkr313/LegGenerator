@@ -1,0 +1,60 @@
+.dwld-btn{
+    all: unset;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    height: 30px;
+    width: 100px;
+    padding: 10px;
+    transition: all 0.2s ease-in-out;
+    line-height: 24px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 8px 0px rgb(1 25 49);
+    align-items: center;
+    margin-right: 10px;
+}
+
+.dwld-btn:hover{
+    transform: translateY(3px);
+    box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
+    background-color: #011931;
+    color:#fff;
+}
+
+select {
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    line-height: 24px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: inset 0px 0px 8px 0px rgb(1 25 49);
+    align-items: center;
+    margin-right: 10px;
+    outline: none;
+  }
+
+  select::after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    pointer-events: cursor;
+  }
+
+  .line {
+    border-right: 2px solid black;
+    height: 80%;
+    margin: 0 10px;
+  }

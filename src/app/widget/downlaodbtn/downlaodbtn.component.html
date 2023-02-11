@@ -1,0 +1,29 @@
+
+<!-- <select [(ngModel)]="selectedEnvValue" (change)="selectEnvValue($event)">
+    <option *ngFor="let option of env" [value]="option.value">{{ option.label }}</option>
+</select> -->
+
+<select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()">
+    <option *ngFor="let option of firstDropdownOptions" [value]="option.value">{{ option.label }}</option>
+  </select>
+
+  <select class="empty_drpdn" [(ngModel)]="selectedSecondDropdownValue" (ngModelChange)="updateThirdDropdownOptions(); selectVendor()">
+    <option *ngFor="let option of secondDropdownOptions" [value]="option.value">{{ option.label }}</option>
+  </select>
+
+  <select class="empty_drpdn" [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()">
+    <option *ngFor="let option of thirdDropdownOptions" [value]="option.value">{{ option.label }}</option>
+  </select>
+
+<!-- <select [(ngModel)]="selectedEnvValue" (change)="selectEnvValue($event)">
+    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select> -->
+
+<!-- <select [(ngModel)]="selectedEnvValue" (change)="selectEnvValue($event)">
+    <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+</select> -->
+
+
+<button class="dwld-btn" (click)="directUpload()">Direct Upload</button>
+
+<button class="dwld-btn" (click)="downloaData()">Download File</button>

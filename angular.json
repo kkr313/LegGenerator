@@ -96,11 +96,12 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              
+            ]
           }
         }
       }
     }
-  },
-  "defaultProject": "LegGenerator"
+  }
 }

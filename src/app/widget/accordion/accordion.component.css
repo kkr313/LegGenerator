@@ -1,0 +1,116 @@
+.accordion-single  {
+    border-bottom: 1px solid #efefef;
+    /* margin-bottom: 10px; */
+  }
+  
+  .accordion-single-title {
+    border-top: 1px solid #efefef;
+    padding: 15px;
+    cursor: pointer;
+    position: relative;
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+    background: #011931;
+  }
+  
+  .accordion-single-title::after{
+    content: "";
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transition: all 0.2s ease-in-out;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-top: solid 2px #fff;
+    border-right: solid 2px #fff;
+    transform: translateY(-50%) rotate(135deg);
+  }
+  
+  .accordion-single-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease-in-out;
+  }
+  
+  .accordion-single-content p {
+    padding: 20px;
+  }
+  
+  .accordion-single-item.is-open .accordion-single-content  {
+    max-height: 100%;
+    background: #c6ced7;
+    margin-bottom: 10px;
+    overflow: auto;
+    height: auto;
+  }
+  .accordion-single-item.is-open .accordion-single-content::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .accordion-single-item.is-open .accordion-single-title::after  {
+    transform: translateY(-50%) rotate(315deg);
+  }
+
+  .table {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1130px;
+    display:block
+  }
+  
+  .table thead {
+    /* position: sticky; */
+    top: 0;
+  }
+  
+  .table thead th {
+    border: 1px solid #e4eff8;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .table thead th.header-label {
+    cursor: pointer;
+    background: linear-gradient(0deg, #e4eff8, #4578a2 5%, #000000 150%);
+    color: #ffd900;
+    border: 1px solid white;
+    padding: 10px 0px;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.2rem 0.5rem;
+    text-align: center;
+  }
+  
+  .table td {
+    border: 1px solid #e4eff8;
+  }
+
+  .table input {
+    box-sizing: border-box;
+    border: none;
+    text-transform: uppercase;
+  }
+  
+  input:focus-visible {
+    outline: none;
+    text-transform: uppercase;
+  }
+  
+  td.input_field {
+    background: white;
+    text-align: left !important;
+    
+  }
+
+  .table thead th.header-label {
+    cursor: pointer;
+    background: linear-gradient(0deg, #e4eff8, #4578a2 5%, #000000 150%);
+    color: #ffd900;
+    border: 1px solid white;
+    padding: 10px 5px;
+  }
+
+  
