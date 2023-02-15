@@ -271,6 +271,7 @@ export class CommonService {
     document.body.removeChild(dwldLink);
     //localStorage.removeItem('L3dataSource');
     // this.directUpload(blob)
+    
   }
 
   ConvertToCSV(objArray: string, headerList: string[]) {
