@@ -94,7 +94,7 @@ export class MasterfileComponent implements OnInit {
 
 
   updateNewValue(res: any, key: string) {
-    this.commonService.FileData[key] = res.target.value
+    this.commonService.FileData[key] = res.target.value.toUpperCase()
     this.commonService.updateValue.next(this.commonService.FileData)
   }
 

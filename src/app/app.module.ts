@@ -13,6 +13,8 @@ import { AccordionComponent } from './widget/accordion/accordion.component';
 import { MasterfileComponent } from './widget/masterfile/masterfile.component';
 import { L3fileComponent } from './widget/FCL/l3file/l3file.component';
 import { DownlaodbtnComponent } from './widget/downlaodbtn/downlaodbtn.component';
+import { L2fileComponent } from './widget/FCL/l2file/l2file.component';
+import { L4fileComponent } from './widget/FCL/l4file/l4file.component';
 
 
 
@@ -26,7 +28,9 @@ import { DownlaodbtnComponent } from './widget/downlaodbtn/downlaodbtn.component
     AccordionComponent,
     MasterfileComponent,
     L3fileComponent,
-    DownlaodbtnComponent
+    DownlaodbtnComponent,
+    L2fileComponent,
+    L4fileComponent
   ],
   imports: [
     BrowserModule,

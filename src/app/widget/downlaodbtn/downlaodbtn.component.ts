@@ -134,48 +134,130 @@ export class DownlaodbtnComponent implements OnInit {
   }
 
   l3Data: any;
+  legsData:any
 
   downloaData() {
-    let data = JSON.parse(localStorage.getItem('dataSource')!);
-    if (data) {
-      this.l3Data = [{
-        origin_port: data.origin_port_value,
-        destination_port: data.destination_port_value,
-        via_pol: data.via_pol_value,
-        via_pod: data.via_pod_value,
-        via_port: data.via_port_value,
-        contract_number: data.contract_number_value,
-        transit_time: data.transit_time_value,
-        service_type: data.service_type_value,
-        sailing_date: data.sailing_date_value,
-        cargo_type: data.cargo_type_value,
-        commodities: data.commodities_value,
-        other_charges: data.other_charges_value,
-        if_applicable_charges: data.if_applicable_charges_value,
-        start_date: data.start_date_value,
-        expiry: data.expiry_value,
-        remarks: data.remarks_value,
-        inclusions: data.inclusions_value,
-        load_type: data.load_type_value,
-        basic_ocean_freight: data.charge1_name_value,
-        basic_ocean_freight_basis: data.charge1_basis_value,
-        basic_ocean_freight_currency: data.charge1_currency_value,
-        bunker_adjustment_charge_baf: data.charge2_name_value,
-        bunker_adjustment_charge_baf_basis: data.charge2_basis_value,
-        bunker_adjustment_charge_baf_currency: data.charge2_currency_value,
-        carrier_security_surcharge: data.charge3_name_value,
-        carrier_security_surcharge_basis: data.charge3_basis_value,
-        carrier_security_surcharge_currency: data.charge3_currency_value,
-        low_sulphur_surcharge: data.charge4_name_value,
-        low_sulphur_surcharge_basis: data.charge4_basis_value,
-        low_sulphur_surcharge_currency: data.charge4_currency_value,
-        peak_season_surcharge: data.charge5_name_value,
-        peak_season_surcharge_basis: data.charge5_basis_value,
-        peak_season_surcharge_currency: data.charge5_currency_value,
+    let l3data = JSON.parse(localStorage.getItem('L3dataSource')!);
+    let l2data = JSON.parse(localStorage.getItem('L2dataSource')!);
+    let l4data = JSON.parse(localStorage.getItem('L4dataSource')!);
+     this.legsData={
+      L3Data :[{
+        origin_port: l3data.origin_port_value,
+        destination_port: l3data.destination_port_value,
+        via_pol: l3data.via_pol_value,
+        via_pod: l3data.via_pod_value,
+        via_port: l3data.via_port_value,
+        contract_number: l3data.contract_number_value,
+        transit_time: l3data.transit_time_value,
+        service_type: l3data.service_type_value,
+        sailing_date: l3data.sailing_date_value,
+        cargo_type: l3data.cargo_type_value,
+        commodities: l3data.commodities_value,
+        other_charges: l3data.other_charges_value,
+        if_applicable_charges: l3data.if_applicable_charges_value,
+        start_date: l3data.start_date_value,
+        expiry: l3data.expiry_value,
+        remarks: l3data.remarks_value,
+        inclusions: l3data.inclusions_value,
+        load_type: l3data.load_type_value,
+        basic_ocean_freight: l3data.charge1_l3_name_value,
+        basic_ocean_freight_basis: l3data.charge1_l3_basis_value,
+        basic_ocean_freight_currency: l3data.charge1_l3_currency_value,
+        bunker_adjustment_charge_baf: l3data.charge2_l3_name_value,
+        bunker_adjustment_charge_baf_basis: l3data.charge2_l3_basis_value,
+        bunker_adjustment_charge_baf_currency: l3data.charge2_l3_currency_value,
+        carrier_security_surcharge: l3data.charge3_l3_name_value,
+        carrier_security_surcharge_basis: l3data.charge3_l3_basis_value,
+        carrier_security_surcharge_currency: l3data.charge3_l3_currency_value,
+        low_sulphur_surcharge: l3data.charge4_l3_name_value,
+        low_sulphur_surcharge_basis: l3data.charge4_l3_basis_value,
+        low_sulphur_surcharge_currency: l3data.charge4_l3_currency_value,
+        peak_season_surcharge: l3data.charge5_l3_name_value,
+        peak_season_surcharge_basis: l3data.charge5_l3_basis_value,
+        peak_season_surcharge_currency: l3data.charge5_l3_currency_value,
+      }],
+      L2Data :[{
+        origin_port: l2data.origin_port_value,
+        destination_port: l2data.destination_port_value,
+        via_pol: l2data.via_pol_value,
+        via_pod: l2data.via_pod_value,
+        via_port: l2data.via_port_value,
+        cfs_stuffing: l2data.cfs_stuffing_value,
+        service_type: l2data.service_type_value,
+        cargo_type: l2data.cargo_type_value,
+        commodities: l2data.commodities_value,
+        other_charges: l2data.other_charges_value,
+        if_applicable_charges: l2data.if_applicable_charges_value,
+        start_date: l2data.start_date_value,
+        expiry: l2data.expiry_value,
+        remarks: l2data.remarks_value,
+        inclusions: l2data.inclusions_value,
+        load_type: l2data.load_type_value,
+        origin_terminal_handling_charge_othc: l2data.charge1_l2_name_value,
+        origin_terminal_handling_charge_othc_basis: l2data.charge1_l2_basis_value,
+        origin_terminal_handling_charge_othc_currency: l2data.charge1_l2_currency_value,
+        documentation_fee_origin: l2data.charge2_l2_name_value,
+        documentation_fee_origin_basis: l2data.charge2_l2_basis_value,
+        documentation_fee_origin_currency: l2data.charge2_l2_currency_value,
+        cfs_fee_at_origin: l2data.charge3_l2_name_value,
+        cfs_fee_at_origin_basis: l2data.charge3_l2_basis_value,
+        cfs_fee_at_origin_currency: l2data.charge3_l2_currency_value,
+        container_positioning_dps: l2data.charge4_l2_name_value,
+        container_positioning_dps_basis: l2data.charge4_l2_basis_value,
+        container_positioning_dps_currency: l2data.charge4_l2_currency_value,
+        seal_fee: l2data.charge5_l2_name_value,
+        seal_fee_basis: l2data.charge5_l2_basis_value,
+        seal_fee_currency: l2data.charge5_l2_currency_value,
+      }],
+      L4Data :[{
+        origin_port: l4data.origin_port_value,
+        destination_port: l4data.destination_port_value,
+        via_pol: l4data.via_pol_value,
+        via_pod: l4data.via_pod_value,
+        via_port: l4data.via_port_value,
+        cfs_stuffing: l4data.cfs_stuffing_value,
+        service_type: l4data.service_type_value,
+        cargo_type: l4data.cargo_type_value,
+        commodities: l4data.commodities_value,
+        other_charges: l4data.other_charges_value,
+        if_applicable_charges: l4data.if_applicable_charges_value,
+        start_date: l4data.start_date_value,
+        expiry: l4data.expiry_value,
+        remarks: l4data.remarks_value,
+        inclusions: l4data.inclusions_value,
+        load_type: l4data.load_type_value,
+        destination_terminal_handling_charges: l4data.charge1_l4_name_value,
+        destination_terminal_handling_charges_basis: l4data.charge1_l4_basis_value,
+        destination_terminal_handling_charges_currency: l4data.charge1_l4_currency_value,
+        documentation_fee_destination: l4data.charge2_l4_name_value,
+        documentation_fee_destination_basis: l4data.charge2_l4_basis_value,
+        documentation_fee_destination_currency: l4data.charge2_l4_currency_value,
+        customs_examination: l4data.charge3_l4_name_value,
+        customs_examination_basis: l4data.charge3_l4_basis_value,
+        customs_examination_currency: l4data.charge3_l4_currency_value,
+        surplus_and_demand_compensation: l4data.charge4_l4_name_value,
+        surplus_and_demand_compensation_basis: l4data.charge4_l4_basis_value,
+        surplus_and_demand_compensation_currency: l4data.charge4_l4_currency_value,
+        import_service: l4data.charge5_l4_name_value,
+        import_service_basis: l4data.charge5_l4_basis_value,
+        import_service_currency: l4data.charge5_l4_currency_value,
       }]
-    }
+     } 
 
-    this.commonService.downloadFile(this.l3Data, 'FCL_L3');
+
+    const legSelected:any=JSON.parse(localStorage.getItem('selectedLegs') as string );
+
+    const ls = legSelected.options
+
+    for(let i=0;i<ls.length;i++){
+      if(ls[i].value){
+
+      // const obj1:{[key:string]:any}={}
+      // const getfile=JSON.parse(localStorage.getItem(`${ls[i].name}dataSource`) as string);
+      this.commonService.downloadFile( this.legsData[`${ls[i].name}Data`], `FCL-${ls[i].name}`,`${ls[i].name}Header`);
+      }
+    }
+  //  this.commonService.downloadFile(this.l3Data, 'FCL_L3');
   }
 
   directUpload(){

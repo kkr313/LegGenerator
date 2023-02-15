@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from "../../../common.service";
 
-
-
 @Component({
-  selector: 'app-l3file',
-  templateUrl: './l3file.component.html',
-  styleUrls: ['./l3file.component.css']
+  selector: 'app-l2file',
+  templateUrl: './l2file.component.html',
+  styleUrls: ['./l2file.component.css']
 })
-export class L3fileComponent implements OnInit {
+export class L2fileComponent implements OnInit {
 
   constructor(private commonService: CommonService) {
   }
@@ -23,14 +21,10 @@ export class L3fileComponent implements OnInit {
   via_pod_value: any;
   via_port_key: any;
   via_port_value: any;
-  contract_number_key: any;
-  contract_number_value: any;
-  transit_time_key: any;
-  transit_time_value: any;
+  cfs_stuffing_key: any;
+  cfs_stuffing_value: any;
   service_type_key: any;
   service_type_value: any;
-  sailing_date_key: any;
-  sailing_date_value: any;
   cargo_type_key: any;
   cargo_type_value: any;
   commodities_key: any;
@@ -82,7 +76,6 @@ export class L3fileComponent implements OnInit {
 
 
 
-
   ngOnInit(): void {
     this.commonService.updateValue.subscribe((Res: any) => {
       if (Res) {
@@ -90,20 +83,16 @@ export class L3fileComponent implements OnInit {
           this.origin_port_value = Res?.origin_port_value,
           this.destination_port_key = Res?.destination_port,
           this.destination_port_value = Res?.destination_port_value,
-          this.via_pol_key = Res?.via_pol;
-          this.via_pol_value = Res?.via_pol_value;
+          this.via_pol_key = Res?. via_pol;
+          this.via_pol_value = Res?. via_pol_value;
           this.via_pod_key = Res?. via_pod;
           this.via_pod_value = Res?. via_pod_value;
           this.via_port_key = Res?. via_port;
           this.via_port_value = Res?. via_port_value;
-          this.contract_number_key = Res?. contract_number;
-          this.contract_number_value = Res?. contract_number_value;
-          this.transit_time_key = Res?. transit_time;
-          this.transit_time_value = Res?. transit_time_value;
+          this.cfs_stuffing_key = Res?. cfs_stuffing;
+          this.cfs_stuffing_value = Res?. cfs_stuffing_value;
           this.service_type_key = Res?. service_type;
           this.service_type_value = Res?. service_type_value;
-          this.sailing_date_key = Res?. sailing_date;
-          this.sailing_date_value = Res?. sailing_date_value;
           this.cargo_type_key = Res?. cargo_type;
           this.cargo_type_value = Res?. cargo_type_value;
           this.commodities_key = Res?. commodities;
@@ -122,45 +111,45 @@ export class L3fileComponent implements OnInit {
           this.inclusions_value = Res?. inclusions_value;
           this.load_type_key = Res?. load_type;
           this.load_type_value = Res?. load_type_value;
-          this.charge1_name_key = Res?. charge1_l3_name;
-          this.charge1_name_value = Res?. charge1_l3_name_value;
-          this.charge1_basis_key = Res?. charge1_l3_basis;
-          this.charge1_basis_value = Res?. charge1_l3_basis_value;
-          this.charge1_currency_key = Res?. charge1_l3_currency;
-          this.charge1_currency_value = Res?. charge1_l3_currency_value;
-          this.charge2_name_key = Res?. charge2_l3_name;
-          this.charge2_name_value = Res?. charge2_l3_name_value;
-          this.charge2_basis_key = Res?. charge2_l3_basis;
-          this.charge2_basis_value = Res?. charge2_l3_basis_value;
-          this.charge2_currency_key = Res?. charge2_l3_currency;
-          this.charge2_currency_value = Res?. charge2_l3_currency_value;
-          this.charge3_name_key = Res?. charge3_l3_name;
-          this.charge3_name_value = Res?. charge3_l3_name_value;
-          this.charge3_basis_key = Res?. charge3_l3_basis;
-          this.charge3_basis_value = Res?. charge3_l3_basis_value;
-          this.charge3_currency_key = Res?. charge3_l3_currency;
-          this.charge3_currency_value = Res?. charge3_l3_currency_value;
-          this.charge4_name_key = Res?. charge4_l3_name;
-          this.charge4_name_value = Res?. charge4_l3_name_value;
-          this.charge4_basis_key = Res?. charge4_l3_basis;
-          this.charge4_basis_value = Res?. charge4_l3_basis_value;
-          this.charge4_currency_key = Res?. charge4_l3_currency;
-          this.charge4_currency_value = Res?. charge4_l3_currency_value;
-          this.charge5_name_key = Res?. charge5_l3_name;
-          this.charge5_name_value = Res?. charge5_l3_name_value;
-          this.charge5_basis_key = Res?. charge5_l3_basis;
-          this.charge5_basis_value = Res?. charge5_l3_basis_value;
-          this.charge5_currency_key = Res?. charge5_l3_currency;
-          this.charge5_currency_value = Res?. charge5_l3_currency_value;
+          this.charge1_name_key = Res?. charge1_l2_name;
+          this.charge1_name_value = Res?. charge1_l2_name_value;
+          this.charge1_basis_key = Res?. charge1_l2_basis;
+          this.charge1_basis_value = Res?. charge1_l2_basis_value;
+          this.charge1_currency_key = Res?. charge1_l2_currency;
+          this.charge1_currency_value = Res?. charge1_l2_currency_value;
+          this.charge2_name_key = Res?. charge2_l2_name;
+          this.charge2_name_value = Res?. charge2_l2_name_value;
+          this.charge2_basis_key = Res?. charge2_l2_basis;
+          this.charge2_basis_value = Res?. charge2_l2_basis_value;
+          this.charge2_currency_key = Res?. charge2_l2_currency;
+          this.charge2_currency_value = Res?. charge2_l2_currency_value;
+          this.charge3_name_key = Res?. charge3_l2_name;
+          this.charge3_name_value = Res?. charge3_l2_name_value;
+          this.charge3_basis_key = Res?. charge3_l2_basis;
+          this.charge3_basis_value = Res?. charge3_l2_basis_value;
+          this.charge3_currency_key = Res?. charge3_l2_currency;
+          this.charge3_currency_value = Res?. charge3_l2_currency_value;
+          this.charge4_name_key = Res?. charge4_l2_name;
+          this.charge4_name_value = Res?. charge4_l2_name_value;
+          this.charge4_basis_key = Res?. charge4_l2_basis;
+          this.charge4_basis_value = Res?. charge4_l2_basis_value;
+          this.charge4_currency_key = Res?. charge4_l2_currency;
+          this.charge4_currency_value = Res?. charge4_l2_currency_value;
+          this.charge5_name_key = Res?. charge5_l2_name;
+          this.charge5_name_value = Res?. charge5_l2_name_value;
+          this.charge5_basis_key = Res?. charge5_l2_basis;
+          this.charge5_basis_value = Res?. charge5_l2_basis_value;
+          this.charge5_currency_key = Res?. charge5_l2_currency;
+          this.charge5_currency_value = Res?. charge5_l2_currency_value;
       }
-      localStorage.setItem('L3dataSource', JSON.stringify(Res));
+      localStorage.setItem('L2dataSource', JSON.stringify(Res));
     })
   }
 
   updateNewValue(get: any, key: string) {
     this.commonService.FileData[key] = get.target.value.toUpperCase()
     this.commonService.updateValue.next(this.commonService.FileData);
-    localStorage.setItem('L3dataSource', JSON.stringify(this.commonService.FileData));
+    localStorage.setItem('L2dataSource', JSON.stringify(this.commonService.FileData));
   }
-  
+
 }

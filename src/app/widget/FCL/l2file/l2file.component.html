@@ -1,0 +1,322 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th class="header-label">{{origin_port_key}}</th>
+        <th class="header-label">{{destination_port_key}}</th>
+        <th class="header-label">{{via_pol_key}}</th>
+        <th class="header-label">{{via_pod_key}}</th>
+        <th class="header-label">{{via_port_key}}</th>
+        <th class="header-label">{{cfs_stuffing_key}}</th>
+        <th class="header-label">{{service_type_key}}</th>
+        <th class="header-label">{{cargo_type_key}}</th>
+        <th class="header-label">{{commodities_key}}</th>
+        <th class="header-label">{{other_charges_key}}</th>
+        <th class="header-label">{{if_applicable_charges_key}}</th>
+        <th class="header-label">{{start_date_key}}</th>
+        <th class="header-label">{{expiry_key}}</th>
+        <th class="header-label">{{remarks_key}}</th>
+        <th class="header-label">{{inclusions_key}}</th>
+        <th class="header-label">{{load_type_key}}</th>
+        <th class="header-label">{{charge1_name_key}}</th>
+        <th class="header-label">{{charge1_basis_key}}</th>
+        <th class="header-label">{{charge1_currency_key}}</th>
+        <th class="header-label">{{charge2_name_key}}</th>
+        <th class="header-label">{{charge2_basis_key}}</th>
+        <th class="header-label">{{charge2_currency_key}}</th>
+        <th class="header-label">{{charge3_name_key}}</th>
+        <th class="header-label">{{charge3_basis_key}}</th>
+        <th class="header-label">{{charge3_currency_key}}</th>
+        <th class="header-label">{{charge4_name_key}}</th>
+        <th class="header-label">{{charge4_basis_key}}</th>
+        <th class="header-label">{{charge4_currency_key}}</th>
+        <th class="header-label">{{charge5_name_key}}</th>
+        <th class="header-label">{{charge5_basis_key}}</th>
+        <th class="header-label">{{charge5_currency_key}}</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="input_field">
+            <div>
+                <input 
+                    name="origin_port"
+                    type="text" 
+                    [value]="origin_port_value" 
+                    (keyup)="updateNewValue($event, 'origin_port_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <div>
+                <input 
+                    name="destination_port"
+                    type="text" 
+                    [value]="destination_port_value" 
+                    (keyup)="updateNewValue($event, 'destination_port_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <div>
+                <input
+                    name="via_pol"
+                    type="text" 
+                    [value]="via_pol_value" 
+                    (keyup)="updateNewValue($event, 'via_pol_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <div>
+                <input
+                    name="via_pod" 
+                    type="text" 
+                    [value]="via_pod_value" 
+                    (keyup)="updateNewValue($event, 'via_pod_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <div>
+                <input 
+                    name="via_port"
+                    type="text" 
+                    [value]="via_port_value" 
+                    (keyup)="updateNewValue($event, 'via_port_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <div>
+                <input 
+                    name="cfs_stuffing"
+                    type="text" 
+                    [value]="cfs_stuffing_value" 
+                    (keyup)="updateNewValue($event, 'cfs_stuffing_value')"
+                >
+            </div>
+        </td>
+        <td class="input_field">
+            <input 
+                name="service_type"
+                type="text" 
+                [value]="service_type_value" 
+                (keyup)="updateNewValue($event, 'service_type_value')"
+            >
+        </td>
+        <td class="input_field">
+            <!-- <input 
+                name="cargo_type"
+                type="text" 
+                [value]="cargo_type_value" 
+                (keyup)="updateNewValue($event, 'cargo_type_value')"
+            > -->
+            <div>
+                <select id="cargoType" [(value)]="cargo_type_value" (change)="updateNewValue($event, 'cargo_type_value')">
+                  <option value="" disabled selected>Select Type</option>
+                  <option value="FAK" selected>FAK</option>
+                  <option value="PERISHABLE">PERISHABLE</option>
+                  <option value="NON_PERISHABLE">NON-PERISHABLE</option>
+                  <option value="HAZARDOUS">HAZARDOUS</option>
+                </select>
+            </div>
+        </td>
+        <td class="input_field">
+            <input 
+                name="commodities"   
+                type="text" 
+                [value]="commodities_value" 
+                (keyup)="updateNewValue($event, 'commodities_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="other_charges"  
+                type="text" 
+                [value]="other_charges_value" 
+                (keyup)="updateNewValue($event, 'other_charges_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="if_applicable_charges" 
+                type="text" 
+                [value]="if_applicable_charges_value" 
+                (keyup)="updateNewValue($event, 'if_applicable_charges_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="start_date" 
+                placeholder="DD-MM-YYYY"
+                type="text" 
+                [value]="start_date_value" 
+                (keyup)="updateNewValue($event, 'start_date_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="expiry" 
+                placeholder="DD-MM-YYYY"
+                type="text" 
+                [value]="expiry_value" 
+                (keyup)="updateNewValue($event, 'expiry_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="remarks"
+                type="text" 
+                [value]="remarks_value" 
+                (keyup)="updateNewValue($event, 'remarks_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="inclusion"
+                type="text" 
+                [value]="inclusions_value" 
+                (keyup)="updateNewValue($event, 'inclusions_value')"
+            >
+        </td>
+        <td class="input_field">
+            <!-- <input 
+                name="load_type"
+                type="text" 
+                [value]="load_type_value" 
+                (keyup)="updateNewValue($event, 'load_type_value')"
+            > -->
+            <div>
+                <select id="laodType" [(value)]="load_type_value" (change)="updateNewValue($event, 'load_type_value')">
+                  <option value="" disabled selected>Select Load Type</option>
+                  <option value="20GP">20GP</option>
+                  <option value="40GP">40GP</option>
+                  <option value="40HC">40HC</option>
+                  <option value="45HC">45HC</option>
+                </select>
+              </div>
+        </td>
+        <td class="input_field">
+            <input 
+                name="origin_terminal_handling_charge_othc"
+                type="text" 
+                [value]="charge1_name_value" 
+                (keyup)="updateNewValue($event, 'charge1_l2_name_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input style="text-transform: none;"
+                name="origin_terminal_handling_charge_othc_basis"
+                type="text" 
+                [value]="charge1_basis_value" 
+                (keyup)="updateNewValue($event, 'charge1_l2_basis_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="origin_terminal_handling_charge_othc_currency"
+                type="text" 
+                [value]="charge1_currency_value" 
+                (keyup)="updateNewValue($event, 'charge1_l2_currency_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="documentation_fee_origin_baf"
+                type="text" 
+                [value]="charge2_name_value" 
+                (keyup)="updateNewValue($event, 'charge2_l2_name_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input style="text-transform: none;"
+                name="documentation_fee_origin_basis"
+                type="text" 
+                [value]="charge2_basis_value" 
+                (keyup)="updateNewValue($event, 'charge2_l2_basis_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="documentation_fee_origin_currency"
+                type="text" 
+                [value]="charge2_currency_value" 
+                (keyup)="updateNewValue($event, 'charge2_l2_currency_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="cfs_fee_at_origin"
+                type="text" 
+                [value]="charge3_name_value" 
+                (keyup)="updateNewValue($event, 'charge3_l2_name_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input style="text-transform: none;"
+                name="cfs_fee_at_origin_basis"
+                type="text" 
+                [value]="charge3_basis_value" 
+                (keyup)="updateNewValue($event, 'charge3_l2_basis_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="cfs_fee_at_origin_currency"
+                type="text" 
+                [value]="charge3_currency_value" 
+                (keyup)="updateNewValue($event, 'charge3_l2_currency_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="container_positioning_dps"
+                type="text" 
+                [value]="charge4_name_value" 
+                (keyup)="updateNewValue($event, 'charge4_l2_name_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input style="text-transform: none;"
+                name="container_positioning_dps_basis"
+                type="text" 
+                [value]="charge4_basis_value" 
+                (keyup)="updateNewValue($event, 'charge4_l2_basis_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="container_positioning_dps_currency"
+                type="text" 
+                [value]="charge4_currency_value" 
+                (keyup)="updateNewValue($event, 'charge4_l2_currency_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input 
+                name="seal_fee_surcharge"
+                type="text" 
+                [value]="charge5_name_value" 
+                (keyup)="updateNewValue($event, 'charge5_l2_name_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input style="text-transform: none;"
+                name="seal_fee_basis"
+                type="text" 
+                [value]="charge5_basis_value" 
+                (keyup)="updateNewValue($event, 'charge5_l2_basis_value')"
+            >
+        </td>
+        <td class="input_field">
+            <input
+                name="seal_fee_currency"
+                type="text" 
+                [value]="charge5_currency_value" 
+                (keyup)="updateNewValue($event, 'charge5_l2_currency_value')"
+            >
+        </td>
+      </tr>
+    </tbody>
+</table>

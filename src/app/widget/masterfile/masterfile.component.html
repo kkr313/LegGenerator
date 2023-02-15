@@ -72,7 +72,13 @@
       <td class="input_label">start_date<span class="asterisk">*</span></td>
       <td class="input_field">
         <div>
-          <input type="text" value="23-09-2022" placeholder="DD-MM-YYYY" />
+          <input 
+            name="start_date" 
+            placeholder="DD-MM-YYYY"
+            type="text" 
+            [value]="start_date_value" 
+            (keyup)="updateNewValue($event, 'start_date_value')"
+          >
         </div>
       </td>
       <td class="input_label">{{via_port_key}}</td>
@@ -97,7 +103,13 @@
       <td class="input_label">expiry<span class="asterisk">*</span></td>
       <td class="input_field">
         <div>
-          <input type="text" value="18-09-2023" placeholder="DD-MM-YYYY" />
+          <input 
+            name="expiry" 
+            placeholder="DD-MM-YYYY"
+            type="text" 
+            [value]="expiry_value" 
+            (keyup)="updateNewValue($event, 'expiry_value')"
+          >
         </div>
       </td>
       <td class="input_label">{{contract_number_key}}</td>

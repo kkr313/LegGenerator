@@ -37,7 +37,7 @@
           },
           "col9": {
             "key": "sailing_date",
-            "value": "23-09-2022"
+            "value": "23-02-2023"
           },
           "col10": {
             "key": "cargo_type",
@@ -113,6 +113,94 @@
             "charge_basis_key": "peak_season_surcharge_basis",
             "charge_basis_value": "per container",
             "charge_currency_key": "peak_season_surcharge_currency",
+            "charge_currency_value": "INR"
+          }
+        },
+        "L2":{
+          "col6": {
+            "key": "cfs_stuffing",
+            "value": ""
+          },
+          "charges1": {
+            "charge_name_key": "origin_terminal_handling_charge_othc",
+            "charge_name_value": "2000",
+            "charge_basis_key": "origin_terminal_handling_charge_othc_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "origin_terminal_handling_charge_othc_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges2": {
+            "charge_name_key": "documentation_fee_origin",
+            "charge_name_value": "1000",
+            "charge_basis_key": "documentation_fee_origin_basis",
+            "charge_basis_value": "per B/L",
+            "charge_currency_key": "documentation_fee_origin_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges3": {
+            "charge_name_key": "cfs_fee_at_origin",
+            "charge_name_value": "20.30",
+            "charge_basis_key": "cfs_fee_at_origin_basis",
+            "charge_basis_value": "per shipping bill",
+            "charge_currency_key": "cfs_fee_at_origin_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges4": {
+            "charge_name_key": "container_positioning_dps",
+            "charge_name_value": "-2500",
+            "charge_basis_key": "container_positioning_dps_basis",
+            "charge_basis_value": "per equipment",
+            "charge_currency_key": "container_positioning_dps_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges5": {
+            "charge_name_key": "seal_fee",
+            "charge_name_value": "500",
+            "charge_basis_key": "seal_fee_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "seal_fee_currency",
+            "charge_currency_value": "INR"
+          }
+        },
+        "L4":{
+          "charges1": {
+            "charge_name_key": "destination_terminal_handling_charges",
+            "charge_name_value": "1000",
+            "charge_basis_key": "destination_terminal_handling_charges_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "destination_terminal_handling_charges_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges2": {
+            "charge_name_key": "documentation_fee_destination",
+            "charge_name_value": "400",
+            "charge_basis_key": "documentation_fee_destination_basis",
+            "charge_basis_value": "per B/L",
+            "charge_currency_key": "documentation_fee_destination_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges3": {
+            "charge_name_key": "customs_examination",
+            "charge_name_value": "230",
+            "charge_basis_key": "customs_examination_basis",
+            "charge_basis_value": "per shipping bill",
+            "charge_currency_key": "customs_examination_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges4": {
+            "charge_name_key": "surplus_and_demand_compensation",
+            "charge_name_value": "-200",
+            "charge_basis_key": "surplus_and_demand_compensation_basis",
+            "charge_basis_value": "per equipment",
+            "charge_currency_key": "surplus_and_demand_compensation_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges5": {
+            "charge_name_key": "import_service",
+            "charge_name_value": "900",
+            "charge_basis_key": "import_service_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "import_service_currency",
             "charge_currency_value": "INR"
           }
         }

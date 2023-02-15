@@ -1,19 +1,74 @@
 <div class="top-bar">
-  <input type="checkbox" id="all" name="all" value="all" class="checkbox"/>
-  <label class="label" for="All">All</label><br />
-  <input type="checkbox" id="L1" name="L1" value="L1" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L1" 
+    [(ngModel)]="selectedLegs.options[0].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="L1"
+    value="L1" 
+    class="checkbox"
+  />
   <label class="label" for="L1">L1</label><br />
-  <input type="checkbox" id="L2" name="L2" value="L2" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L2" 
+    [(ngModel)]="selectedLegs.options[1].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="L2"
+    value="L2" 
+    class="checkbox"
+  />
   <label class="label" for="L2">L2</label><br />
-  <input type="checkbox" id="L3" name="L3" value="L3" class="checkbox" checked/>
+  <input 
+    type="checkbox" 
+    id="L3" 
+    type="checkbox" 
+    value="L3" 
+    class="checkbox" 
+    [(ngModel)]="selectedLegs.options[2].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="L3"
+  />
   <label class="label" for="L3">L3</label><br />
-  <input type="checkbox" id="L4" name="L4" value="L4" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L4" 
+    [(ngModel)]="selectedLegs.options[3].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="L4" 
+    value="L4" 
+    class="checkbox"
+  />
   <label class="label" for="L4">L4</label><br />
-  <input type="checkbox" id="L5" name="L5" value="L5" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L5" 
+    [(ngModel)]="selectedLegs.options[4].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="L5" 
+    value="L5" 
+    class="checkbox"
+  />
   <label class="label" for="L5">L5</label><br />
-  <input type="checkbox" id="L2Cha" name="L2Cha" value="L2Cha" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L2Cha" 
+    [(ngModel)]="selectedLegs.options[5].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="All"
+    value="L2Cha" 
+    class="checkbox"
+  />
   <label class="label" for="L2Cha">L2Cha</label><br />
-  <input type="checkbox" id="L4Cha" name="L4Cha" value="L4Cha" class="checkbox"/>
+  <input 
+    type="checkbox" 
+    id="L4Cha" 
+    [(ngModel)]="selectedLegs.options[6].value" 
+    (ngModelChange)="saveCheckboxValues()"
+    name="All" 
+    value="L4Cha" 
+    class="checkbox"
+  />
   <label class="label" for="L4Cha">L4Cha</label><br />
 </div>
 <div class="form-area">
