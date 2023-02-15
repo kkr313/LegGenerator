@@ -41,7 +41,7 @@
   .accordion-single-item.is-open .accordion-single-content  {
     max-height: 100%;
     background: #c6ced7;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     overflow: auto;
     height: auto;
   }

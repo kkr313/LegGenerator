@@ -3,15 +3,15 @@
     <option *ngFor="let option of env" [value]="option.value">{{ option.label }}</option>
 </select> -->
 
-<select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()">
+<select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()" disabled="disabled">
     <option *ngFor="let option of firstDropdownOptions" [value]="option.value">{{ option.label }}</option>
   </select>
 
-  <select class="empty_drpdn" [(ngModel)]="selectedSecondDropdownValue" (ngModelChange)="updateThirdDropdownOptions(); selectVendor()">
+  <select class="empty_drpdn" [(ngModel)]="selectedSecondDropdownValue" (ngModelChange)="updateThirdDropdownOptions(); selectVendor()" disabled="disabled">
     <option *ngFor="let option of secondDropdownOptions" [value]="option.value">{{ option.label }}</option>
   </select>
 
-  <select class="empty_drpdn" [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()">
+  <select class="empty_drpdn" [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()" disabled="disabled">
     <option *ngFor="let option of thirdDropdownOptions" [value]="option.value">{{ option.label }}</option>
   </select>
 

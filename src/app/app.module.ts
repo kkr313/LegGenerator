@@ -15,6 +15,8 @@ import { L3fileComponent } from './widget/FCL/l3file/l3file.component';
 import { DownlaodbtnComponent } from './widget/downlaodbtn/downlaodbtn.component';
 import { L2fileComponent } from './widget/FCL/l2file/l2file.component';
 import { L4fileComponent } from './widget/FCL/l4file/l4file.component';
+import { L2chafileComponent } from './widget/FCL/l2chafile/l2chafile.component';
+import { L4chafileComponent } from './widget/FCL/l4chafile/l4chafile.component';
 
 
 
@@ -30,7 +32,9 @@ import { L4fileComponent } from './widget/FCL/l4file/l4file.component';
     L3fileComponent,
     DownlaodbtnComponent,
     L2fileComponent,
-    L4fileComponent
+    L4fileComponent,
+    L2chafileComponent,
+    L4chafileComponent
   ],
   imports: [
     BrowserModule,

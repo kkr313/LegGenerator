@@ -203,6 +203,90 @@
             "charge_currency_key": "import_service_currency",
             "charge_currency_value": "INR"
           }
+        },
+        "L2Cha":{
+          "charges1": {
+            "charge_name_key": "export_customs_formalities_per_container",
+            "charge_name_value": "100",
+            "charge_basis_key": "export_customs_formalities_per_container_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "export_customs_formalities_per_container_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges2": {
+            "charge_name_key": "additional_customs_entry_fee",
+            "charge_name_value": "90",
+            "charge_basis_key": "additional_customs_entry_fee_basis",
+            "charge_basis_value": "per B/L",
+            "charge_currency_key": "additional_customs_entry_fee_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges3": {
+            "charge_name_key": "customs_documentation_fee_at_origin",
+            "charge_name_value": "40",
+            "charge_basis_key": "customs_documentation_fee_at_origin_basis",
+            "charge_basis_value": "per shipping bill",
+            "charge_currency_key": "customs_documentation_fee_at_origin_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges4": {
+            "charge_name_key": "export_customs_brokerage",
+            "charge_name_value": "20",
+            "charge_basis_key": "export_customs_brokerage_basis",
+            "charge_basis_value": "per equipment",
+            "charge_currency_key": "export_customs_brokerage_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges5": {
+            "charge_name_key": "customs_documentation_fee_at_origin",
+            "charge_name_value": "10",
+            "charge_basis_key": "customs_documentation_fee_at_origin_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "customs_documentation_fee_at_origin_currency",
+            "charge_currency_value": "INR"
+          }
+        },
+        "L4Cha":{
+          "charges1": {
+            "charge_name_key": "loading_unloading",
+            "charge_name_value": "210",
+            "charge_basis_key": "loading_unloading_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "loading_unloading_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges2": {
+            "charge_name_key": "customs_clearance_per_bl",
+            "charge_name_value": "90",
+            "charge_basis_key": "customs_clearance_per_bl_basis",
+            "charge_basis_value": "per B/L",
+            "charge_currency_key": "customs_clearance_per_bl_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges3": {
+            "charge_name_key": "additional_customs_entry_fee",
+            "charge_name_value": "40.90",
+            "charge_basis_key": "additional_customs_entry_fee_basis",
+            "charge_basis_value": "per shipping bill",
+            "charge_currency_key": "additional_customs_entry_fee_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges4": {
+            "charge_name_key": "customs_documentation_fee_at_destination",
+            "charge_name_value": "20",
+            "charge_basis_key": "customs_documentation_fee_at_destination_basis",
+            "charge_basis_value": "per equipment",
+            "charge_currency_key": "customs_documentation_fee_at_destination_currency",
+            "charge_currency_value": "INR"
+          },
+          "charges5": {
+            "charge_name_key": "loading_unloading",
+            "charge_name_value": "10",
+            "charge_basis_key": "loading_unloading_basis",
+            "charge_basis_value": "per container",
+            "charge_currency_key": "loading_unloading_currency",
+            "charge_currency_value": "INR"
+          }
         }
       }
     ],

@@ -128,9 +128,6 @@ export class DownlaodbtnComponent implements OnInit {
     // this.selectedVendorValue = this.vendor[0].value;
     // this.selectedLinearValue = this.linear[0].value;
     this.selectedFirstDropdownValue = this.firstDropdownOptions[0].value;
-
-    console.log(this.selectedFirstDropdownValue)
-
   }
 
   l3Data: any;
