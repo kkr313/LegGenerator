@@ -145,7 +145,11 @@ export class L4fileComponent implements OnInit {
   }
 
   updateNewValue(get: any, key: string) {
-    this.commonService.FileData[key] = get.target.value.toUpperCase()
+    if(key.indexOf('_l4') !== -1){
+      this.commonService.FileData[key] = get.target.value
+    }else{
+      this.commonService.FileData[key] = get.target.value.toUpperCase()
+    }
     this.commonService.updateValue.next(this.commonService.FileData);
     localStorage.setItem('L4dataSource', JSON.stringify(this.commonService.FileData));
   }
