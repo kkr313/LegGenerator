@@ -238,11 +238,11 @@
             "charge_currency_value": "INR"
           },
           "charges5": {
-            "charge_name_key": "customs_documentation_fee_at_origin",
+            "charge_name_key": "vgm_transmission",
             "charge_name_value": "10",
-            "charge_basis_key": "customs_documentation_fee_at_origin_basis",
+            "charge_basis_key": "vgm_transmission_basis",
             "charge_basis_value": "per container",
-            "charge_currency_key": "customs_documentation_fee_at_origin_currency",
+            "charge_currency_key": "vgm_transmission_currency",
             "charge_currency_value": "INR"
           }
         },

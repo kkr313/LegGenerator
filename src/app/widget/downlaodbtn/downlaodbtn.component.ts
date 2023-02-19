@@ -137,6 +137,7 @@ export class DownlaodbtnComponent implements OnInit {
     let l3data = JSON.parse(localStorage.getItem('L3dataSource')!);
     let l2data = JSON.parse(localStorage.getItem('L2dataSource')!);
     let l4data = JSON.parse(localStorage.getItem('L4dataSource')!);
+    let l4chadata = JSON.parse(localStorage.getItem('L2ChadataSource')!);
      this.legsData={
       L3Data :[{
         origin_port: l3data.origin_port_value,
@@ -238,7 +239,35 @@ export class DownlaodbtnComponent implements OnInit {
         import_service: l4data.charge5_l4_name_value,
         import_service_basis: l4data.charge5_l4_basis_value,
         import_service_currency: l4data.charge5_l4_currency_value,
-      }]
+      }],
+      L2ChaData :[{
+        origin_port: l2data.origin_port_value,
+        via_port: l2data.via_port_value,
+        cfs_stuffing: l2data.cfs_stuffing_value,
+        other_charges: l2data.other_charges_value,
+        if_applicable_charges: l2data.if_applicable_charges_value,
+        start_date: l2data.start_date_value,
+        expiry: l2data.expiry_value,
+        remarks: l2data.remarks_value,
+        inclusions: l2data.inclusions_value,
+        load_type: l2data.load_type_value,
+        export_customs_formalities_per_container: l2data.charge1_l2cha_name_value,
+        export_customs_formalities_per_container_basis: l2data.charge1_l2cha_basis_value,
+        export_customs_formalities_per_container_currency: l2data.charge1_l2cha_currency_value,
+        additional_customs_entry_fee: l2data.charge2_l2cha_name_value,
+        additional_customs_entry_fee_basis: l2data.charge2_l2cha_basis_value,
+        additional_customs_entry_fee_currency: l2data.charge2_l2cha_currency_value,
+        customs_documentation_fee_at_origin: l2data.charge3_l2cha_name_value,
+        customs_documentation_fee_at_origin_basis: l2data.charge3_l2cha_basis_value,
+        customs_documentation_fee_at_origin_currency: l2data.charge3_l2cha_currency_value,
+        export_customs_brokerage: l2data.charge4_l2cha_name_value,
+        export_customs_brokerage_basis: l2data.charge4_l2cha_basis_value,
+        export_customs_brokerage_currency: l2data.charge4_l2cha_currency_value,
+        vgm_transmission: l2data.charge5_l2cha_name_value,
+        vgm_transmission_basis: l2data.charge5_l2cha_basis_value,
+        vgm_transmission_currency: l2data.charge5_l2cha_currency_value,
+      }],
+
      } 
 
 

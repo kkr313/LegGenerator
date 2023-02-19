@@ -13,13 +13,14 @@
     <tr>
       <td class="input_label" name="origin_port">{{origin_port_key}}<span class="asterisk">*</span>
       </td>
-      <td class="input_field" name="origin_port_value">
+      <td class="input_field" name="origin_port_value" [ngClass]="{'error': origin_port_value?.length != 5 || origin_port_value?.length === 0}">
         <div>
           <input 
             name="origin_port"
             type="text" 
             [value]="origin_port_value" 
             (keyup)="updateNewValue($event,'origin_port_value')" 
+            [(ngModel)]="origin_port_value" minlength="1" maxlength="5"
           />
         </div>
       </td>

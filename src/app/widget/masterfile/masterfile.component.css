@@ -100,3 +100,7 @@ th.header-label{
   font-size: 15px;
   margin-left: 2px;
 }
+
+.error{
+  border: 2px solid red !important;
+}
