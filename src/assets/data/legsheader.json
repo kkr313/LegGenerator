@@ -280,11 +280,11 @@
             "charge_currency_value": "INR"
           },
           "charges5": {
-            "charge_name_key": "loading_unloading",
+            "charge_name_key": "import_customs_brokerage",
             "charge_name_value": "10",
-            "charge_basis_key": "loading_unloading_basis",
+            "charge_basis_key": "import_customs_brokerage_basis",
             "charge_basis_value": "per container",
-            "charge_currency_key": "loading_unloading_currency",
+            "charge_currency_key": "import_customs_brokerage_currency",
             "charge_currency_value": "INR"
           }
         }
