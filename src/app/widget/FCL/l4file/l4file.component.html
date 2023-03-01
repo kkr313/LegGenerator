@@ -114,11 +114,13 @@
             > -->
             <div>
                 <select id="cargoType" [(value)]="cargo_type_value" (change)="updateNewValue($event, 'cargo_type_value')">
-                  <option value="" disabled selected>Select Type</option>
-                  <option value="FAK" selected>FAK</option>
-                  <option value="PERISHABLE">PERISHABLE</option>
-                  <option value="NON_PERISHABLE">NON-PERISHABLE</option>
-                  <option value="HAZARDOUS">HAZARDOUS</option>
+                    <option value="" disabled selected>Select Cargo Type</option>
+                    <option value="FAK" selected>FAK</option>
+                    <option value="Perishable">Perishable</option>
+                    <option value="Non-Perishable">Non-Perishable</option>
+                    <option value="Hazardous">Hazardous</option>
+                    <option value="Chilled">Chilled</option>
+                    <option value="Out of Gauge">Out of Gauge</option>
                 </select>
             </div>
         </td>

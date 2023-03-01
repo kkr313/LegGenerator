@@ -80,7 +80,7 @@ export class L3fileComponent implements OnInit {
   charge5_currency_key: any;
   charge5_currency_value: any;
 
-
+  // tbodies = [1, 2, 3];
 
 
   ngOnInit(): void {
@@ -158,7 +158,7 @@ export class L3fileComponent implements OnInit {
   }
 
   updateNewValue(get: any, key: string) {
-    if(key.indexOf('_l3') !== -1){
+    if(key.indexOf('_l3') !== -1 || key === "cargo_type_value"){
       this.commonService.FileData[key] = get.target.value
     }else{
       this.commonService.FileData[key] = get.target.value.toUpperCase()

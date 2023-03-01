@@ -17,6 +17,8 @@ import { L2fileComponent } from './widget/FCL/l2file/l2file.component';
 import { L4fileComponent } from './widget/FCL/l4file/l4file.component';
 import { L2chafileComponent } from './widget/FCL/l2chafile/l2chafile.component';
 import { L4chafileComponent } from './widget/FCL/l4chafile/l4chafile.component';
+import { L1fileComponent } from './widget/FCL/l1file/l1file.component';
+import { L5fileComponent } from './widget/FCL/l5file/l5file.component';
 
 
 
@@ -34,7 +36,9 @@ import { L4chafileComponent } from './widget/FCL/l4chafile/l4chafile.component';
     L2fileComponent,
     L4fileComponent,
     L2chafileComponent,
-    L4chafileComponent
+    L4chafileComponent,
+    L1fileComponent,
+    L5fileComponent
   ],
   imports: [
     BrowserModule,

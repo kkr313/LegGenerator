@@ -147,7 +147,7 @@ export class L2fileComponent implements OnInit {
   }
 
   updateNewValue(get: any, key: string) {
-    if(key.indexOf('_l2') !== -1){
+    if(key.indexOf('_l2') !== -1 || key === "cargo_type_value"){
       this.commonService.FileData[key] = get.target.value
     }else{
       this.commonService.FileData[key] = get.target.value.toUpperCase()
