@@ -3,7 +3,7 @@
     <option *ngFor="let option of env" [value]="option.value">{{ option.label }}</option>
 </select> -->
 
-<select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()" disabled="disabled">
+<!-- <select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()" disabled="disabled">
     <option *ngFor="let option of firstDropdownOptions" [value]="option.value">{{ option.label }}</option>
   </select>
 
@@ -13,7 +13,7 @@
 
   <select class="empty_drpdn" [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()" disabled="disabled">
     <option *ngFor="let option of thirdDropdownOptions" [value]="option.value">{{ option.label }}</option>
-  </select>
+  </select> -->
 
 <!-- <select [(ngModel)]="selectedEnvValue" (change)="selectEnvValue($event)">
     <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
@@ -24,6 +24,6 @@
 </select> -->
 
 
-<button class="dwld-btn" (click)="directUpload()">Direct Upload</button>
+<!-- <button class="dwld-btn" (click)="directUpload()">Direct Upload</button> -->
 
 <button class="dwld-btn" (click)="downloaData()">Download File</button>
