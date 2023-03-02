@@ -362,7 +362,7 @@
         },
         "col19": {
           "key": "weight_range",
-          "value": "0-2500"
+          "value": "0-25000"
         },
         "col20": {
           "key": "weight_unit",

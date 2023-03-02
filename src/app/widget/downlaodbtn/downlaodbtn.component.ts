@@ -39,8 +39,8 @@ export class DownlaodbtnComponent implements OnInit {
     }
     this.selectedSecondDropdownValue = this.secondDropdownOptions[0].value;
     this.updateThirdDropdownOptions();
-    console.log(this.selectedFirstDropdownValue);
-    console.log(this.selectedSecondDropdownValue);
+    // console.log(this.selectedFirstDropdownValue);
+    // console.log(this.selectedSecondDropdownValue);
   }
 
   updateThirdDropdownOptions() {
@@ -75,7 +75,7 @@ export class DownlaodbtnComponent implements OnInit {
         break;
     }
     this.selectedThirdDropdownValue = this.thirdDropdownOptions[0].value;
-    console.log(this.selectedThirdDropdownValue);
+    // console.log(this.selectedThirdDropdownValue);
   }
 
   selectLinear() {
@@ -83,14 +83,14 @@ export class DownlaodbtnComponent implements OnInit {
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
-          console.log(this.selectedThirdDropdownValue);
+          // console.log(this.selectedThirdDropdownValue);
         }
       });
     } else {
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
-          console.log(this.selectedThirdDropdownValue);
+          // console.log(this.selectedThirdDropdownValue);
         }
       });
     }
@@ -101,14 +101,14 @@ export class DownlaodbtnComponent implements OnInit {
       this.secondDropdownOptions.map((option) => {
         if (this.selectedSecondDropdownValue == option.value) {
           this.selectedSecondDropdownValue = option.value;
-          console.log(this.selectedSecondDropdownValue);
+          // console.log(this.selectedSecondDropdownValue);
         }
       });
     } else {
       this.secondDropdownOptions.map((option) => {
         if (this.selectedSecondDropdownValue == option.value) {
           this.selectedSecondDropdownValue = option.value;
-          console.log(this.selectedSecondDropdownValue);
+          // console.log(this.selectedSecondDropdownValue);
         }
       });
     }
@@ -134,7 +134,7 @@ export class DownlaodbtnComponent implements OnInit {
     let l4chadata = JSON.parse(localStorage.getItem('L4ChadataSource')!);
     let l1data = JSON.parse(localStorage.getItem('L1dataSource')!);
     let l5data = JSON.parse(localStorage.getItem('L5dataSource')!);
-
+    
     this.legsData = {
       L3Data: [
         {
@@ -161,8 +161,7 @@ export class DownlaodbtnComponent implements OnInit {
           basic_ocean_freight_currency: l3data.charge1_l3_currency_value,
           bunker_adjustment_charge_baf: l3data.charge2_l3_name_value,
           bunker_adjustment_charge_baf_basis: l3data.charge2_l3_basis_value,
-          bunker_adjustment_charge_baf_currency:
-            l3data.charge2_l3_currency_value,
+          bunker_adjustment_charge_baf_currency:l3data.charge2_l3_currency_value,
           carrier_security_surcharge: l3data.charge3_l3_name_value,
           carrier_security_surcharge_basis: l3data.charge3_l3_basis_value,
           carrier_security_surcharge_currency: l3data.charge3_l3_currency_value,

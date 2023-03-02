@@ -524,7 +524,7 @@ export class CommonService {
         this.FileData.charge1_l1_basis,
         this.FileData.charge1_l1_currency,
         this.FileData.charge2_l1_name,
-        this.FileData.charge1_l1_min,
+        this.FileData.charge2_l1_min,
         this.FileData.charge2_l1_basis,
         this.FileData.charge2_l1_currency,
         this.FileData.charge3_l1_name,
@@ -573,7 +573,7 @@ export class CommonService {
         this.FileData.charge1_l5_basis,
         this.FileData.charge1_l5_currency,
         this.FileData.charge2_l5_name,
-        this.FileData.charge1_l5_min,
+        this.FileData.charge2_l5_min,
         this.FileData.charge2_l5_basis,
         this.FileData.charge2_l5_currency,
         this.FileData.charge3_l5_name,
@@ -613,7 +613,6 @@ export class CommonService {
 
   ConvertToCSV(objArray: string, headerList: string[]) {
     let array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-    console.log(array)
     let str = '';
     let row = '';
 

@@ -29,7 +29,7 @@ isActive: any;
     //   destination_port : this.destination_port_value
     // }]
     // this.commonServcie.downloadFile(this.l3Data, 'FCL_L3');
-    console.log
+    // console.log
   }
   
  
