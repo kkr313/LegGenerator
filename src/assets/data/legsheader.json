@@ -102,7 +102,7 @@
           "charge_name_key": "low_sulphur_surcharge",
           "charge_name_value": "-2500",
           "charge_basis_key": "low_sulphur_surcharge_basis",
-          "charge_basis_value": "per container",
+          "charge_basis_value": "per shipment",
           "charge_currency_key": "low_sulphur_surcharge_currency",
           "charge_currency_value": "INR"
         },
@@ -477,5 +477,241 @@
       }
     }
   ],
-  "LCL": [{}]
+  "LCL": [
+    {
+      "L3": {
+        "col1": {
+          "key": "origin_port",
+          "value": "SGSIN"
+        },
+        "col2": {
+          "key": "destination_port",
+          "value": "BEANR"
+        },
+        "col3": {
+          "key": "via_pol",
+          "value": "SGSEM"
+        },
+        "col4": {
+          "key": "via_pod",
+          "value": "BEAAT"
+        },
+        "col5": {
+          "key": "via_port",
+          "value": "AOLAD"
+        },
+        "col6": {
+          "key": "transit_time",
+          "value": "12"
+        },
+        "col7": {
+          "key": "service_type",
+          "value": "CY/CY"
+        },
+        "col8": {
+          "key": "service_name",
+          "value": ""
+        },
+        "col9": {
+          "key": "cargo_type",
+          "value": ""
+        },
+        "col10": {
+          "key": "commodities",
+          "value": "Food"
+        },
+        "col11": {
+          "key": "start_date",
+          "value": "23-09-2022"
+        },
+        "col12": {
+          "key": "expiry",
+          "value": "18-09-2023"
+        },
+        "col13": {
+          "key": "remarks",
+          "value": ""
+        },
+        "col14": {
+          "key": "inclusions",
+          "value": ""
+        },
+        "charges1": {
+          "charge_name_key": "ocean_freight",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "ocean_freight_min",
+          "charge_name_min_value": "2000",
+          "charge_basis_key": "ocean_freight_basis",
+          "charge_basis_value": "per equipment",
+          "charge_currency_key": "ocean_freight_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "bunker_adjustment_charge_baf",
+          "charge_name_value": "1000",
+          "charge_basis_key": "bunker_adjustment_charge_baf_basis",
+          "charge_basis_value": "per B/L",
+          "charge_currency_key": "bunker_adjustment_charge_baf_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "carrier_security_surcharge",
+          "charge_name_value": "20.30",
+          "charge_basis_key": "carrier_security_surcharge_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "carrier_security_surcharge_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "low_sulphur_surcharge",
+          "charge_name_value": "-2500",
+          "charge_basis_key": "low_sulphur_surcharge_basis",
+          "charge_basis_value": "per shipment",
+          "charge_currency_key": "low_sulphur_surcharge_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "peak_season_surcharge",
+          "charge_name_value": "500",
+          "charge_basis_key": "peak_season_surcharge_basis",
+          "charge_basis_value": "per container",
+          "charge_currency_key": "peak_season_surcharge_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L2":{},
+      "L4":{},
+      "L2Cha":{},
+      "L4Cha":{},
+     "L1": {
+        "col1": {
+          "key": "origin",
+          "value": "134 Watten Estate Rd - Singapore"
+        },
+        "col2": {
+          "key": "destination",
+          "value": "Aalst_Sint-Truiden - Belgium"
+        },
+        "col3": {
+          "key": "origin_portcode",
+          "value": ""
+        },
+        "col4": {
+          "key": "destination_portcode",
+          "value": ""
+        },
+        "col5": {
+          "key": "origin_pincode",
+          "value": ""
+        },
+        "col6": {
+          "key": "destination_pincode",
+          "value": ""
+        },
+        "col7": {
+          "key": "origin_country_code",
+          "value": ""
+        },
+        "col8": {
+          "key": "destination_country_code",
+          "value": ""
+        },
+        "col9": {
+          "key": "origin_state_code",
+          "value": ""
+        },
+        "col10": {
+          "key": "destination_state_code",
+          "value": ""
+        },
+        "col11": {
+          "key": "impo_expo",
+          "value": ""
+        },
+        "col12": {
+          "key": "transport_mode",
+          "value": ""
+        },
+        "col13": {
+          "key": "no_of_axle",
+          "value": ""
+        },
+        "col14": {
+          "key": "distance_range",
+          "value": ""
+        },
+        "col15": {
+          "key": "distance_unit",
+          "value": ""
+        },
+        "col16": {
+          "key": "volume_range",
+          "value": ""
+        },
+        "col17": {
+          "key": "volume_unit",
+          "value": ""
+        },
+        "col18": {
+          "key": "weight_range",
+          "value": "0-25000"
+        },
+        "col19": {
+          "key": "weight_unit",
+          "value": "KG"
+        },
+        "charges1": {
+          "charge_name_key": "return_mt_to_terminal",
+          "charge_name_value": "100",
+          "charge_min_key": "return_mt_to_terminal_min",
+          "charge_min_value": "200",
+          "charge_basis_key": "return_mt_to_terminal_basis",
+          "charge_basis_value": "per container",
+          "charge_currency_key": "return_mt_to_terminal_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "hazardous_goods_surcharge",
+          "charge_name_value": "400",
+          "charge_min_key": "hazardous_goods_surcharge_min",
+          "charge_min_value": "122.30",
+          "charge_basis_key": "hazardous_goods_surcharge_basis",
+          "charge_basis_value": "per equipment",
+          "charge_currency_key": "hazardous_goods_surcharge_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "pickup_charge",
+          "charge_name_value": "20",
+          "charge_min_key": "pickup_charge_min",
+          "charge_min_value": "12",
+          "charge_basis_key": "pickup_charge_basis",
+          "charge_basis_value": "% on pickup",
+          "charge_currency_key": "pickup_charge_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "adc",
+          "charge_name_value": "700",
+          "charge_min_key": "adc_min",
+          "charge_min_value": "220",
+          "charge_basis_key": "adc_basis",
+          "charge_basis_value": "per shipment",
+          "charge_currency_key": "adc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "overweight_surcharge",
+          "charge_name_value": "640",
+          "charge_min_key": "overweight_surcharge_min",
+          "charge_min_value": "120",
+          "charge_basis_key": "overweight_surcharge_basis",
+          "charge_basis_value": "per B/L",
+          "charge_currency_key": "overweight_surcharge_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L5":{}
+    }
+  ]
 }
