@@ -662,5 +662,26 @@ export class CommonService {
       console.log(res);
     });
   }
+
+  
+  /* Common Services for Basis,Currency & Load Type */
+
+  private currencyCodes = ["AED", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BRL", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLP", "CNY", "COP", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "EUR", "FJD", "FKP", "GBP", "GEL", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "INR", "IQD", "IRR", "ISK", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS", "SRD", "SSP", "STN", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "USD", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XCD", "XOF", "XPF", "YER", "ZAR", "ZMW"];
+
+  getCurrencies() {
+    return this.currencyCodes;
+  }
+
+  private defineBasis = ['per equipment', 'per container', 'per B/L', 'per shipping bill', 'per shipment', '% on freight', '% on pickup', '% on delivery', 'per carton', 'per pallet', 'per vehicle', 'per shift', 'per package', 'per invoice', 'per day', 'per revalidation', 'per teu', 'per kg', 'per ton', 'flat', 'per hour'];
+
+  getBasis() {
+    return this.defineBasis;
+  }
+
+  private loadTypes = [  '20GP',  '40GP',  '40HC',  '45HC',  '40RE',  '20RE',  '20OT',  '40OT',  '20FR',  '40FR',  '40HR',  '45S',  '20NOR',  '20NR',  '40NR', 'OTHR',  '20TK',  '40TK',  '53HC'];
+
+  getLoadType() {
+    return this.loadTypes;
+  }
 }
 

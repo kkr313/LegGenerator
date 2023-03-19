@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import FclData from 'src/assets/data/legsheader.json';
 
 function accordion(){
   const accSingleTriggers = document.querySelectorAll('.js-acc-single-trigger');

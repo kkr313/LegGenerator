@@ -10,7 +10,14 @@ import { CommonService } from "../../../common.service";
 })
 export class L3fileComponent implements OnInit {
 
+  currencyCodes: string[];
+  defineBasis: string[];
+  loadTypes: string[];
+
   constructor(private commonService: CommonService) {
+    this.currencyCodes = commonService.getCurrencies();
+    this.defineBasis = commonService.getBasis();
+    this.loadTypes = commonService.getLoadType();
   }
 
   origin_port_key: any;
@@ -158,9 +165,11 @@ export class L3fileComponent implements OnInit {
   }
 
   updateNewValue(get: any, key: string) {
+    console.log(get.target.value)
     if(key.indexOf('_l3') !== -1 || key === "cargo_type_value"){
       this.commonService.FileData[key] = get.target.value
-    }else{
+    }
+    else{
       this.commonService.FileData[key] = get.target.value.toUpperCase()
     }
     this.commonService.updateValue.next(this.commonService.FileData);

@@ -41,26 +41,31 @@
           rel="fclMode"
           (click)="Mode = 'fclMode'"
           (click)="isActive = !isActive"
+          (click) = RemoveLocalStorage(this.Mode)
         >
           <span>FCL</span>
         </button>
         <button
+        disabled
           class="card card-small"
           tabindex="0"
           [class.active]="Mode == 'lclMode'"
           rel="lclMode"
           (click)="Mode = 'lclMode'"
           (click)="isActive = !isActive"
+          (click) = RemoveLocalStorage(this.Mode)
         >
           <span>LCL</span>
         </button>
         <button
+        disabled
           class="card card-small"
           tabindex="0"
           [class.active]="Mode == 'airMode'"
           rel="airMode"
           (click)="Mode = 'airMode'"
           (click)="isActive = !isActive"
+          (click) = RemoveLocalStorage(this.Mode)
         >
           <span>AIR</span>
         </button>
@@ -70,7 +75,7 @@
           <app-fcl></app-fcl>
         </div>
         <div id="lclMode" *ngSwitchCase="'lclMode'">
-          <h3>LCL</h3>
+         <app-lcl></app-lcl>
         </div>
         <div id="airMode" *ngSwitchCase="'airMode'">
           <h3>AIR</h3>

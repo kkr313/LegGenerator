@@ -7,8 +7,14 @@ import { CommonService } from "../../../common.service";
   styleUrls: ['./l1file.component.css']
 })
 export class L1fileComponent implements OnInit {
+  currencyCodes: string[];
+  defineBasis: string[];
+  loadTypes: string[];
 
   constructor(private commonService: CommonService) {
+    this.currencyCodes = commonService.getCurrencies();
+    this.defineBasis = commonService.getBasis();
+    this.loadTypes = commonService.getLoadType();
   }
 
   origin_key: any;

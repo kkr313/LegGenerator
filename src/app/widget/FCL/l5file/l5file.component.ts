@@ -8,7 +8,16 @@ import { CommonService } from "../../../common.service";
 })
 export class L5fileComponent implements OnInit {
 
-  constructor(private commonService: CommonService) { }
+  currencyCodes: string[];
+  defineBasis: string[];
+  loadTypes: string[];
+
+  constructor(private commonService: CommonService) {
+    this.currencyCodes = commonService.getCurrencies();
+    this.defineBasis = commonService.getBasis();
+    this.loadTypes = commonService.getLoadType();
+  }
+
 
   origin_key: any;
   origin_value: any;

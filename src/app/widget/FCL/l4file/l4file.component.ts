@@ -8,7 +8,14 @@ import { CommonService } from "../../../common.service";
 })
 export class L4fileComponent implements OnInit {
 
+  currencyCodes: string[];
+  defineBasis: string[];
+  loadTypes: string[];
+
   constructor(private commonService: CommonService) {
+    this.currencyCodes = commonService.getCurrencies();
+    this.defineBasis = commonService.getBasis();
+    this.loadTypes = commonService.getLoadType();
   }
 
   origin_port_key: any;

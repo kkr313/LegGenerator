@@ -7,8 +7,10 @@ import { CommonService } from "../../common.service";
   styleUrls: ['./masterfile.component.css']
 })
 export class MasterfileComponent implements OnInit {
-  constructor(private commonService: CommonService) {
+  loadTypes: string[];
 
+  constructor(private commonService: CommonService) {
+    this.loadTypes = commonService.getLoadType();
   }
 
   origin_port_key: any;

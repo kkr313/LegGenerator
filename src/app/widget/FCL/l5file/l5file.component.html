@@ -277,15 +277,22 @@
                   >
               </td>
               <td class="input_field">
-                  <div>
-                      <select id="laodType" [(value)]="load_type_value" (change)="updateNewValue($event, 'load_type_value')">
-                        <option value="" disabled selected>Select Load Type</option>
-                        <option value="20GP">20GP</option>
-                        <option value="40GP">40GP</option>
-                        <option value="40HC">40HC</option>
-                        <option value="45HC">45HC</option>
-                      </select>
-                    </div>
+                <select
+                    id="laodType" 
+                    [(value)]="load_type_value"
+                    (change)="updateNewValue($event, 'load_type_value')">
+                        <option *ngFor="let load of loadTypes" 
+                            [value]="load" 
+                            [selected]="load === '20GP'">{{ load }}
+                        </option>
+                </select>
+            <!-- <select id="laodType" [(value)]="load_type_value" (change)="updateNewValue($event, 'load_type_value')">
+                <option value="" disabled selected>Select Load Type</option>
+                <option value="20GP">20GP</option>
+                <option value="40GP">40GP</option>
+                <option value="40HC">40HC</option>
+                <option value="45HC">45HC</option>
+            </select> -->
               </td>
               <td class="input_field">
                   <input 
