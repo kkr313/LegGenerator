@@ -26,6 +26,14 @@ import { L2chafileComponent } from './widget/FCL/l2chafile/l2chafile.component';
 import { L4chafileComponent } from './widget/FCL/l4chafile/l4chafile.component';
 import { L1fileComponent } from './widget/FCL/l1file/l1file.component';
 import { L5fileComponent } from './widget/FCL/l5file/l5file.component';
+import { LclL3fileComponent } from './widget/LCL/lcl-l3file/lcl-l3file.component';
+import { LclDownloadbtnComponent } from './widget/lcl-downloadbtn/lcl-downloadbtn.component';
+import { LclL2fileComponent } from './widget/LCL/lcl-l2file/lcl-l2file.component';
+import { LclL4fileComponent } from './widget/LCL/lcl-l4file/lcl-l4file.component';
+import { LclL2chafileComponent } from './widget/LCL/lcl-l2chafile/lcl-l2chafile.component';
+import { LclL4chafileComponent } from './widget/LCL/lcl-l4chafile/lcl-l4chafile.component';
+import { LclL1fileComponent } from './widget/LCL/lcl-l1file/lcl-l1file.component';
+import { LclL5fileComponent } from './widget/LCL/lcl-l5file/lcl-l5file.component';
 
 
 
@@ -50,6 +58,14 @@ import { L5fileComponent } from './widget/FCL/l5file/l5file.component';
     L5fileComponent,
     LclMasterfileComponent,
     LclAccordionComponent,
+    LclL3fileComponent,
+    LclDownloadbtnComponent,
+    LclL2fileComponent,
+    LclL4fileComponent,
+    LclL2chafileComponent,
+    LclL4chafileComponent,
+    LclL1fileComponent,
+    LclL5fileComponent,
   ],
   imports: [
     BrowserModule,

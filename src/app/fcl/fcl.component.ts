@@ -18,13 +18,7 @@ export class FclComponent implements OnInit {
       { name: 'L2Cha', value: false },
       { name: 'L4Cha', value: false }
     ]
-    // L1: false,
-    // L2: false,
-    // L3: false,
-    // L4: false,
-    // L5: false,
-    // L2Cha: false,
-    // L4Cha: false
+
   };
   constructor() {}
 

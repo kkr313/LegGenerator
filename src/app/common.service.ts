@@ -16,10 +16,12 @@ export class CommonService {
     origin_port_value: FclData.FCL[0].L3.col1.value,
     destination_port: FclData.FCL[0].L3.col2.key,
     destination_port_value: FclData.FCL[0].L3.col2.value,
+
     origin_portcode: FclData.FCL[0].L1.col3.key,
     origin_portcode_value: FclData.FCL[0].L3.col2.value,
     destination_portcode: FclData.FCL[0].L1.col4.key,
     destination_portcode_value: FclData.FCL[0].L3.col1.value,
+    
     via_pol: FclData.FCL[0].L3.col3.key,
     via_pol_value: FclData.FCL[0].L3.col3.value,
     via_pod: FclData.FCL[0].L3.col4.key,

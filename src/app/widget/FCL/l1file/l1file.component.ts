@@ -25,6 +25,7 @@ export class L1fileComponent implements OnInit {
   origin_portcode_value: any;
   destination_portcode_key: any;
   destination_portcode_value: any;
+  origin_port_value: any;
   empty_container_pickup_key: any;
   empty_container_pickup_value: any;
   origin_pincode_key: any;
@@ -123,7 +124,7 @@ export class L1fileComponent implements OnInit {
           this.origin_portcode_key = Res?.origin_portcode,
           this.origin_portcode_value = "",
           this.destination_portcode_key = Res?.destination_portcode;
-          this.destination_portcode_value = Res?.origin_port_value;
+          this.origin_port_value = Res?.origin_port_value,
           this.empty_container_pickup_key = Res?. empty_container_pickup;
           this.empty_container_pickup_value = Res?. empty_container_pickup_value;
           this.origin_pincode_key = Res?. origin_pincode;

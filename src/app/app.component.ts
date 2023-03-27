@@ -20,14 +20,15 @@ export class AppComponent implements OnInit {
 
   RemoveLocalStorage(Mode: any){
     if(Mode === "lclMode"){
-      localStorage.removeItem('L3dataSource');
-      localStorage.removeItem('L2dataSource');
-      localStorage.removeItem('L4dataSource');
-      localStorage.removeItem('L2ChadataSource');
-      localStorage.removeItem('L4ChadataSource');
-      localStorage.removeItem('L1dataSource');
-      localStorage.removeItem('L5dataSource');
-      localStorage.removeItem('selectedLegs');
+      // // localStorage.removeItem('L3dataSource');
+      // localStorage.removeItem('L2dataSource');
+      // localStorage.removeItem('L4dataSource');
+      // localStorage.removeItem('L2ChadataSource');
+      // localStorage.removeItem('L4ChadataSource');
+      // localStorage.removeItem('L1dataSource');
+      // localStorage.removeItem('L5dataSource');
+      // localStorage.removeItem('selectedLegs');
+      // localStorage.getItem('L3dataSource');
     }
 
   }

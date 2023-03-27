@@ -1,23 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from "../../../common.service";
+import { LclService } from 'src/app/lcl-service';
 
 @Component({
-  selector: 'app-l5file',
-  templateUrl: './l5file.component.html',
-  styleUrls: ['./l5file.component.css']
+  selector: 'app-lcl-l5file',
+  templateUrl: './lcl-l5file.component.html',
+  styleUrls: ['./lcl-l5file.component.css']
 })
-export class L5fileComponent implements OnInit {
-
+export class LclL5fileComponent implements OnInit {
   currencyCodes: string[];
   defineBasis: string[];
-  loadTypes: string[];
 
-  constructor(private commonService: CommonService) {
-    this.currencyCodes = commonService.getCurrencies();
-    this.defineBasis = commonService.getBasis();
-    this.loadTypes = commonService.getLoadType();
+  constructor(private lclService: LclService ) { 
+    this.currencyCodes = lclService.getCurrencies();
+    this.defineBasis = lclService.getBasis();
   }
-
 
   origin_key: any;
   origin_value: any;
@@ -28,8 +24,6 @@ export class L5fileComponent implements OnInit {
   destination_port_value: any;
   destination_portcode_key: any;
   destination_portcode_value: any;
-  empty_container_drop_key: any;
-  empty_container_drop_value: any;
   origin_pincode_key: any;
   origin_pincode_value: any;
   destination_pincode_key: any;
@@ -72,8 +66,6 @@ export class L5fileComponent implements OnInit {
   remarks_value: any;
   inclusions_key: any;
   inclusions_value: any;
-  load_type_key: any;
-  load_type_value: any;
   charge1_name_key: any;
   charge1_name_value: any;
   charge1_min_key: any;
@@ -116,7 +108,7 @@ export class L5fileComponent implements OnInit {
   charge5_currency_value: any;
 
   ngOnInit(): void {
-    this.commonService.updateValue.subscribe((Res: any) => {
+    this.lclService.updateValue.subscribe((Res: any) => {
       if (Res) {
           this.origin_key = Res?.origin,
           this.origin_value = "",
@@ -124,10 +116,8 @@ export class L5fileComponent implements OnInit {
           this.destination_value = Res?.destination_value,
           this.origin_portcode_key = Res?.origin_portcode,
           this.destination_port_value = Res?.destination_port_value,
-          this.destination_portcode_key = Res?.destination_portcode;
+          this.destination_portcode_key = Res?.destination_portcode;;
           this.destination_portcode_value = "";
-          this.empty_container_drop_key = Res?. empty_container_drop;
-          this.empty_container_drop_value = Res?. empty_container_drop_value;
           this.origin_pincode_key = Res?. origin_pincode;
           this.origin_pincode_value = Res?. origin_pincode_value;
           this.destination_pincode_key = Res?. destination_pincode;
@@ -170,8 +160,6 @@ export class L5fileComponent implements OnInit {
           this.remarks_value = Res?. remarks_value;
           this.inclusions_key = Res?. inclusions;
           this.inclusions_value = Res?. inclusions_value;
-          this.load_type_key = Res?. load_type;
-          this.load_type_value = Res?. load_type_value;
           this.charge1_name_key = Res?. charge1_l5_name;
           this.charge1_name_value = Res?. charge1_l5_name_value;
           this.charge1_min_key = Res?. charge1_l5_min;
@@ -219,12 +207,12 @@ export class L5fileComponent implements OnInit {
 
   updateNewValue(get: any, key: string) {
     if(key.indexOf('_l5') !== -1 || key === "transport_mode_value"){
-      this.commonService.FileData[key] = get.target.value
+      this.lclService.FileData[key] = get.target.value
     }else{
-      this.commonService.FileData[key] = get.target.value.toUpperCase()
+      this.lclService.FileData[key] = get.target.value.toUpperCase()
     }
-    this.commonService.updateValue.next(this.commonService.FileData);
-    localStorage.setItem('L5dataSource', JSON.stringify(this.commonService.FileData));
+    this.lclService.updateValue.next(this.lclService.FileData);
+    localStorage.setItem('L5dataSource', JSON.stringify(this.lclService.FileData));
   }
 
 }
