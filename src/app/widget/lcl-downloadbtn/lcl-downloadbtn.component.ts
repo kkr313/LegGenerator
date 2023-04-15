@@ -1,16 +1,152 @@
 import { Component, OnInit } from '@angular/core';
 import { LclService } from 'src/app/lcl-service';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-lcl-downloadbtn',
   templateUrl: './lcl-downloadbtn.component.html',
-  styleUrls: ['./lcl-downloadbtn.component.css']
+  styleUrls: ['./lcl-downloadbtn.component.css'],
 })
 export class LclDownloadbtnComponent implements OnInit {
+  constructor(private lclService: LclService, private apiService: ApiService) { }
 
-  constructor(private lclService: LclService) { }
+  EnvDropdownOptions = [
+    { value: 'QA', label: 'QA' },
+    { value: 'Staging', label: 'Staging' },
+    { value: 'Prod', label: 'Prod' },
+  ];
+
+  secondDropdownOptions: any[] = [];
+  thirdDropdownOptions: any[] = [];
+  fourthDropdownOptions: any[] = [];
+
+  selectedFirstDropdownValue = '';
+  selectedSecondDropdownValue = '';
+  selectedThirdDropdownValue = '';
+  selectedFourthDropdownValue = '';
+  selectedEnvironment: any;
+
+  updateSecondDropdownOptions() {
+    switch (this.selectedFirstDropdownValue) {
+      case 'QA':
+        this.secondDropdownOptions = this.QaVendors;
+        break;
+      case 'Staging':
+        this.secondDropdownOptions = this.QaVendors;
+        break;
+      case 'Prod':
+        this.secondDropdownOptions = this.QaVendors;
+        break;
+    }
+    this.updateThirdDropdownOptions();
+    // this.updateFourthDropdownOptions();
+  }
+
+  updateThirdDropdownOptions() {
+    switch (this.selectedFirstDropdownValue) {
+      case 'QA':
+        this.thirdDropdownOptions = this.QaSubVendors;
+        break;
+      case 'Staging':
+        this.thirdDropdownOptions = this.QaSubVendors;
+        break;
+      case 'Prod':
+        this.thirdDropdownOptions = this.QaSubVendors;
+        break;
+    }
+  }
+
+  // updateFourthDropdownOptions() {
+  //   switch (this.selectedFirstDropdownValue) {
+  //     case 'QA':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //     case 'Staging':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //     case 'Prod':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //   }
+  // }
+
+  selectVendor() {
+    if (this.selectedFirstDropdownValue === 'QA') {
+      this.secondDropdownOptions.map((option) => {
+        if (this.selectedSecondDropdownValue == option.value) {
+          this.selectedSecondDropdownValue = option.value;
+          localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+        }
+      });
+    }
+  }
+
+  selectLinear() {
+    if (this.selectedFirstDropdownValue === 'QA') {
+      this.thirdDropdownOptions.map((option) => {
+        if (this.selectedThirdDropdownValue == option.value) {
+          this.selectedThirdDropdownValue = option.value;
+          localStorage.setItem('subVendorId', this.selectedThirdDropdownValue);
+        }
+      });
+    }
+  }
+
+  // selectFile() {
+  //   if (this.selectedFirstDropdownValue === 'QA') {
+  //     this.fourthDropdownOptions.map((option) => {
+  //       if (this.fourthDropdownOptions == option.value) {
+  //         this.fourthDropdownOptions = option.value;
+  //         console.log(this.fourthDropdownOptions);
+  //       }
+  //     });
+  //   }
+  // }
+
+  QaVendors: any[] = [];
+  QavendorsSearch: string = '';
+  QaSubVendors: any[] = [];
+  QasubVendorsSearch: string = '';
+  QaFileName: any[] = [];
+  QafilenameSearch: string = '';
 
   ngOnInit(): void {
+    localStorage.removeItem('vendorId');
+    localStorage.removeItem('subVendorId');
+    //QA API Calls
+    this.apiService.getQaFilenames().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaFileName = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaVendors = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaSubVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaSubVendors = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    //Staging Api Calls
+
+    //Prod Api Calls
   }
 
   l3Data: any;
@@ -49,7 +185,7 @@ export class LclDownloadbtnComponent implements OnInit {
           bunker_adjustment_factor: l3data.charge2_l3_name_value,
           bunker_adjustment_factor_min: l3data.charge2_l3_min_value,
           bunker_adjustment_factor_basis: l3data.charge2_l3_basis_value,
-          bunker_adjustment_factor_currency:l3data.charge2_l3_currency_value,
+          bunker_adjustment_factor_currency: l3data.charge2_l3_currency_value,
           ebaf: l3data.charge3_l3_name_value,
           ebaf_min: l3data.charge3_l3_min_value,
           ebaf_basis: l3data.charge3_l3_basis_value,
@@ -80,11 +216,12 @@ export class LclDownloadbtnComponent implements OnInit {
           origin_terminal_handling_charges: l2data.charge1_l2_name_value,
           origin_terminal_handling_charges_min: l2data.charge1_l2_min_value,
           origin_terminal_handling_charges_basis: l2data.charge1_l2_basis_value,
-          origin_terminal_handling_charges_currency: l2data.charge1_l2_currency_value,
+          origin_terminal_handling_charges_currency:
+            l2data.charge1_l2_currency_value,
           booking_fee: l2data.charge2_l2_name_value,
           booking_fee_min: l2data.charge2_l2_min_value,
           booking_fee_basis: l2data.charge2_l2_basis_value,
-          booking_fee_currency:l2data.charge2_l2_currency_value,
+          booking_fee_currency: l2data.charge2_l2_currency_value,
           export_handling: l2data.charge3_l2_name_value,
           export_handling_min: l2data.charge3_l2_min_value,
           export_handling_basis: l2data.charge3_l2_basis_value,
@@ -113,13 +250,16 @@ export class LclDownloadbtnComponent implements OnInit {
           remarks: l4data.remarks_value,
           inclusions: l4data.inclusions_value,
           destination_terminal_handling_charges: l4data.charge1_l4_name_value,
-          destination_terminal_handling_charges_min: l4data.charge1_l4_min_value,
-          destination_terminal_handling_charges_basis: l4data.charge1_l4_basis_value,
-          destination_terminal_handling_charges_currency: l4data.charge1_l4_currency_value,
+          destination_terminal_handling_charges_min:
+            l4data.charge1_l4_min_value,
+          destination_terminal_handling_charges_basis:
+            l4data.charge1_l4_basis_value,
+          destination_terminal_handling_charges_currency:
+            l4data.charge1_l4_currency_value,
           congestion_fee: l4data.charge2_l4_name_value,
           congestion_fee_min: l4data.charge2_l4_min_value,
           congestion_fee_basis: l4data.charge2_l4_basis_value,
-          congestion_fee_currency:l4data.charge2_l4_currency_value,
+          congestion_fee_currency: l4data.charge2_l4_currency_value,
           import_handling: l4data.charge3_l4_name_value,
           import_handling_min: l4data.charge3_l4_min_value,
           import_handling_basis: l4data.charge3_l4_basis_value,
@@ -142,13 +282,16 @@ export class LclDownloadbtnComponent implements OnInit {
           remarks: l2chadata.remarks_value,
           inclusions: l2chadata.inclusions_value,
           export_custom_clearance_charges: l2chadata.charge1_l2cha_name_value,
-          export_custom_clearance_charges_min: l2chadata.charge1_l2cha_min_value,
-          export_custom_clearance_charges_basis: l2chadata.charge1_l2cha_basis_value,
-          export_custom_clearance_charges_currency: l2chadata.charge1_l2cha_currency_value,
+          export_custom_clearance_charges_min:
+            l2chadata.charge1_l2cha_min_value,
+          export_custom_clearance_charges_basis:
+            l2chadata.charge1_l2cha_basis_value,
+          export_custom_clearance_charges_currency:
+            l2chadata.charge1_l2cha_currency_value,
           transport_charges: l2chadata.charge2_l2cha_name_value,
           transport_charges_min: l2chadata.charge2_l2cha_min_value,
           transport_charges_basis: l2chadata.charge2_l2cha_basis_value,
-          transport_charges_currency:l2chadata.charge2_l2cha_currency_value,
+          transport_charges_currency: l2chadata.charge2_l2cha_currency_value,
           eei_filing: l2chadata.charge3_l2cha_name_value,
           eei_filing_min: l2chadata.charge3_l2cha_min_value,
           eei_filing_basis: l2chadata.charge3_l2cha_basis_value,
@@ -160,7 +303,8 @@ export class LclDownloadbtnComponent implements OnInit {
           vgm_certification_charges: l2chadata.charge5_l2cha_name_value,
           vgm_certification_charges_min: l2chadata.charge5_l2cha_min_value,
           vgm_certification_charges_basis: l2chadata.charge5_l2cha_basis_value,
-          vgm_certification_charges_currency: l2chadata.charge5_l2cha_currency_value,
+          vgm_certification_charges_currency:
+            l2chadata.charge5_l2cha_currency_value,
         },
       ],
       L4ChaData: [
@@ -171,17 +315,22 @@ export class LclDownloadbtnComponent implements OnInit {
           remarks: l4chadata.remarks_value,
           inclusions: l4chadata.inclusions_value,
           import_custom_clearance_charges: l4chadata.charge1_l4cha_name_value,
-          import_custom_clearance_charges_min: l4chadata.charge1_l4cha_min_value,
-          import_custom_clearance_charges_basis: l4chadata.charge1_l4cha_basis_value,
-          import_custom_clearance_charges_currency: l4chadata.charge1_l4cha_currency_value,
+          import_custom_clearance_charges_min:
+            l4chadata.charge1_l4cha_min_value,
+          import_custom_clearance_charges_basis:
+            l4chadata.charge1_l4cha_basis_value,
+          import_custom_clearance_charges_currency:
+            l4chadata.charge1_l4cha_currency_value,
           document_transfer_fee: l4chadata.charge2_l4cha_name_value,
           document_transfer_fee_min: l4chadata.charge2_l4cha_min_value,
           document_transfer_fee_basis: l4chadata.charge2_l4cha_basis_value,
-          document_transfer_fee_currency:l4chadata.charge2_l4cha_currency_value,
+          document_transfer_fee_currency:
+            l4chadata.charge2_l4cha_currency_value,
           customs_documentation: l4chadata.charge3_l4cha_name_value,
           customs_documentation_min: l4chadata.charge3_l4cha_min_value,
           customs_documentation_basis: l4chadata.charge3_l4cha_basis_value,
-          customs_documentation_currency: l4chadata.charge3_l4cha_currency_value,
+          customs_documentation_currency:
+            l4chadata.charge3_l4cha_currency_value,
           misc: l4chadata.charge4_l4cha_name_value,
           misc_min: l4chadata.charge4_l4cha_min_value,
           misc_basis: l4chadata.charge4_l4cha_basis_value,
@@ -200,8 +349,11 @@ export class LclDownloadbtnComponent implements OnInit {
           destination_portcode: l1data.origin_port_value,
           origin_pincode: l1data.origin_pincode_value,
           destination_pincode: l1data.destination_pincode_value,
-          origin_country_code: l1data.origin_port_value.substring(0,2),
-          destination_country_code: l1data.destination_port_value.substring(0,2),
+          origin_country_code: l1data.origin_port_value.substring(0, 2),
+          destination_country_code: l1data.destination_port_value.substring(
+            0,
+            2
+          ),
           origin_state_code: l1data.origin_state_code_value,
           destination_state_code: l1data.destination_state_code_value,
           impo_expo: l1data.impo_expo_value,
@@ -250,8 +402,11 @@ export class LclDownloadbtnComponent implements OnInit {
           destination_portcode: '',
           origin_pincode: l5data.origin_pincode_value,
           destination_pincode: l5data.destination_pincode_value,
-          origin_country_code: l1data.origin_port_value.substring(0,2),
-          destination_country_code: l1data.destination_port_value.substring(0,2),
+          origin_country_code: l1data.origin_port_value.substring(0, 2),
+          destination_country_code: l1data.destination_port_value.substring(
+            0,
+            2
+          ),
           origin_state_code: l5data.origin_state_code_value,
           destination_state_code: l5data.destination_state_code_value,
           impo_expo: l5data.impo_expo_value,
@@ -310,4 +465,13 @@ export class LclDownloadbtnComponent implements OnInit {
     }
   }
 
+  directUpload() {
+    localStorage.setItem('directUpload', 'true');
+    this.downloaData();
+  }
+
+  fileDownload() {
+    localStorage.setItem('directUpload', 'false');
+    this.downloaData();
+  }
 }

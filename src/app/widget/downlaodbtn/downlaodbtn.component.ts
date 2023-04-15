@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-downlaodbtn',
@@ -8,74 +8,80 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./downlaodbtn.component.css'],
 })
 export class DownlaodbtnComponent implements OnInit {
-  firstDropdownOptions = [
+  constructor(
+    private commonService: CommonService,
+    private apiService: ApiService
+  ) {}
+
+  EnvDropdownOptions = [
     { value: 'QA', label: 'QA' },
     { value: 'Staging', label: 'Staging' },
+    { value: 'Prod', label: 'Prod' },
   ];
 
-  secondDropdownOptions: { value: string; label: string }[] = [];
-  thirdDropdownOptions: { value: string; label: string }[] = [];
+  secondDropdownOptions: any[] = [];
+  thirdDropdownOptions: any[] = [];
+  fourthDropdownOptions: any[] = [];
 
-  selectedFirstDropdownValue = this.firstDropdownOptions[0].value;
+  selectedFirstDropdownValue = '';
   selectedSecondDropdownValue = '';
   selectedThirdDropdownValue = '';
+  selectedFourthDropdownValue = '';
+  selectedEnvironment: any;
 
   updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
-      case 'Staging':
-        this.secondDropdownOptions = [
-          { label: 'FWDA', value: 'FWDA-Staging' },
-          { label: 'NGLSA', value: 'NGLSA-Staging' },
-          { label: 'SKYNET', value: 'SKYNET-Staging' },
-        ];
-        break;
       case 'QA':
-        this.secondDropdownOptions = [
-          { label: 'FWQA', value: 'FWQA-QA' },
-          { label: 'NGLQA', value: 'NGLQA-QA' },
-          { label: 'SKYQA', value: 'SKYQA-QA' },
-        ];
+        this.secondDropdownOptions = this.QaVendors;
+        break;
+      case 'Staging':
+        this.secondDropdownOptions = this.QaVendors;
+        break;
+      case 'Prod':
+        this.secondDropdownOptions = this.QaVendors;
         break;
     }
-    this.selectedSecondDropdownValue = this.secondDropdownOptions[0].value;
     this.updateThirdDropdownOptions();
-    // console.log(this.selectedFirstDropdownValue);
-    // console.log(this.selectedSecondDropdownValue);
+    // this.updateFourthDropdownOptions();
   }
 
   updateThirdDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
-        this.thirdDropdownOptions = [
-          { label: 'EMIRATES', value: 'EMIRATES' },
-          { label: 'CMA CGM', value: 'CMA CGM' },
-          { label: 'HAPAG', value: 'HAPAG' },
-          { label: 'SAFMARINE', value: 'SAFMARINE' },
-          { label: 'CUL', value: 'CUL' },
-          { label: 'EMC', value: 'EMC' },
-          { label: 'EVERGREEN', value: 'EVERGREEN' },
-          { label: 'COSCO', value: 'COSCO' },
-          { label: 'MAERSK', value: 'MAERSK' },
-          { label: 'WAN HAI', value: 'WAN HAI' },
-        ];
+        this.thirdDropdownOptions = this.QaSubVendors;
         break;
       case 'Staging':
-        this.thirdDropdownOptions = [
-          { label: 'EMIRATES', value: 'EMIRATES' },
-          { label: 'CMA CGM', value: 'CMA CGM' },
-          { label: 'HAPAG', value: 'HAPAG' },
-          { label: 'SAFMARINE', value: 'SAFMARINE' },
-          { label: 'CUL', value: 'CUL' },
-          { label: 'EMC', value: 'EMC' },
-          { label: 'EVERGREEN', value: 'EVERGREEN' },
-          { label: 'COSCO', value: 'COSCO' },
-          { label: 'MAERSK', value: 'MAERSK' },
-          { label: 'WAN HAI', value: 'WAN HAI' },
-        ];
+        this.thirdDropdownOptions = this.QaSubVendors;
+        break;
+      case 'Prod':
+        this.thirdDropdownOptions = this.QaSubVendors;
         break;
     }
-    this.selectedThirdDropdownValue = this.thirdDropdownOptions[0].value;
-    // console.log(this.selectedThirdDropdownValue);
+  }
+
+  // updateFourthDropdownOptions() {
+  //   switch (this.selectedFirstDropdownValue) {
+  //     case 'QA':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //     case 'Staging':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //     case 'Prod':
+  //       this.fourthDropdownOptions = this.QaFileName;
+  //       break;
+  //   }
+  // }
+
+  selectVendor() {
+    if (this.selectedFirstDropdownValue === 'QA') {
+      this.secondDropdownOptions.map((option) => {
+        if (this.selectedSecondDropdownValue == option.value) {
+          this.selectedSecondDropdownValue = option.value;
+          localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+        }
+      });
+    }
   }
 
   selectLinear() {
@@ -83,44 +89,67 @@ export class DownlaodbtnComponent implements OnInit {
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
-          // console.log(this.selectedThirdDropdownValue);
-        }
-      });
-    } else {
-      this.thirdDropdownOptions.map((option) => {
-        if (this.selectedThirdDropdownValue == option.value) {
-          this.selectedThirdDropdownValue = option.value;
-          // console.log(this.selectedThirdDropdownValue);
+          localStorage.setItem('subVendorId', this.selectedThirdDropdownValue);
         }
       });
     }
   }
 
-  selectVendor() {
-    if (this.selectedFirstDropdownValue === 'QA') {
-      this.secondDropdownOptions.map((option) => {
-        if (this.selectedSecondDropdownValue == option.value) {
-          this.selectedSecondDropdownValue = option.value;
-          // console.log(this.selectedSecondDropdownValue);
-        }
-      });
-    } else {
-      this.secondDropdownOptions.map((option) => {
-        if (this.selectedSecondDropdownValue == option.value) {
-          this.selectedSecondDropdownValue = option.value;
-          // console.log(this.selectedSecondDropdownValue);
-        }
-      });
-    }
-  }
+  // selectFile() {
+  //   if (this.selectedFirstDropdownValue === 'QA') {
+  //     this.fourthDropdownOptions.map((option) => {
+  //       if (this.fourthDropdownOptions == option.value) {
+  //         this.fourthDropdownOptions = option.value;
+  //         console.log(this.fourthDropdownOptions);
+  //       }
+  //     });
+  //   }
+  // }
 
-  constructor(private commonService: CommonService, private http: HttpClient) {}
+  QaVendors: any[] = [];
+  QavendorsSearch: string = '';
+  QaSubVendors: any[] = [];
+  QasubVendorsSearch: string = '';
+  QaFileName: any[] = [];
+  QafilenameSearch: string = '';
 
   ngOnInit(): void {
-    // this.selectedEnvValue = this.env[0].value;
-    // this.selectedVendorValue = this.vendor[0].value;
-    // this.selectedLinearValue = this.linear[0].value;
-    this.selectedFirstDropdownValue = this.firstDropdownOptions[0].value;
+    localStorage.removeItem('vendorId');
+    localStorage.removeItem('subVendorId');
+    //QA API Calls
+    this.apiService.getQaFilenames().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaFileName = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaVendors = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaSubVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        this.QaSubVendors = response.data;
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    //Staging Api Calls
+
+    //Prod Api Calls
   }
 
   l3Data: any;
@@ -134,7 +163,7 @@ export class DownlaodbtnComponent implements OnInit {
     let l4chadata = JSON.parse(localStorage.getItem('L4ChadataSource')!);
     let l1data = JSON.parse(localStorage.getItem('L1dataSource')!);
     let l5data = JSON.parse(localStorage.getItem('L5dataSource')!);
-    
+
     this.legsData = {
       L3Data: [
         {
@@ -161,7 +190,8 @@ export class DownlaodbtnComponent implements OnInit {
           basic_ocean_freight_currency: l3data.charge1_l3_currency_value,
           bunker_adjustment_charge_baf: l3data.charge2_l3_name_value,
           bunker_adjustment_charge_baf_basis: l3data.charge2_l3_basis_value,
-          bunker_adjustment_charge_baf_currency:l3data.charge2_l3_currency_value,
+          bunker_adjustment_charge_baf_currency:
+            l3data.charge2_l3_currency_value,
           carrier_security_surcharge: l3data.charge3_l3_name_value,
           carrier_security_surcharge_basis: l3data.charge3_l3_basis_value,
           carrier_security_surcharge_currency: l3data.charge3_l3_currency_value,
@@ -192,8 +222,10 @@ export class DownlaodbtnComponent implements OnInit {
           inclusions: l2data.inclusions_value,
           load_type: l2data.load_type_value,
           origin_terminal_handling_charge_othc: l2data.charge1_l2_name_value,
-          origin_terminal_handling_charge_othc_basis:l2data.charge1_l2_basis_value,
-          origin_terminal_handling_charge_othc_currency:l2data.charge1_l2_currency_value,
+          origin_terminal_handling_charge_othc_basis:
+            l2data.charge1_l2_basis_value,
+          origin_terminal_handling_charge_othc_currency:
+            l2data.charge1_l2_currency_value,
           documentation_fee_origin: l2data.charge2_l2_name_value,
           documentation_fee_origin_basis: l2data.charge2_l2_basis_value,
           documentation_fee_origin_currency: l2data.charge2_l2_currency_value,
@@ -227,17 +259,21 @@ export class DownlaodbtnComponent implements OnInit {
           inclusions: l4data.inclusions_value,
           load_type: l4data.load_type_value,
           destination_terminal_handling_charges: l4data.charge1_l4_name_value,
-          destination_terminal_handling_charges_basis:l4data.charge1_l4_basis_value,
-          destination_terminal_handling_charges_currency:l4data.charge1_l4_currency_value,
+          destination_terminal_handling_charges_basis:
+            l4data.charge1_l4_basis_value,
+          destination_terminal_handling_charges_currency:
+            l4data.charge1_l4_currency_value,
           documentation_fee_destination: l4data.charge2_l4_name_value,
           documentation_fee_destination_basis: l4data.charge2_l4_basis_value,
-          documentation_fee_destination_currency:l4data.charge2_l4_currency_value,
+          documentation_fee_destination_currency:
+            l4data.charge2_l4_currency_value,
           customs_examination: l4data.charge3_l4_name_value,
           customs_examination_basis: l4data.charge3_l4_basis_value,
           customs_examination_currency: l4data.charge3_l4_currency_value,
           surplus_and_demand_compensation: l4data.charge4_l4_name_value,
           surplus_and_demand_compensation_basis: l4data.charge4_l4_basis_value,
-          surplus_and_demand_compensation_currency:l4data.charge4_l4_currency_value,
+          surplus_and_demand_compensation_currency:
+            l4data.charge4_l4_currency_value,
           import_service: l4data.charge5_l4_name_value,
           import_service_basis: l4data.charge5_l4_basis_value,
           import_service_currency: l4data.charge5_l4_currency_value,
@@ -255,18 +291,27 @@ export class DownlaodbtnComponent implements OnInit {
           remarks: l2chadata.remarks_value,
           inclusions: l2chadata.inclusions_value,
           load_type: l2chadata.load_type_value,
-          export_customs_formalities_per_container:l2chadata.charge1_l2cha_name_value,
-          export_customs_formalities_per_container_basis:l2chadata.charge1_l2cha_basis_value,
-          export_customs_formalities_per_container_currency:l2chadata.charge1_l2cha_currency_value,
+          export_customs_formalities_per_container:
+            l2chadata.charge1_l2cha_name_value,
+          export_customs_formalities_per_container_basis:
+            l2chadata.charge1_l2cha_basis_value,
+          export_customs_formalities_per_container_currency:
+            l2chadata.charge1_l2cha_currency_value,
           additional_customs_entry_fee: l2chadata.charge2_l2cha_name_value,
-          additional_customs_entry_fee_basis:l2chadata.charge2_l2cha_basis_value,
-          additional_customs_entry_fee_currency:l2chadata.charge2_l2cha_currency_value,
-          customs_documentation_fee_at_origin:l2chadata.charge3_l2cha_name_value,
-          customs_documentation_fee_at_origin_basis:l2chadata.charge3_l2cha_basis_value,
-          customs_documentation_fee_at_origin_currency:l2chadata.charge3_l2cha_currency_value,
+          additional_customs_entry_fee_basis:
+            l2chadata.charge2_l2cha_basis_value,
+          additional_customs_entry_fee_currency:
+            l2chadata.charge2_l2cha_currency_value,
+          customs_documentation_fee_at_origin:
+            l2chadata.charge3_l2cha_name_value,
+          customs_documentation_fee_at_origin_basis:
+            l2chadata.charge3_l2cha_basis_value,
+          customs_documentation_fee_at_origin_currency:
+            l2chadata.charge3_l2cha_currency_value,
           export_customs_brokerage: l2chadata.charge4_l2cha_name_value,
           export_customs_brokerage_basis: l2chadata.charge4_l2cha_basis_value,
-          export_customs_brokerage_currency:l2chadata.charge4_l2cha_currency_value,
+          export_customs_brokerage_currency:
+            l2chadata.charge4_l2cha_currency_value,
           vgm_transmission: l2chadata.charge5_l2cha_name_value,
           vgm_transmission_basis: l2chadata.charge5_l2cha_basis_value,
           vgm_transmission_currency: l2chadata.charge5_l2cha_currency_value,
@@ -289,16 +334,23 @@ export class DownlaodbtnComponent implements OnInit {
           loading_unloading_currency: l4chadata.charge1_l4cha_currency_value,
           customs_clearance_per_bl: l4chadata.charge2_l4cha_name_value,
           customs_clearance_per_bl_basis: l4chadata.charge2_l4cha_basis_value,
-          customs_clearance_per_bl_currency:l4chadata.charge2_l4cha_currency_value,
+          customs_clearance_per_bl_currency:
+            l4chadata.charge2_l4cha_currency_value,
           additional_customs_entry_fee: l4chadata.charge3_l4cha_name_value,
-          additional_customs_entry_fee_basis:l4chadata.charge3_l4cha_basis_value,
-          additional_customs_entry_fee_currency:l4chadata.charge3_l4cha_currency_value,
-          customs_documentation_fee_at_destination:l4chadata.charge4_l4cha_name_value,
-          customs_documentation_fee_at_destination_basis:l4chadata.charge4_l4cha_basis_value,
-          customs_documentation_fee_at_destination_currency:l4chadata.charge4_l4cha_currency_value,
+          additional_customs_entry_fee_basis:
+            l4chadata.charge3_l4cha_basis_value,
+          additional_customs_entry_fee_currency:
+            l4chadata.charge3_l4cha_currency_value,
+          customs_documentation_fee_at_destination:
+            l4chadata.charge4_l4cha_name_value,
+          customs_documentation_fee_at_destination_basis:
+            l4chadata.charge4_l4cha_basis_value,
+          customs_documentation_fee_at_destination_currency:
+            l4chadata.charge4_l4cha_currency_value,
           import_customs_brokerage: l4chadata.charge5_l4cha_name_value,
           import_customs_brokerage_basis: l4chadata.charge5_l4cha_basis_value,
-          import_customs_brokerage_currency:l4chadata.charge5_l4cha_currency_value,
+          import_customs_brokerage_currency:
+            l4chadata.charge5_l4cha_currency_value,
         },
       ],
       L1Data: [
@@ -310,8 +362,11 @@ export class DownlaodbtnComponent implements OnInit {
           empty_container_pickup: l1data.empty_container_pickup_value,
           origin_pincode: l1data.origin_pincode_value,
           destination_pincode: l1data.destination_pincode_value,
-          origin_country_code: l1data.origin_port_value.substring(0,2),
-          destination_country_code: l1data.destination_port_value.substring(0,2),
+          origin_country_code: l1data.origin_port_value.substring(0, 2),
+          destination_country_code: l1data.destination_port_value.substring(
+            0,
+            2
+          ),
           origin_state_code: l1data.origin_state_code_value,
           destination_state_code: l1data.destination_state_code_value,
           impo_expo: l1data.impo_expo_value,
@@ -361,8 +416,11 @@ export class DownlaodbtnComponent implements OnInit {
           empty_container_drop: l5data.empty_container_drop_value,
           origin_pincode: l5data.origin_pincode_value,
           destination_pincode: l5data.destination_pincode_value,
-          origin_country_code: l1data.origin_port_value.substring(0,2),
-          destination_country_code: l1data.destination_port_value.substring(0,2),
+          origin_country_code: l1data.origin_port_value.substring(0, 2),
+          destination_country_code: l1data.destination_port_value.substring(
+            0,
+            2
+          ),
           origin_state_code: l5data.origin_state_code_value,
           destination_state_code: l5data.destination_state_code_value,
           impo_expo: l5data.impo_expo_value,
@@ -413,8 +471,6 @@ export class DownlaodbtnComponent implements OnInit {
 
     for (let i = 0; i < ls.length; i++) {
       if (ls[i].value) {
-        // const obj1:{[key:string]:any}={}
-        // const getfile=JSON.parse(localStorage.getItem(`${ls[i].name}dataSource`) as string);
         this.commonService.downloadFile(
           this.legsData[`${ls[i].name}Data`],
           `FCL-${ls[i].name}`,
@@ -422,10 +478,15 @@ export class DownlaodbtnComponent implements OnInit {
         );
       }
     }
-    //  this.commonService.downloadFile(this.l3Data, 'FCL_L3');
   }
 
   directUpload() {
-    // this.downloaData();
+    localStorage.setItem('directUpload', 'true');
+    this.downloaData();
+  }
+
+  fileDownload() {
+    localStorage.setItem('directUpload', 'false');
+    this.downloaData();
   }
 }

@@ -36,6 +36,7 @@ select {
   align-items: center;
   margin-right: 10px;
   outline: none;
+  width: 180px;
 }
 
 select::after {

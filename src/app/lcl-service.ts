@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import LclData from 'src/assets/data/legsheader.json';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LclService {
 
-  constructor() { }
+  constructor(private http: HttpClient, private apiService: ApiService) { }
 
   FileData: any = {
     origin_port: LclData.LCL[0].L3.col1.key,
@@ -38,9 +39,9 @@ export class LclService {
     commodities: LclData.LCL[0].L3.col10.key,
     commodities_value: LclData.LCL[0].L3.col10.value,
     start_date: LclData.LCL[0].L3.col11.key,
-    start_date_value: LclData.LCL[0].L3.col11.value,
+    start_date_value: this.generateDates().startDate,
     expiry: LclData.LCL[0].L3.col12.key,
-    expiry_value: LclData.LCL[0].L3.col12.value,
+    expiry_value: this.generateDates().expiryDate,
     remarks: LclData.LCL[0].L3.col13.key,
     remarks_value: LclData.LCL[0].L3.col13.value,
     inclusions: LclData.LCL[0].L3.col14.key,
@@ -208,7 +209,7 @@ export class LclService {
     charge5_l2cha_basis_value: LclData.LCL[0].L2Cha.charges5.charge_basis_value,
     charge5_l2cha_currency: LclData.LCL[0].L2Cha.charges5.charge_currency_key,
     charge5_l2cha_currency_value: LclData.LCL[0].L2Cha.charges5.charge_currency_value,
-    
+
     charge1_l4cha_name: LclData.LCL[0].L4Cha.charges1.charge_name_key,
     charge1_l4cha_name_value: LclData.LCL[0].L4Cha.charges1.charge_name_value,
     charge1_l4cha_min: LclData.LCL[0].L4Cha.charges1.charge_name_min_key,
@@ -249,7 +250,7 @@ export class LclService {
     charge5_l4cha_basis_value: LclData.LCL[0].L4Cha.charges5.charge_basis_value,
     charge5_l4cha_currency: LclData.LCL[0].L4Cha.charges5.charge_currency_key,
     charge5_l4cha_currency_value: LclData.LCL[0].L4Cha.charges5.charge_currency_value,
-    
+
     origin: LclData.LCL[0].L1.col1.key,
     origin_value: LclData.LCL[0].L1.col1.value,
     destination: LclData.LCL[0].L1.col2.key,
@@ -372,6 +373,22 @@ export class LclService {
   updateValue = new BehaviorSubject(this.FileData);
 
   downloadFile(legsData: any, filename = 'data', key: string) {
+    let legs = '';
+    if (key.includes('L2ChaHeader')) {
+      legs = key.substring(0, 2).toLowerCase();
+      legs = legs + "_cha"
+    } else if (key.includes('L4ChaHeader')) {
+      legs = key.substring(0, 2).toLowerCase();
+      legs = legs + "_cha"
+    } else {
+      legs = key.substring(0, 2).toLowerCase();
+    }
+
+    const fileName = filename + ".csv";
+
+
+    let directUpload = localStorage.getItem('directUpload');
+
     const obj: { [key: string]: any } = {
       L3Header: [
         this.FileData.origin_port,
@@ -627,22 +644,31 @@ export class LclService {
 
     let csvData = this.ConvertToCSV(legsData, obj[key]);
 
-    let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
-    let dwldLink = document.createElement("a");
-    let url = URL.createObjectURL(blob);
-    let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
-    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
-      dwldLink.setAttribute("target", "_blank");
+    if (directUpload === 'false') {
+      let blob: any = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+      let dwldLink = document.createElement("a");
+      let url = URL.createObjectURL(blob);
+      let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+      if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+        dwldLink.setAttribute("target", "_blank");
+      }
+      dwldLink.setAttribute("href", url);
+      dwldLink.setAttribute("download", filename + ".csv");
+      dwldLink.style.visibility = "hidden";
+      document.body.appendChild(dwldLink);
+      dwldLink.click();
+      document.body.removeChild(dwldLink);
+    } else {
+      const subVendorId = localStorage.getItem('subVendorId');
+      const vendorId = localStorage.getItem('vendorId');
+      let blob: any = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+      const CsvFiles = new File([blob], 'test.csv', { type: "text/csv" });
+      if (vendorId !== null && vendorId !== undefined && subVendorId !== null && subVendorId !== undefined) {
+        this.directUpload(CsvFiles, legs, vendorId, subVendorId, fileName)
+      } else {
+        alert("VendorId or SubVendor Id is not selected")
+      }
     }
-    dwldLink.setAttribute("href", url);
-    dwldLink.setAttribute("download", filename + ".csv");
-    dwldLink.style.visibility = "hidden";
-    document.body.appendChild(dwldLink);
-    dwldLink.click();
-    document.body.removeChild(dwldLink);
-    //localStorage.removeItem('L3dataSource');
-    // this.directUpload(blob)
-    
   }
 
   ConvertToCSV(objArray: string, headerList: string[]) {
@@ -669,8 +695,43 @@ export class LclService {
     return str;
   }
 
+  directUpload(file: Blob, legs: string, vendorId: any, subVendorId: any, fileName: string) {
+    const headers = new HttpHeaders({
+      'authorization': this.apiService.getValues().token,
 
+    });
 
+    const data = new FormData();
+    data.append("mode", "SEA-LCL");
+    data.append("leg", legs);
+    data.append("vendor", vendorId);
+    data.append("subVendor", subVendorId);
+    if (legs.includes('l1') || legs.includes('l5') || legs.includes('l2_cha') || legs.includes('l4_cha')) {
+      data.append("combinationSubVendors", subVendorId);
+    }
+    data.append("agent", "");
+    data.append("airline", "");
+    data.append("charge", "");
+    data.append("inputFileSource", "PLATFORM");
+    data.append("fclType", "LCL-RATES");
+    data.append("inputFile", "64355e864a23272147a3dce4");
+    data.append("zohoTicketNumber", "");
+    data.append("dateReceived", "");
+    data.append("file", file, fileName);
+    data.append("formId", "0");
+
+    this.http.post(this.apiService.getValues().baseURL+'/rateupload/file', data, { headers }).subscribe(
+      (res) => {
+        console.log(res);
+        alert(legs.toUpperCase() + " Leg File Uploaded")
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        alert('clear this error issue' + error.message)
+      }
+    );
+
+  }
 
 
   /* Common Services for Basis,Currency & Load Type */
@@ -687,5 +748,30 @@ export class LclService {
     return this.defineBasis;
   }
 
+  generateDates(): { startDate: string, expiryDate: string, sailingDate: string } {
+    const currentDate = new Date();
+    const startDate = this.formatDate(currentDate);
+
+    const expiryDate = new Date(currentDate);
+    expiryDate.setFullYear(currentDate.getFullYear() + 1);
+    const formattedExpiryDate = this.formatDate(expiryDate);
+
+    const sailingDate = new Date(currentDate);
+    sailingDate.setDate(currentDate.getDate() + 15);
+    const formattedSailingDate = this.formatDate(sailingDate);
+
+    return {
+      startDate: startDate,
+      expiryDate: formattedExpiryDate,
+      sailingDate: formattedSailingDate
+    };
+  }
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return day + '-' + month + '-' + year;
+  }
 
 }

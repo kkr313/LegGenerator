@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import FclData from 'src/assets/data/legsheader.json';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 
 @Injectable({
@@ -9,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class CommonService {
     
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiService : ApiService) { }
 
   FileData: any = {
     origin_port: FclData.FCL[0].L3.col1.key,
@@ -35,7 +36,7 @@ export class CommonService {
     service_type: FclData.FCL[0].L3.col8.key,
     service_type_value: FclData.FCL[0].L3.col8.value,
     sailing_date: FclData.FCL[0].L3.col9.key,
-    sailing_date_value: FclData.FCL[0].L3.col9.value,
+    sailing_date_value: this.generateDates().sailingDate,
     cargo_type: FclData.FCL[0].L3.col10.key,
     cargo_type_value: FclData.FCL[0].L3.col10.value,
     commodities: FclData.FCL[0].L3.col11.key,
@@ -45,9 +46,9 @@ export class CommonService {
     if_applicable_charges: FclData.FCL[0].L3.col13.key,
     if_applicable_charges_value: FclData.FCL[0].L3.col13.value,
     start_date: FclData.FCL[0].L3.col14.key,
-    start_date_value: FclData.FCL[0].L3.col14.value,
+    start_date_value: this.generateDates().startDate,
     expiry: FclData.FCL[0].L3.col15.key,
-    expiry_value: FclData.FCL[0].L3.col15.value,
+    expiry_value: this.generateDates().expiryDate,
     remarks: FclData.FCL[0].L3.col16.key,
     remarks_value: FclData.FCL[0].L3.col16.value,
     inclusions: FclData.FCL[0].L3.col17.key,
@@ -334,9 +335,23 @@ export class CommonService {
 
   updateValue = new BehaviorSubject(this.FileData);
 
-  // headerData: any[] = Object.keys(this.FileData).filter((_, i) => i % 2 === 0);
-
   downloadFile(legsData: any, filename = 'data', key: string) {
+    let legs = '';
+    if(key.includes('L2ChaHeader')){
+      legs = key.substring(0, 2).toLowerCase();
+      legs = legs+"_cha"
+    }else if(key.includes('L4ChaHeader')){
+      legs = key.substring(0, 2).toLowerCase();
+      legs = legs+"_cha"
+    }else{
+      legs = key.substring(0, 2).toLowerCase();
+    }
+
+    const fileName = filename+".csv";
+
+
+    let directUpload = localStorage.getItem('directUpload');
+
     const obj: { [key: string]: any } = {
       L3Header: [
         this.FileData.origin_port,
@@ -595,22 +610,32 @@ export class CommonService {
 
     let csvData = this.ConvertToCSV(legsData, obj[key]);
 
-    let blob = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
-    let dwldLink = document.createElement("a");
-    let url = URL.createObjectURL(blob);
-    let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
-    if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
-      dwldLink.setAttribute("target", "_blank");
+    if(directUpload === 'false'){
+      let blob:any = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+      let dwldLink = document.createElement("a");
+      let url = URL.createObjectURL(blob);
+      let isSafariBrowser = navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('Chrome') == -1;
+      if (isSafariBrowser) {  //if Safari open in new window to save file with random filename.
+        dwldLink.setAttribute("target", "_blank");
+      }
+      dwldLink.setAttribute("href", url);
+      dwldLink.setAttribute("download", filename + ".csv");
+      dwldLink.style.visibility = "hidden";
+      document.body.appendChild(dwldLink);
+      dwldLink.click();
+      document.body.removeChild(dwldLink);
+    }else{
+      const subVendorId = localStorage.getItem('subVendorId');
+      const vendorId = localStorage.getItem('vendorId');
+      let blob:any = new Blob(['\ufeff' + csvData], { type: 'text/csv;charset=utf-8;' });
+      const CsvFiles= new File([blob],'test.csv', {type: "text/csv"});
+      if(vendorId !== null && vendorId !== undefined && subVendorId !== null && subVendorId !== undefined){
+        this.directUpload(CsvFiles, legs, vendorId, subVendorId, fileName)
+      }else{
+        alert("VendorId or SubVendor Id is not selected")
+      }
+      
     }
-    dwldLink.setAttribute("href", url);
-    dwldLink.setAttribute("download", filename + ".csv");
-    dwldLink.style.visibility = "hidden";
-    document.body.appendChild(dwldLink);
-    dwldLink.click();
-    document.body.removeChild(dwldLink);
-    //localStorage.removeItem('L3dataSource');
-    // this.directUpload(blob)
-    
   }
 
   ConvertToCSV(objArray: string, headerList: string[]) {
@@ -637,32 +662,42 @@ export class CommonService {
     return str;
   }
 
-  directUpload(file: Blob) {
+  directUpload(file: Blob, legs: string, vendorId: any , subVendorId: any, fileName: string ) {
     const headers = new HttpHeaders({
-      'apikey': 'dyusakewjrf3712937461@44$bfdfbGD',
-      "accept": "application/json, text/plain, */*",
-      "accept-language": "en-GB,en;q=0.9",
-      "cache-control": "no-cache",
-      "content-type": "multipart/form-data",
-      "pragma": "no-cache",
-      'Access-Control-Allow-Origin': '*'
+      'authorization': this.apiService.getValues().token,
+     
     });
 
-    const formData = new FormData();
-    formData.append('vendor', 'vendr-290668099ee5');
-    formData.append('subvendor', 'sv-17a3304d88fl');
-    formData.append('date', '2023-09-22');
-    formData.append('file', file, 'KaranTestingFile_FCL_L3.csv');
-    formData.append('leg', 'l3');
-    formData.append('inputFileName', 'fcl');
-    formData.append('new', 'true');
-    formData.append('ticketNumber', '13245');
-    formData.append('createdBy', 'Karhick N');
-    formData.append('sv_combination', '1,2');
+    const data = new FormData();
+    data.append("mode", "SEA-FCL");
+    data.append("leg", legs);
+    data.append("vendor", vendorId);
+    data.append("subVendor", subVendorId);
+    if(legs.includes('l1') || legs.includes('l5') || legs.includes('l2_cha') || legs.includes('l4_cha')){
+      data.append("combinationSubVendors", subVendorId);
+    }
+    data.append("agent", "");
+    data.append("airline", "");
+    data.append("charge", "");
+    data.append("inputFileSource", "PLATFORM");
+    data.append("fclType", "FCL-RATES");
+    data.append("inputFile", "64355e864a23272147a3dce4");
+    data.append("zohoTicketNumber", "");
+    data.append("dateReceived", "");
+    data.append("file", file, fileName);
+    data.append("formId", "0");
 
-    this.http.post("https://staging.freightbro.com/api/file/fcl", formData, { headers }).subscribe((res) => {
-      console.log(res);
-    });
+    this.http.post(this.apiService.getValues().baseURL+'/rateupload/file', data, { headers }).subscribe(
+      (res) => {
+        console.log(res);
+        alert(legs.toUpperCase()+" Leg File Uploaded")
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        alert('clear this error issue'+ error.message)
+      }
+    );
+    
   }
 
   
@@ -685,5 +720,32 @@ export class CommonService {
   getLoadType() {
     return this.loadTypes;
   }
+  
+  generateDates(): { startDate: string, expiryDate: string, sailingDate: string } {
+    const currentDate = new Date();
+    const startDate = this.formatDate(currentDate);
+
+    const expiryDate = new Date(currentDate);
+    expiryDate.setFullYear(currentDate.getFullYear() + 1);
+    const formattedExpiryDate = this.formatDate(expiryDate);
+
+    const sailingDate = new Date(currentDate);
+    sailingDate.setDate(currentDate.getDate() + 15);
+    const formattedSailingDate = this.formatDate(sailingDate);
+
+    return {
+      startDate: startDate,
+      expiryDate: formattedExpiryDate,
+      sailingDate: formattedSailingDate
+    };
+  }
+
+  formatDate(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return day + '-' + month + '-' + year;
+  }
+
 }
 
