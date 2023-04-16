@@ -34,6 +34,14 @@ import { LclL2chafileComponent } from './widget/LCL/lcl-l2chafile/lcl-l2chafile.
 import { LclL4chafileComponent } from './widget/LCL/lcl-l4chafile/lcl-l4chafile.component';
 import { LclL1fileComponent } from './widget/LCL/lcl-l1file/lcl-l1file.component';
 import { LclL5fileComponent } from './widget/LCL/lcl-l5file/lcl-l5file.component';
+import { AirMasterfileComponent } from './widget/air-masterfile/air-masterfile.component';
+import { AirAccordionComponent } from './widget/air-accordion/air-accordion.component';
+import { AirDownloadbtnComponent } from './widget/air-downloadbtn/air-downloadbtn.component';
+import { AirL3fileComponent } from './widget/AIR/air-l3file/air-l3file.component';
+import { AirL2fileComponent } from './widget/AIR/air-l2file/air-l2file.component';
+import { AirL4fileComponent } from './widget/AIR/air-l4file/air-l4file.component';
+import { AirL4chafileComponent } from './widget/AIR/air-l4chafile/air-l4chafile.component';
+import { AirL2chafileComponent } from './widget/AIR/air-l2chafile/air-l2chafile.component';
 
 
 
@@ -66,6 +74,14 @@ import { LclL5fileComponent } from './widget/LCL/lcl-l5file/lcl-l5file.component
     LclL4chafileComponent,
     LclL1fileComponent,
     LclL5fileComponent,
+    AirMasterfileComponent,
+    AirAccordionComponent,
+    AirDownloadbtnComponent,
+    AirL3fileComponent,
+    AirL2fileComponent,
+    AirL4fileComponent,
+    AirL4chafileComponent,
+    AirL2chafileComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,80 @@
-<p>air works!</p>
+<div class="top-bar">
+    <!-- <input 
+      type="checkbox" 
+      id="L1" 
+      [(ngModel)]="selectedLegs.options[0].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L1"
+      value="L1" 
+      class="checkbox"
+    />
+    <label class="label" for="L1">L1</label><br /> -->
+    <input 
+      type="checkbox" 
+      id="L2" 
+      [(ngModel)]="selectedLegs.options[1].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L2"
+      value="L2" 
+      class="checkbox"
+    />
+    <label class="label" for="L2">L2</label><br />
+    <input 
+      type="checkbox" 
+      id="L3" 
+      type="checkbox" 
+      value="L3" 
+      class="checkbox" 
+      [(ngModel)]="selectedLegs.options[2].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L3"
+    />
+    <label class="label" for="L3">L3</label><br />
+    <input 
+      type="checkbox" 
+      id="L4" 
+      [(ngModel)]="selectedLegs.options[3].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L4" 
+      value="L4" 
+      class="checkbox"
+    />
+    <label class="label" for="L4">L4</label><br />
+    <!-- <input 
+      type="checkbox" 
+      id="L5" 
+      [(ngModel)]="selectedLegs.options[4].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L5" 
+      value="L5" 
+      class="checkbox"
+    />
+    <label class="label" for="L5">L5</label><br /> -->
+    <input 
+      type="checkbox" 
+      id="L2Cha" 
+      [(ngModel)]="selectedLegs.options[5].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L2Cha"
+      value="L2Cha" 
+      class="checkbox"
+    />
+    <label class="label" for="L2Cha">L2Cha</label><br />
+    <input 
+      type="checkbox" 
+      id="L4Cha" 
+      [(ngModel)]="selectedLegs.options[6].value" 
+      (ngModelChange)="saveCheckboxValues()"
+      name="L4Cha" 
+      value="L4Cha" 
+      class="checkbox"
+    />
+    <label class="label" for="L4Cha">L4Cha</label><br />
+  </div>
+  <div class="form-area">
+    <app-air-accordion></app-air-accordion>
+  </div>
+  <div class="btn-container">
+    <app-air-downloadbtn></app-air-downloadbtn>
+  </div>
+  

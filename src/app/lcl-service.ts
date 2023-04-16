@@ -716,7 +716,7 @@ export class LclService {
     data.append("fclType", "LCL-RATES");
     data.append("inputFile", "64355e864a23272147a3dce4");
     data.append("zohoTicketNumber", "");
-    data.append("dateReceived", "");
+    data.append("dateReceived", this.dateReceived());
     data.append("file", file, fileName);
     data.append("formId", "0");
 
@@ -773,5 +773,35 @@ export class LclService {
     const year = date.getFullYear();
     return day + '-' + month + '-' + year;
   }
+
+  dateReceived(){
+    // create a new Date object for the current date and time
+    const date = new Date();
+
+    // create an array of weekday names
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    // create an array of month names
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+    // extract the date and time components
+    const weekday = weekdays[date.getDay()];
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+    const timezone = 'GMT+0530';
+    const timezoneName = 'India Standard Time';
+
+    // construct the timestamp string
+    const timestamp = `${weekday} ${month} ${day} ${year} ${hour}:${minute}:${second} ${timezone} (${timezoneName})`;
+
+    return timestamp
+    // console.log(timestamp); // output: "Sat Apr 16 2023 20:38:49 GMT+0530 (India Standard Time)"
+
+  }
+
 
 }

@@ -53,5 +53,13 @@ export class ApiService {
     return this.http.get<string[]>(this.baseURL+'/common/subvendors', requestOptions);
   }
 
+  getQaAirlines(): Observable<string[]> {
+    const headers = new HttpHeaders().set('Authorization', this.token);
+    const requestOptions = {
+      headers: headers,
+      responseType: 'text' as 'json'
+    };
+    return this.http.get<string[]>(this.baseURL+'/common/airlines', requestOptions);
+  }
 
 }

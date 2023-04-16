@@ -587,7 +587,7 @@
           "charge_currency_value": "INR"
         }
       },
-      "L2":{
+      "L2": {
         "charges1": {
           "charge_name_key": "origin_terminal_handling_charges",
           "charge_name_value": "600",
@@ -639,7 +639,7 @@
           "charge_currency_value": "INR"
         }
       },
-      "L4":{
+      "L4": {
         "charges1": {
           "charge_name_key": "destination_terminal_handling_charges",
           "charge_name_value": "200",
@@ -691,7 +691,7 @@
           "charge_currency_value": "INR"
         }
       },
-      "L2Cha":{
+      "L2Cha": {
         "charges1": {
           "charge_name_key": "export_custom_clearance_charges",
           "charge_name_value": "500",
@@ -743,7 +743,7 @@
           "charge_currency_value": "INR"
         }
       },
-      "L4Cha":{
+      "L4Cha": {
         "charges1": {
           "charge_name_key": "import_custom_clearance_charges",
           "charge_name_value": "900",
@@ -795,7 +795,7 @@
           "charge_currency_value": "INR"
         }
       },
-     "L1": {
+      "L1": {
         "col1": {
           "key": "origin",
           "value": "Deutschneudorf - 9548 - Germany"
@@ -923,7 +923,7 @@
           "charge_currency_value": "INR"
         }
       },
-      "L5":{
+      "L5": {
         "charges1": {
           "charge_name_key": "delivery",
           "charge_name_value": "100",
@@ -972,6 +972,331 @@
           "charge_basis_key": "parking_basis",
           "charge_basis_value": "per_bl",
           "charge_currency_key": "parking_currency",
+          "charge_currency_value": "INR"
+        }
+      }
+    }
+  ],
+  "AIR": [
+    {
+      "L3": {
+        "col1": {
+          "key": "origin_port",
+          "value": "BOM"
+        },
+        "col2": {
+          "key": "destination_port",
+          "value": "KKR"
+        },
+        "col3": {
+          "key": "via_route",
+          "value": ""
+        },
+        "col4": {
+          "key": "transit_time",
+          "value": ""
+        },
+        "col5": {
+          "key": "service_type",
+          "value": ""
+        },
+        "col6": {
+          "key": "frequency",
+          "value": ""
+        },
+        "col7": {
+          "key": "cargo_type",
+          "value": ""
+        },
+        "col8": {
+          "key": "commodities",
+          "value": ""
+        },
+        "col9": {
+          "key": "start_date",
+          "value": "23-03-2023"
+        },
+        "col10": {
+          "key": "expiry",
+          "value": ""
+        },
+        "col11": {
+          "key": "remarks",
+          "value": ""
+        },
+        "col12": {
+          "key": "inclusions",
+          "value": ""
+        },
+        "slab": {
+          "slab_charge": "air_freight_",
+          "slab_range_1": "100-300",
+          "slab_value_1": "",
+          "slab_range_2": "301-600",
+          "slab_value_2": "",
+          "slab_range_3": "601-900",
+          "slab_value_3": "",
+          "slab_range_4": "901-1200",
+          "slab_value_4": "",
+          "slab_range_5": "+",
+          "slab_value_5": ""
+        },
+        "charges1": {
+          "charge_name_key": "air_freight",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "air_freight_min",
+          "charge_name_min_value": "1000",
+          "charge_basis_key": "air_freight_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "air_freight_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "air_freight_fee",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "air_freight_fee_min",
+          "charge_name_min_value": "1000",
+          "charge_basis_key": "air_freight_fee_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "air_freight_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "fsc",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "fsc_min",
+          "charge_name_min_value": "1000",
+          "charge_basis_key": "fsc_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "fsc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "aai_charges",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "aai_charges_min",
+          "charge_name_min_value": "1000",
+          "charge_basis_key": "aai_charges_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "aai_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "landing_charges",
+          "charge_name_value": "2000",
+          "charge_name_min_key": "landing_charges_min",
+          "charge_name_min_value": "1000",
+          "charge_basis_key": "landing_charges_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "landing_charges_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L2": {
+        "charges1": {
+          "charge_name_key": "documentation_fee",
+          "charge_name_value": "600",
+          "charge_name_min_key": "documentation_fee_min",
+          "charge_name_min_value": "900",
+          "charge_basis_key": "documentation_fee_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "documentation_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "agency_charges",
+          "charge_name_value": "240",
+          "charge_name_min_key": "agency_charges_min",
+          "charge_name_min_value": "230",
+          "charge_basis_key": "agency_charges_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "agency_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "loading_unloading_fee",
+          "charge_name_value": "20.20",
+          "charge_name_min_key": "loading_unloading_fee_min",
+          "charge_name_min_value": "10.10",
+          "charge_basis_key": "loading_unloading_fee_basis",
+          "charge_basis_value": "per_bl",
+          "charge_currency_key": "loading_unloading_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "origin_terminal_handling_charges",
+          "charge_name_value": "100",
+          "charge_name_min_key": "origin_terminal_handling_charges_min",
+          "charge_name_min_value": "200",
+          "charge_basis_key": "origin_terminal_handling_charges_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "origin_terminal_handling_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "custom_clearance_charges",
+          "charge_name_value": "-230",
+          "charge_name_min_key": "custom_clearance_charges_min",
+          "charge_name_min_value": "700",
+          "charge_basis_key": "custom_clearance_charges_basis",
+          "charge_basis_value": "per_carton",
+          "charge_currency_key": "custom_clearance_charges_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L4": {
+        "charges1": {
+          "charge_name_key": "documentation_fee",
+          "charge_name_value": "200",
+          "charge_name_min_key": "documentation_fee_min",
+          "charge_name_min_value": "600",
+          "charge_basis_key": "documentation_fee_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "documentation_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "agency_charges",
+          "charge_name_value": "200",
+          "charge_name_min_key": "agency_charges_min",
+          "charge_name_min_value": "300",
+          "charge_basis_key": "agency_charges_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "agency_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "loading_unloading_fee",
+          "charge_name_value": "220",
+          "charge_name_min_key": "loading_unloading_fee_min",
+          "charge_name_min_value": "110",
+          "charge_basis_key": "loading_unloading_fee_basis",
+          "charge_basis_value": "per_bl",
+          "charge_currency_key": "loading_unloading_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "destination_terminal_handling_charges",
+          "charge_name_value": "100",
+          "charge_name_min_key": "destination_terminal_handling_charges_min",
+          "charge_name_min_value": "200",
+          "charge_basis_key": "destination_terminal_handling_charges_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "destination_terminal_handling_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "inspection_fee",
+          "charge_name_value": "-230",
+          "charge_name_min_key": "inspection_fee_min",
+          "charge_name_min_value": "700",
+          "charge_basis_key": "inspection_fee_basis",
+          "charge_basis_value": "per_carton",
+          "charge_currency_key": "inspection_fee_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L2Cha": {
+        "charges1": {
+          "charge_name_key": "custom_documentation_fee",
+          "charge_name_value": "500",
+          "charge_name_min_key": "custom_documentation_fee_min",
+          "charge_name_min_value": "700",
+          "charge_basis_key": "custom_documentation_fee_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "custom_documentation_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "custom_clearance_charges",
+          "charge_name_value": "20.30",
+          "charge_name_min_key": "custom_clearance_charges_min",
+          "charge_name_min_value": "300",
+          "charge_basis_key": "custom_clearance_charges_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "custom_clearance_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "loading_unloading_fee",
+          "charge_name_value": "2.20",
+          "charge_name_min_key": "loading_unloading_fee_min",
+          "charge_name_min_value": "-100",
+          "charge_basis_key": "loading_unloading_fee_basis",
+          "charge_basis_value": "per_bl",
+          "charge_currency_key": "loading_unloading_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "custom_inspection_charges",
+          "charge_name_value": "120",
+          "charge_name_min_key": "custom_inspection_charges_min",
+          "charge_name_min_value": "220",
+          "charge_basis_key": "custom_inspection_charges_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "custom_inspection_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "misc",
+          "charge_name_value": "250",
+          "charge_name_min_key": "misc_min",
+          "charge_name_min_value": "600",
+          "charge_basis_key": "misc_basis",
+          "charge_basis_value": "per_carton",
+          "charge_currency_key": "misc_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L4Cha": {
+        "charges1": {
+         "charge_name_key": "custom_documentation_fee",
+          "charge_name_value": "500",
+          "charge_name_min_key": "custom_documentation_fee_min",
+          "charge_name_min_value": "700",
+          "charge_basis_key": "custom_documentation_fee_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "custom_documentation_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "custom_clearance_charges",
+          "charge_name_value": "20.30",
+          "charge_name_min_key": "custom_clearance_charges_min",
+          "charge_name_min_value": "300",
+          "charge_basis_key": "custom_clearance_charges_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "custom_clearance_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+           "charge_name_key": "loading_unloading_fee",
+          "charge_name_value": "2.20",
+          "charge_name_min_key": "loading_unloading_fee_min",
+          "charge_name_min_value": "-100",
+          "charge_basis_key": "loading_unloading_fee_basis",
+          "charge_basis_value": "per_bl",
+          "charge_currency_key": "loading_unloading_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "custom_inspection_charges",
+          "charge_name_value": "120",
+          "charge_name_min_key": "custom_inspection_charges_min",
+          "charge_name_min_value": "220",
+          "charge_basis_key": "custom_inspection_charges_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "custom_inspection_charges_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+         "charge_name_key": "misc",
+          "charge_name_value": "250",
+          "charge_name_min_key": "misc_min",
+          "charge_name_min_value": "600",
+          "charge_basis_key": "misc_basis",
+          "charge_basis_value": "per_carton",
+          "charge_currency_key": "misc_currency",
           "charge_currency_value": "INR"
         }
       }
