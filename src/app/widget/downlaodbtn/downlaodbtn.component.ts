@@ -1,17 +1,46 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
-import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-downlaodbtn',
   templateUrl: './downlaodbtn.component.html',
   styleUrls: ['./downlaodbtn.component.css'],
 })
+
 export class DownlaodbtnComponent implements OnInit {
-  constructor(
-    private commonService: CommonService,
-    private apiService: ApiService
-  ) {}
+
+  QaVendors: any[];
+  QaSubVendors: any[];
+  StagingVendors: any [];
+  StagingSubVendors: any [];
+
+  constructor(private commonService: CommonService) {
+    const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
+    const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
+
+    const QaSubVendorsString : any = localStorage.getItem('QaVendors');
+    this.QaVendors = JSON.parse(QaSubVendorsString);
+
+    const QaVendorsString : any = localStorage.getItem('QaSubVendors');
+    this.QaSubVendors = JSON.parse(QaVendorsString);
+
+    const StagingVendorsString : any = localStorage.getItem('StagingVendors');
+    this.StagingVendors = JSON.parse(StagingVendorsString);
+
+    const StagingSubVendorsString : any = localStorage.getItem('StagingSubVendors');
+    this.StagingSubVendors = JSON.parse(StagingSubVendorsString);
+
+    if (QA_STAG_ENABLED === 'true') {
+      this.EnvDropdownOptions = [
+        { value: 'QA', label: 'QA' },
+        { value: 'Staging', label: 'Staging' },
+      ];
+    } else if (PROD_ENABLED === 'true') {
+      this.EnvDropdownOptions = [
+        { value: 'Prod', label: 'Prod' },
+      ];
+    }
+  }
 
   EnvDropdownOptions = [
     { value: 'QA', label: 'QA' },
@@ -29,31 +58,48 @@ export class DownlaodbtnComponent implements OnInit {
   selectedFourthDropdownValue = '';
   selectedEnvironment: any;
 
+
   updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
       case 'Staging':
-        this.secondDropdownOptions = this.QaVendors;
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
+        this.secondDropdownOptions = this.StagingVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
       case 'Prod':
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
     }
     this.updateThirdDropdownOptions();
     // this.updateFourthDropdownOptions();
   }
 
+
   updateThirdDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
+        this.selectedThirdDropdownValue = '';
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
       case 'Staging':
-        this.thirdDropdownOptions = this.QaSubVendors;
+        this.selectedThirdDropdownValue = '';
+        this.thirdDropdownOptions = this.StagingSubVendors;
         break;
       case 'Prod':
+        this.selectedThirdDropdownValue = '';
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
     }
@@ -81,11 +127,25 @@ export class DownlaodbtnComponent implements OnInit {
           localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
         }
       });
+    }else if(this.selectedFirstDropdownValue === 'Staging'){
+      this.secondDropdownOptions.map((option) => {
+        if (this.selectedSecondDropdownValue == option.value) {
+          this.selectedSecondDropdownValue = option.value;
+          localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+        }
+      });
     }
   }
 
   selectLinear() {
     if (this.selectedFirstDropdownValue === 'QA') {
+      this.thirdDropdownOptions.map((option) => {
+        if (this.selectedThirdDropdownValue == option.value) {
+          this.selectedThirdDropdownValue = option.value;
+          localStorage.setItem('subVendorId', this.selectedThirdDropdownValue);
+        }
+      });
+    }else if(this.selectedFirstDropdownValue === 'Staging'){
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
@@ -106,50 +166,12 @@ export class DownlaodbtnComponent implements OnInit {
   //   }
   // }
 
-  QaVendors: any[] = [];
-  QavendorsSearch: string = '';
-  QaSubVendors: any[] = [];
-  QasubVendorsSearch: string = '';
-  QaFileName: any[] = [];
-  QafilenameSearch: string = '';
+
 
   ngOnInit(): void {
     localStorage.removeItem('vendorId');
     localStorage.removeItem('subVendorId');
-    //QA API Calls
-    this.apiService.getQaFilenames().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaFileName = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaVendors = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaSubVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaSubVendors = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    //Staging Api Calls
-
-    //Prod Api Calls
+    localStorage.removeItem('ModeSelected');
   }
 
   l3Data: any;
@@ -417,10 +439,7 @@ export class DownlaodbtnComponent implements OnInit {
           origin_pincode: l5data.origin_pincode_value,
           destination_pincode: l5data.destination_pincode_value,
           origin_country_code: l1data.origin_port_value.substring(0, 2),
-          destination_country_code: l1data.destination_port_value.substring(
-            0,
-            2
-          ),
+          destination_country_code: l1data.destination_port_value.substring(0, 2),
           origin_state_code: l5data.origin_state_code_value,
           destination_state_code: l5data.destination_state_code_value,
           impo_expo: l5data.impo_expo_value,

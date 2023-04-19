@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AirService } from 'src/app/air-service';
-import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-air-downloadbtn',
@@ -9,7 +8,38 @@ import { ApiService } from 'src/app/api.service';
 })
 export class AirDownloadbtnComponent implements OnInit {
 
-  constructor(private airService: AirService, private apiService: ApiService) { }
+  QaVendors: any[];
+  QaSubVendors: any[];
+  StagingVendors: any [];
+  StagingSubVendors: any [];
+
+  constructor(private airService: AirService) { 
+    const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
+    const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
+
+    const QaSubVendorsString : any = localStorage.getItem('QaVendors');
+    this.QaVendors = JSON.parse(QaSubVendorsString);
+
+    const QaVendorsString : any = localStorage.getItem('QaAirlines');
+    this.QaSubVendors = JSON.parse(QaVendorsString);
+
+    const StagingVendorsString : any = localStorage.getItem('StagingVendors');
+    this.StagingVendors = JSON.parse(StagingVendorsString);
+
+    const StagingSubVendorsString : any = localStorage.getItem('StagingAirlines');
+    this.StagingSubVendors = JSON.parse(StagingSubVendorsString);
+
+    if (QA_STAG_ENABLED === 'true') {
+      this.EnvDropdownOptions = [
+        { value: 'QA', label: 'QA' },
+        { value: 'Staging', label: 'Staging' },
+      ];
+    } else if (PROD_ENABLED === 'true') {
+      this.EnvDropdownOptions = [
+        { value: 'Prod', label: 'Prod' },
+      ];
+    }
+  }
 
   EnvDropdownOptions = [
     { value: 'QA', label: 'QA' },
@@ -30,13 +60,25 @@ export class AirDownloadbtnComponent implements OnInit {
   updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
       case 'Staging':
-        this.secondDropdownOptions = this.QaVendors;
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
+        this.secondDropdownOptions = this.StagingVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
       case 'Prod':
+        this.selectedSecondDropdownValue = '';
+        localStorage.removeItem('vendorId');
+        localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
+        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
         break;
     }
     this.updateThirdDropdownOptions();
@@ -46,12 +88,15 @@ export class AirDownloadbtnComponent implements OnInit {
   updateThirdDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
+        this.selectedThirdDropdownValue = '';
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
       case 'Staging':
-        this.thirdDropdownOptions = this.QaSubVendors;
+        this.selectedThirdDropdownValue = '';
+        this.thirdDropdownOptions = this.StagingSubVendors;
         break;
       case 'Prod':
+        this.selectedThirdDropdownValue = '';
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
     }
@@ -79,11 +124,25 @@ export class AirDownloadbtnComponent implements OnInit {
           localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
         }
       });
+    }else if(this.selectedFirstDropdownValue === 'Staging'){
+      this.secondDropdownOptions.map((option) => {
+        if (this.selectedSecondDropdownValue == option.value) {
+          this.selectedSecondDropdownValue = option.value;
+          localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+        }
+      });
     }
   }
 
   selectLinear() {
     if (this.selectedFirstDropdownValue === 'QA') {
+      this.thirdDropdownOptions.map((option) => {
+        if (this.selectedThirdDropdownValue == option.value) {
+          this.selectedThirdDropdownValue = option.value;
+          localStorage.setItem('subVendorId', this.selectedThirdDropdownValue);
+        }
+      });
+    }else if(this.selectedFirstDropdownValue === 'Staging'){
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
@@ -104,50 +163,10 @@ export class AirDownloadbtnComponent implements OnInit {
   //   }
   // }
 
-  QaVendors: any[] = [];
-  QavendorsSearch: string = '';
-  QaSubVendors: any[] = [];
-  QasubVendorsSearch: string = '';
-  QaFileName: any[] = [];
-  QafilenameSearch: string = '';
 
   ngOnInit(): void {
     localStorage.removeItem('vendorId');
     localStorage.removeItem('subVendorId');
-    //QA API Calls
-    this.apiService.getQaFilenames().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaFileName = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaVendors = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaAirlines().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        this.QaSubVendors = response.data;
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    //Staging Api Calls
-
-    //Prod Api Calls
   }
 
   l3Data: any;

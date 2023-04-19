@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import LclData from 'src/assets/data/legsheader.json';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from './api.service';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { ApiService } from './api.service';
 })
 export class LclService {
 
-  constructor(private http: HttpClient, private apiService: ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   FileData: any = {
     origin_port: LclData.LCL[0].L3.col1.key,
@@ -696,10 +695,6 @@ export class LclService {
   }
 
   directUpload(file: Blob, legs: string, vendorId: any, subVendorId: any, fileName: string) {
-    const headers = new HttpHeaders({
-      'authorization': this.apiService.getValues().token,
-
-    });
 
     const data = new FormData();
     data.append("mode", "SEA-LCL");
@@ -720,16 +715,52 @@ export class LclService {
     data.append("file", file, fileName);
     data.append("formId", "0");
 
-    this.http.post(this.apiService.getValues().baseURL+'/rateupload/file', data, { headers }).subscribe(
-      (res) => {
-        console.log(res);
-        alert(legs.toUpperCase() + " Leg File Uploaded")
-      },
-      (error) => {
-        console.error('Error uploading file:', error);
-        alert('clear this error issue' + error.message)
-      }
-    );
+    if(localStorage.getItem('ModeSelected') === 'QA'){
+      this.apiService.UploadQaFile(data).subscribe(
+        (res) => {
+          console.log(res);
+          alert(legs.toUpperCase()+" Leg File Uploaded")
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          alert('clear this error issue'+ error.message)
+        }
+      );
+    }else if (localStorage.getItem('ModeSelected') === 'Staging'){
+      console.log('Staging call')
+      this.apiService.UploadStagingFile(data).subscribe(
+        (res) => {
+          console.log(res);
+          alert(legs.toUpperCase()+" Leg File Uploaded")
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          alert('clear this error issue'+ error.message)
+        }
+      );
+    }else{
+      this.apiService.UploadProdFile(data).subscribe(
+        (res) => {
+          console.log(res);
+          alert(legs.toUpperCase()+" Leg File Uploaded")
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+          alert('clear this error issue'+ error.message)
+        }
+      );
+    }
+
+    // this.http.post(this.apiService.getValues().baseURL+'/rateupload/file', data, { headers }).subscribe(
+    //   (res) => {
+    //     console.log(res);
+    //     alert(legs.toUpperCase() + " Leg File Uploaded")
+    //   },
+    //   (error) => {
+    //     console.error('Error uploading file:', error);
+    //     alert('clear this error issue' + error.message)
+    //   }
+    // );
 
   }
 
