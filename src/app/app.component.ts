@@ -80,47 +80,47 @@ export class AppComponent implements OnInit {
       }
     );
 
-    // // Staging API Calls :- 
+    // Staging API Calls :- 
 
-    // this.apiService.getStagingFilenames().subscribe(
-    //   (response: any) => {
-    //     response = JSON.parse(response);
-    //     localStorage.setItem("StagingFileName", JSON.stringify(response.data))
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching dropdown options:', error);
-    //   }
-    // );
+    this.apiService.getStagingFilenames().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingFileName", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
 
-    // this.apiService.getStagingVendors().subscribe(
-    //   (response: any) => {
-    //     response = JSON.parse(response);
-    //     localStorage.setItem("StagingVendors", JSON.stringify(response.data))
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching dropdown options:', error);
-    //   }
-    // );
+    this.apiService.getStagingVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
 
-    // this.apiService.getStagingSubVendors().subscribe(
-    //   (response: any) => {
-    //     response = JSON.parse(response);
-    //     localStorage.setItem("StagingSubVendors", JSON.stringify(response.data))
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching dropdown options:', error);
-    //   }
-    // );
+    this.apiService.getStagingSubVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingSubVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
 
-    // this.apiService.getStagingAirlines().subscribe(
-    //   (response: any) => {
-    //     response = JSON.parse(response);
-    //     localStorage.setItem("StagingAirlines", JSON.stringify(response.data))
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching dropdown options:', error);
-    //   }
-    // );
+    this.apiService.getStagingAirlines().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingAirlines", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
 
     // // Prod API Calls :- 
 
