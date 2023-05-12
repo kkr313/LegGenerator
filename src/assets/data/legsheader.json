@@ -1057,7 +1057,7 @@
           "charge_name_min_key": "air_freight_fee_min",
           "charge_name_min_value": "1000",
           "charge_basis_key": "air_freight_fee_basis",
-          "charge_basis_value": "gross_weight",
+          "charge_basis_value": "per_shipment",
           "charge_currency_key": "air_freight_fee_currency",
           "charge_currency_value": "INR"
         },
@@ -1067,7 +1067,7 @@
           "charge_name_min_key": "fsc_min",
           "charge_name_min_value": "1000",
           "charge_basis_key": "fsc_basis",
-          "charge_basis_value": "gross_weight",
+          "charge_basis_value": "per_bl",
           "charge_currency_key": "fsc_currency",
           "charge_currency_value": "INR"
         },
@@ -1077,7 +1077,7 @@
           "charge_name_min_key": "aai_charges_min",
           "charge_name_min_value": "1000",
           "charge_basis_key": "aai_charges_basis",
-          "charge_basis_value": "gross_weight",
+          "charge_basis_value": "per shipping bill",
           "charge_currency_key": "aai_charges_currency",
           "charge_currency_value": "INR"
         },
@@ -1087,7 +1087,7 @@
           "charge_name_min_key": "landing_charges_min",
           "charge_name_min_value": "1000",
           "charge_basis_key": "landing_charges_basis",
-          "charge_basis_value": "gross_weight",
+          "charge_basis_value": "per_bl",
           "charge_currency_key": "landing_charges_currency",
           "charge_currency_value": "INR"
         }

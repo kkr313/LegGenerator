@@ -38,6 +38,9 @@ export class AppComponent implements OnInit {
     localStorage.setItem('QA_STAG_ENABLED', 'true');
     localStorage.setItem('PROD_ENABLED', 'false');
 
+    // localStorage.setItem('QA_STAG_ENABLED', 'false');
+    // localStorage.setItem('PROD_ENABLED', 'true');
+
     // QA API Calls :- 
 
     this.apiService.getQaFilenames().subscribe(
