@@ -5,8 +5,8 @@
         <th class="header-label">Value</th>
         <th class="header-label">Non-Mandatory Field - common</th>
         <th class="header-label">Value</th>
-        <!-- <th class="header-label">Non-Mandatory Field - L1 / L5</th>
-        <th class="header-label">Value</th> -->
+        <th class="header-label">Non-Mandatory Field - L1 / L5</th>
+        <th class="header-label">Value</th>
       </tr>
     </thead>
     <tbody>
@@ -31,15 +31,15 @@
             (keyup)="updateNewValue($event, 'via_route_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{origin_pincode_key}}</td>
         <td class="input_field">
           <input 
             name="origin_pincode" 
             type="text" 
-            [value]="" 
+            [value]="origin_pincode_value" 
             (keyup)="updateNewValue($event, 'origin_pincode_value')"
           >
-        </td> -->
+        </td>
     </tr>
   
       <tr>
@@ -61,15 +61,15 @@
             (keyup)="updateNewValue($event, 'transit_time_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{destination_pincode_key}}</td>
         <td class="input_field">
           <input 
             name="destination_pincode" 
             type="text" 
-            [value]="" 
+            [value]="destination_pincode_value" 
             (keyup)="updateNewValue($event, 'destination_pincode_value')"
           >
-        </td> -->
+        </td>
       </tr>
   
       <tr>
@@ -92,15 +92,15 @@
             (keyup)="updateNewValue($event, 'service_type_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{origin_state_code_key}}</td>
         <td class="input_field">
           <input 
             name="origin_state_code"
             type="text" 
-            [value]="" 
+            [value]="origin_state_code_value" 
             (keyup)="updateNewValue($event, 'origin_state_code_value')"
           >
-        </td> -->
+        </td>
       </tr>
   
       <tr>
@@ -123,20 +123,83 @@
             (keyup)="updateNewValue($event, 'frequency_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{destination_state_code_key}}</td>
         <td class="input_field">
           <input 
             name="destination_state_code"
             type="text" 
-            [value]="" 
+            [value]="destination_state_code_value" 
             (keyup)="updateNewValue($event, 'destination_state_code_value')"
           >
-        </td> -->
+        </td>
       </tr>
   
       <tr>
-        <td class="input_label"></td>
-        <td class="input_field"></td>
+        <th class="header-label">Mandatory Field - L1/L5</th>
+        <th class="header-label">value</th>
+        <td class="input_label">{{impo_expo_key}}</td>
+        <td class="input_field">
+          <input 
+            name="impo_expo" 
+            type="text" 
+            [value]="impo_expo_value" 
+            (keyup)="updateNewValue($event, 'impo_expo_value')"
+          >
+        </td>
+        <td class="input_label">{{transport_mode_key}}</td>
+        <td class="input_field">
+          <select id="cargoType" [(value)]="transport_mode_value" (change)="updateNewValue($event, 'transport_mode_value')">
+            <option value="" disabled selected>Select Type</option>
+            <option value="Road" selected>Road</option>
+            <option value="Rail">Rail</option>
+            <option value="Barge">Barge</option>
+            <option value="Others">Others</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td class="input_label">{{origin_key}}<span class="asterisk">*</span></td>
+        <td class="input_field">
+          <input 
+            name="origin" 
+            type="text" 
+            [value]="origin_value" 
+            (keyup)="updateNewValue($event, 'origin_value')"
+          >
+        </td>
+        <td class="input_label">{{service_type_key}}</td>
+        <td class="input_field">
+          <div>
+            <input 
+              name="service_type"
+              type="text" 
+              [value]="service_type_value" 
+              (keyup)="updateNewValue($event, 'service_type_value')"
+            >
+          </div>
+        </td>
+        <td class="input_label">{{distance_range_key}}</td>
+        <td class="input_field">
+          <input 
+            name="distance_range"
+            type="text" 
+            [value]="distance_range_value"
+            (keyup)="updateNewValue($event, 'distance_range_value')"
+          >
+        </td>
+      </tr>
+  
+      <tr>
+        <td class="input_label">{{destinationt_key}}<span class="asterisk">*</span></td>
+        <td class="input_field">
+            <input 
+              name="destination_portcode"   
+              type="text" 
+              [value]="destination_value" 
+              (keyup)="updateNewValue($event, 'destination_value')"
+            >
+        </td>
         <td class="input_label">{{cargo_type_key}}</td>
         <td class="input_field">
           <select id="cargoType" [(value)]="cargo_type_value" (change)="updateNewValue($event, 'cargo_type_value')">
@@ -150,38 +213,29 @@
             <option value="FLEXI_BAGS">Flexi-Bags</option>
           </select>
         </td>
-        <!-- <td class="input_label"></td>
-        <td class="input_field"></td> -->
-      </tr>
-
-      <tr>
-        <td class="input_label"></td>
-        <td class="input_field"></td>
-        <td class="input_label">{{commodities_key}}</td>
-        <td class="input_field">
-            <input 
-              name="commodities"
-              type="text" 
-              [value]="commodities_value" 
-              (keyup)="updateNewValue($event, 'commodities_value')"
-            >
-        </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{distance_unit_key}}</td>
         <td class="input_field">
           <input 
-            name="distance_range"
+            name="distance_unit"
             type="text" 
-            [value]=""
-            (keyup)="updateNewValue($event, 'distance_range_value')"
+            [value]="distance_unit_value" 
+            (keyup)="updateNewValue($event, 'distance_unit_value')"
           >
-        </td> -->
+        </td>
       </tr>
   
       <tr>
-        <td class="input_label"></td>
+        <td class="input_label">{{origin_portcode_key}}<span class="asterisk">*</span></td>
         <td class="input_field">
+            <input 
+              name="origin_portcode"   
+              type="text" 
+              [value]="destination_port_value" 
+              (keyup)="updateNewValue($event, 'destination_port_value')"
+              disabled
+            >
         </td>
-        <td class="input_label">{{remarks_key}}</td>
+         <td class="input_label">{{remarks_key}}</td>
         <td class="input_field">
           <input 
             placeholder="remarks" 
@@ -191,20 +245,27 @@
             (keyup)="updateNewValue($event, 'remarks_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{volume_range_key}}</td>
         <td class="input_field">
-          <input 
-            name="distance_unit"
+          <input
+            name="volume_range"  
             type="text" 
-            [value]="" 
-            (keyup)="updateNewValue($event, 'distance_unit_value')"
+            [value]="volume_range_value" 
+            (keyup)="updateNewValue($event, 'volume_range_value')"
           >
-        </td> -->
+        </td>
       </tr>
-  
+
       <tr>
-        <td class="input_label"></td>
+        <td class="input_label">{{destination_portcode_key}}<span class="asterisk">*</span></td>
         <td class="input_field">
+            <input 
+              name="destination_portcode"   
+              type="text" 
+              [value]="origin_port_value" 
+              (keyup)="updateNewValue($event, 'origin_port_value')"
+              disabled
+            >
         </td>
         <td class="input_label">{{inclusions_key}}</td>
         <td class="input_field">
@@ -216,15 +277,104 @@
               (keyup)="updateNewValue($event, 'inclusions_value')"
           >
         </td>
-        <!-- <td class="input_label"></td>
+        <td class="input_label">{{volume_unit_key}}</td>
+        <td class="input_field">
+          <input 
+            name="volume_unit" 
+            type="text" 
+            [value]="volume_unit_value" 
+            (keyup)="updateNewValue($event, 'volume_unit_value')"
+          >
+        </td> 
+      </tr>
+  
+      <tr>
+        <td class="input_label">{{weight_range_key}}<span class="asterisk">*</span></td>
+        <td class="input_field">
+            <input 
+              placeholder="0-2500" 
+              name="weight_range"
+              type="text" 
+              [value]="weight_range_value" 
+              (keyup)="updateNewValue($event, 'weight_range_value')"
+            >
+        </td>
+        <td class="input_label">{{commodities_key}}</td>
+        <td class="input_field">
+            <input 
+              name="commodities"   
+              type="text" 
+              [value]="commodities_value" 
+              (keyup)="updateNewValue($event, 'commodities_value')"
+            >
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <td class="input_label">{{weight_unit_key}}<span class="asterisk">*</span></td>
         <td class="input_field">
           <input
-            name="volume_range"  
+            name="weight_unit"
             type="text" 
-            [value]="" 
-            (keyup)="updateNewValue($event, 'volume_range_value')"
+            [value]="weight_unit_value" 
+            (keyup)="updateNewValue($event, 'weight_unit_value')"
           >
-        </td> -->
+        </td>
+        <td class="input_label">{{inclusions_key}}</td>
+        <td class="input_field">
+          <input 
+              placeholder="inclusions" 
+              name="inclusion"
+              type="text" 
+              [value]="inclusions_value" 
+              (keyup)="updateNewValue($event, 'inclusions_value')"
+          >
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <td class="input_label">{{origin_country_code_key}}<span class="asterisk">*</span></td>
+        <td class="input_field">
+          <input 
+            name="origin_country_code"
+            type="text" 
+            [value]="origin_country_code_value" 
+            (keyup)="updateNewValue($event, 'origin_country_code_value')"
+            [(ngModel)]="origin_country_code_value" minlength="1" maxlength="2"
+          >
+        </td>
+        <td class="input_label">{{no_of_axle_key}}</td>
+        <td class="input_field">
+          <input 
+            name="no_of_axle"   
+            type="text" 
+            [value]="no_of_axle_value" 
+            (keyup)="updateNewValue($event, 'no_of_axle_value')"
+          >
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+  
+      <tr>
+        <td class="input_label">{{destination_country_code_key}}<span class="asterisk">*</span></td>
+        <td class="input_field">
+          <input
+            name="destination_country_code" 
+            type="text" 
+            [value]="destination_country_code_value" 
+            (keyup)="updateNewValue($event, 'destination_country_code_value')"
+            [(ngModel)]="destination_country_code_value" minlength="1" maxlength="2"
+          >
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </tbody>
   </table>

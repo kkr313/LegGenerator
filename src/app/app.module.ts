@@ -42,6 +42,8 @@ import { AirL2fileComponent } from './widget/AIR/air-l2file/air-l2file.component
 import { AirL4fileComponent } from './widget/AIR/air-l4file/air-l4file.component';
 import { AirL4chafileComponent } from './widget/AIR/air-l4chafile/air-l4chafile.component';
 import { AirL2chafileComponent } from './widget/AIR/air-l2chafile/air-l2chafile.component';
+import { AirL1fileComponent } from './widget/AIR/air-l1file/air-l1file.component';
+import { AirL5fileComponent } from './widget/AIR/air-l5file/air-l5file.component';
 
 
 
@@ -82,6 +84,8 @@ import { AirL2chafileComponent } from './widget/AIR/air-l2chafile/air-l2chafile.
     AirL4fileComponent,
     AirL4chafileComponent,
     AirL2chafileComponent,
+    AirL1fileComponent,
+    AirL5fileComponent,
   ],
   imports: [
     BrowserModule,

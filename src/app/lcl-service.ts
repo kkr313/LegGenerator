@@ -773,7 +773,7 @@ export class LclService {
     return this.currencyCodes;
   }
 
-  private defineBasis = ['gross_weight', 'per_cbm', 'per_w/m', 'per_ton', 'per_shipment', 'per shipping bill', 'per_hbl', 'per_bl', 'per_quintal', 'per_doc', 'flat', 'N/A', 'per_lbs', 'per_carton', 'per_pallet', 'per_vehicle', 'per_shift', 'per_package', 'per_invoice', 'per_cft', 'per_day', 'per revalidation', 'per_kg'];
+  private defineBasis = ['gross_weight', 'per_cbm', 'per_w/m', 'per_ton', 'per_shipment', 'per shipping bill', 'per_hbl', 'per_bl', 'per_quintal', 'per_doc', 'flat', 'N/A', 'per_lbs', 'per_carton', 'per_pallet', 'per_vehicle', 'per_shift', 'per_package', 'per_invoice', 'per_cft', 'per_day', 'per revalidation', 'per_kg', '% on pickup', '% on delivery'];
 
   getBasis() {
     return this.defineBasis;

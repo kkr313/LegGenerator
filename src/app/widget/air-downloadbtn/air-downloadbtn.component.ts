@@ -10,24 +10,33 @@ export class AirDownloadbtnComponent implements OnInit {
 
   QaVendors: any[];
   QaSubVendors: any[];
+  QaAirlines: any[];
   StagingVendors: any [];
   StagingSubVendors: any [];
+  StagingAirlines: any[];
 
   constructor(private airService: AirService) { 
     const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
     const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
 
-    const QaSubVendorsString : any = localStorage.getItem('QaVendors');
-    this.QaVendors = JSON.parse(QaSubVendorsString);
+    const QaVendorsString : any = localStorage.getItem('QaVendors');
+    this.QaVendors = JSON.parse(QaVendorsString);
 
-    const QaVendorsString : any = localStorage.getItem('QaAirlines');
-    this.QaSubVendors = JSON.parse(QaVendorsString);
+    const QaAirlineString : any = localStorage.getItem('QaAirlines');
+    this.QaAirlines = JSON.parse(QaAirlineString);
+
+    const QaSubVendorString : any = localStorage.getItem('QaSubVendors');
+    this.QaSubVendors = JSON.parse(QaSubVendorString);
+
 
     const StagingVendorsString : any = localStorage.getItem('StagingVendors');
     this.StagingVendors = JSON.parse(StagingVendorsString);
 
-    const StagingSubVendorsString : any = localStorage.getItem('StagingAirlines');
+    const StagingSubVendorsString : any = localStorage.getItem('StagingSubVendors');
     this.StagingSubVendors = JSON.parse(StagingSubVendorsString);
+
+    const StagingAirlineString : any = localStorage.getItem('StagingAirlines');
+    this.StagingAirlines = JSON.parse(StagingAirlineString);
 
     if (QA_STAG_ENABLED === 'true') {
       this.EnvDropdownOptions = [
@@ -89,7 +98,7 @@ export class AirDownloadbtnComponent implements OnInit {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedThirdDropdownValue = '';
-        this.thirdDropdownOptions = this.QaSubVendors;
+        this.thirdDropdownOptions = this.QaAirlines;
         break;
       case 'Staging':
         this.selectedThirdDropdownValue = '';
@@ -97,7 +106,7 @@ export class AirDownloadbtnComponent implements OnInit {
         break;
       case 'Prod':
         this.selectedThirdDropdownValue = '';
-        this.thirdDropdownOptions = this.QaSubVendors;
+        this.thirdDropdownOptions = this.QaAirlines;
         break;
     }
   }
@@ -151,6 +160,7 @@ export class AirDownloadbtnComponent implements OnInit {
       });
     }
   }
+  
 
   // selectFile() {
   //   if (this.selectedFirstDropdownValue === 'QA') {
@@ -178,6 +188,8 @@ export class AirDownloadbtnComponent implements OnInit {
     let l4data = JSON.parse(localStorage.getItem('L4dataSource')!);
     let l2chadata = JSON.parse(localStorage.getItem('L2ChadataSource')!);
     let l4chadata = JSON.parse(localStorage.getItem('L4ChadataSource')!);
+    let l1data = JSON.parse(localStorage.getItem('L1dataSource')!);
+    let l5data = JSON.parse(localStorage.getItem('L5dataSource')!);
 
     this.legsData = {
       L3Data: [
@@ -337,7 +349,106 @@ export class AirDownloadbtnComponent implements OnInit {
           misc_basis: l4chadata.charge5_l4cha_basis_value,
           misc_currency: l4chadata.charge5_l4cha_currency_value,
         },
-      ]
+      ],
+      L1Data: [
+        {
+          origin: l1data.origin_value,
+          destination: '',
+          origin_portcode: '',
+          destination_portcode: l1data.origin_port_value,
+          origin_pincode: l1data.origin_pincode_value,
+          destination_pincode: l1data.destination_pincode_value,
+          origin_country_code: l1data.origin_country_code_value,
+          destination_country_code: l1data.destination_country_code_value,
+          origin_state_code: l1data.origin_state_code_value,
+          destination_state_code: l1data.destination_state_code_value,
+          impo_expo: l1data.impo_expo_value,
+          service_type: l1data.service_type_value,
+          transit_time: l1data.transit_time_value,
+          transport_mode: l1data.transport_mode_value,
+          no_of_axle: l1data.no_of_axle_value,
+          distance_range: l1data.distance_range_value,
+          distance_unit: l1data.distance_unit_value,
+          volume_range: l1data.volume_range_value,
+          volume_unit: l1data.volume_unit_value,
+          weight_range: l1data.weight_range_value,
+          weight_unit: l1data.weight_unit_value,
+          start_date: l1data.start_date_value,
+          expiry: l1data.expiry_value,
+          remarks: l1data.remarks_value,
+          inclusions: l1data.inclusions_value,
+          load_type: l1data.load_type_value,
+          pickup: l1data.charge1_l1_name_value,
+          pickup_min: l1data.charge1_l1_min_value,
+          pickup_basis: l1data.charge1_l1_basis_value,
+          pickup_currency: l1data.charge1_l1_currency_value,
+          fsc: l1data.charge2_l1_name_value,
+          fsc_min: l1data.charge2_l1_min_value,
+          fsc_basis: l1data.charge2_l1_basis_value,
+          fsc_currency: l1data.charge2_l1_currency_value,
+          documentation_fee: l1data.charge3_l1_name_value,
+          documentation_fee_min: l1data.charge3_l1_min_value,
+          documentation_fee_basis: l1data.charge3_l1_basis_value,
+          documentation_fee_currency: l1data.charge3_l1_currency_value,
+          misc: l1data.charge4_l1_name_value,
+          misc_min: l1data.charge4_l1_min_value,
+          misc_basis: l1data.charge4_l1_basis_value,
+          misc_currency: l1data.charge4_l1_currency_value,
+          toll: l1data.charge5_l1_name_value,
+          toll_min: l1data.charge5_l1_min_value,
+          toll_basis: l1data.charge5_l1_basis_value,
+          toll_currency: l1data.charge5_l1_currency_value,
+        },
+      ],
+      L5Data: [
+        {
+          origin: '',
+          destination: l5data.destination_value,
+          origin_portcode: l5data.destination_port_value,
+          destination_portcode: '',
+          origin_pincode: l5data.origin_pincode_value,
+          destination_pincode: l5data.destination_pincode_value,
+          origin_country_code: l1data.origin_country_code_value,
+          destination_country_code: l1data.destination_country_code_value,
+          origin_state_code: l5data.origin_state_code_value,
+          destination_state_code: l5data.destination_state_code_value,
+          impo_expo: l5data.impo_expo_value,
+          service_type: l5data.service_type_value,
+          transit_time: l5data.transit_time_value,
+          transport_mode: l5data.transport_mode_value,
+          no_of_axle: l5data.no_of_axle_value,
+          distance_range: l5data.distance_range_value,
+          distance_unit: l5data.distance_unit_value,
+          volume_range: l5data.volume_range_value,
+          volume_unit: l5data.volume_unit_value,
+          weight_range: l5data.weight_range_value,
+          weight_unit: l5data.weight_unit_value,
+          start_date: l5data.start_date_value,
+          expiry: l5data.expiry_value,
+          remarks: l5data.remarks_value,
+          inclusions: l5data.inclusions_value,
+          delivery: l5data.charge1_l5_name_value,
+          delivery_min: l5data.charge1_l5_min_value,
+          delivery_basis: l5data.charge1_l5_basis_value,
+          delivery_currency: l5data.charge1_l5_currency_value,
+          fsc: l5data.charge2_l5_name_value,
+          fsc_min: l5data.charge2_l5_min_value,
+          fsc_basis: l5data.charge2_l5_basis_value,
+          fsc_currency: l5data.charge2_l5_currency_value,
+          toll: l5data.charge3_l5_name_value,
+          toll_min: l5data.charge3_l5_min_value,
+          toll_basis: l5data.charge3_l5_basis_value,
+          toll_currency: l5data.charge3_l5_currency_value,
+          ssc: l5data.charge4_l5_name_value,
+          ssc_min: l5data.charge4_l5_min_value,
+          ssc_basis: l5data.charge4_l5_basis_value,
+          ssc_currency: l5data.charge4_l5_currency_value,
+          misc: l5data.charge5_l5_name_value,
+          misc_min: l5data.charge5_l5_min_value,
+          misc_basis: l5data.charge5_l5_basis_value,
+          misc_currency: l5data.charge5_l5_currency_value,
+        },
+      ],
     };
 
     const legSelected: any = JSON.parse(

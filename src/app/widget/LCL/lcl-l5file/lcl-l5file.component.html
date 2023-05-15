@@ -287,7 +287,7 @@
                     (change)="updateNewValue($event, 'charge1_l5_basis_value')">
                         <option *ngFor="let basis of defineBasis" 
                             [value]="basis" 
-                            [selected]="basis === 'per container'">{{ basis }}
+                            [selected]="basis === 'per_w/m'">{{ basis }}
                         </option>
                 </select>
               </td>
@@ -325,7 +325,7 @@
                     (change)="updateNewValue($event, 'charge2_l5_basis_value')">
                         <option *ngFor="let basis of defineBasis" 
                             [value]="basis" 
-                            [selected]="basis === 'per equipment'">{{ basis }}
+                            [selected]="basis === 'per_ton'">{{ basis }}
                         </option>
                 </select>
               </td>
@@ -363,7 +363,7 @@
                     (change)="updateNewValue($event, 'charge3_l5_basis_value')">
                         <option *ngFor="let basis of defineBasis" 
                             [value]="basis" 
-                            [selected]="basis === '% on pickup'">{{ basis }}
+                            [selected]="basis === '% on delivery'">{{ basis }}
                         </option>
                 </select>
               </td>
@@ -401,7 +401,7 @@
                     (change)="updateNewValue($event, 'charge4_l5_basis_value')">
                         <option *ngFor="let basis of defineBasis" 
                             [value]="basis" 
-                            [selected]="basis === 'per shipment'">{{ basis }}
+                            [selected]="basis === 'per shipping bill'">{{ basis }}
                         </option>
                 </select>
               </td>
@@ -439,7 +439,7 @@
                     (change)="updateNewValue($event, 'charge5_l5_basis_value')">
                         <option *ngFor="let basis of defineBasis" 
                             [value]="basis" 
-                            [selected]="basis === 'per B/L'">{{ basis }}
+                            [selected]="basis === 'per_bl'">{{ basis }}
                         </option>
                 </select>
               </td>

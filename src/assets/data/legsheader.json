@@ -982,11 +982,11 @@
       "L3": {
         "col1": {
           "key": "origin_port",
-          "value": "BOM"
+          "value": "BUP"
         },
         "col2": {
           "key": "destination_port",
-          "value": "KKR"
+          "value": "NOE"
         },
         "col3": {
           "key": "via_route",
@@ -1296,6 +1296,186 @@
           "charge_name_min_value": "600",
           "charge_basis_key": "misc_basis",
           "charge_basis_value": "per_carton",
+          "charge_currency_key": "misc_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L1": {
+        "col1": {
+          "key": "origin",
+          "value": "Bhatinda AFS - Punjab"
+        },
+        "col2": {
+          "key": "destination",
+          "value": "Norddeich - Aurich"
+        },
+        "col3": {
+          "key": "origin_portcode",
+          "value": ""
+        },
+        "col4": {
+          "key": "destination_portcode",
+          "value": ""
+        },
+        "col5": {
+          "key": "origin_pincode",
+          "value": "151201"
+        },
+        "col6": {
+          "key": "destination_pincode",
+          "value": "26506"
+        },
+        "col7": {
+          "key": "origin_country_code",
+          "value": "IN"
+        },
+        "col8": {
+          "key": "destination_country_code",
+          "value": "DE"
+        },
+        "col9": {
+          "key": "origin_state_code",
+          "value": ""
+        },
+        "col10": {
+          "key": "destination_state_code",
+          "value": ""
+        },
+        "col11": {
+          "key": "impo_expo",
+          "value": ""
+        },
+        "col12": {
+          "key": "transport_mode",
+          "value": ""
+        },
+        "col13": {
+          "key": "no_of_axle",
+          "value": ""
+        },
+        "col14": {
+          "key": "distance_range",
+          "value": ""
+        },
+        "col15": {
+          "key": "distance_unit",
+          "value": ""
+        },
+        "col16": {
+          "key": "volume_range",
+          "value": ""
+        },
+        "col17": {
+          "key": "volume_unit",
+          "value": ""
+        },
+        "col18": {
+          "key": "weight_range",
+          "value": "0-25000"
+        },
+        "col19": {
+          "key": "weight_unit",
+          "value": "KG"
+        },
+        "charges1": {
+          "charge_name_key": "pickup",
+          "charge_name_value": "100",
+          "charge_name_min_key": "pickup_min",
+          "charge_name_min_value": "200",
+          "charge_basis_key": "pickup_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "pickup_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "fsc",
+          "charge_name_value": "400",
+          "charge_name_min_key": "fsc_min",
+          "charge_name_min_value": "122.30",
+          "charge_basis_key": "fsc_basis",
+          "charge_basis_value": "per_cbm",
+          "charge_currency_key": "fsc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "documentation_fee",
+          "charge_name_value": "20",
+          "charge_name_min_key": "documentation_fee_min",
+          "charge_name_min_value": "12",
+          "charge_basis_key": "documentation_fee_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "documentation_fee_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "misc",
+          "charge_name_value": "700",
+          "charge_name_min_key": "misc_min",
+          "charge_name_min_value": "220",
+          "charge_basis_key": "misc_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "misc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "toll",
+          "charge_name_value": "640",
+          "charge_name_min_key": "toll_min",
+          "charge_name_min_value": "120",
+          "charge_basis_key": "toll_basis",
+          "charge_basis_value": "per_bl",
+          "charge_currency_key": "toll_currency",
+          "charge_currency_value": "INR"
+        }
+      },
+      "L5": {
+        "charges1": {
+          "charge_name_key": "delivery",
+          "charge_name_value": "100",
+          "charge_name_min_key": "delivery_min",
+          "charge_name_min_value": "200",
+          "charge_basis_key": "delivery_basis",
+          "charge_basis_value": "gross_weight",
+          "charge_currency_key": "delivery_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges2": {
+          "charge_name_key": "fsc",
+          "charge_name_value": "400",
+          "charge_name_min_key": "fsc_min",
+          "charge_name_min_value": "122.30",
+          "charge_basis_key": "fsc_basis",
+          "charge_basis_value": "per_cbm",
+          "charge_currency_key": "fsc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges3": {
+          "charge_name_key": "toll",
+          "charge_name_value": "20",
+          "charge_name_min_key": "toll_min",
+          "charge_name_min_value": "12",
+          "charge_basis_key": "toll_basis",
+          "charge_basis_value": "per_shipment",
+          "charge_currency_key": "toll_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges4": {
+          "charge_name_key": "ssc",
+          "charge_name_value": "700",
+          "charge_name_min_key": "ssc_min",
+          "charge_name_min_value": "220",
+          "charge_basis_key": "ssc_basis",
+          "charge_basis_value": "per shipping bill",
+          "charge_currency_key": "ssc_currency",
+          "charge_currency_value": "INR"
+        },
+        "charges5": {
+          "charge_name_key": "misc",
+          "charge_name_value": "640",
+          "charge_name_min_key": "misc_min",
+          "charge_name_min_value": "120",
+          "charge_basis_key": "misc_basis",
+          "charge_basis_value": "per shipping bill",
           "charge_currency_key": "misc_currency",
           "charge_currency_value": "INR"
         }
