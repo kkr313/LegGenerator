@@ -1388,23 +1388,23 @@
           "charge_currency_value": "INR"
         },
         "charges2": {
-          "charge_name_key": "fsc",
+          "charge_name_key": "fuel",
           "charge_name_value": "400",
-          "charge_name_min_key": "fsc_min",
+          "charge_name_min_key": "fuel_min",
           "charge_name_min_value": "122.30",
-          "charge_basis_key": "fsc_basis",
+          "charge_basis_key": "fuel_basis",
           "charge_basis_value": "per_cbm",
-          "charge_currency_key": "fsc_currency",
+          "charge_currency_key": "fuel_currency",
           "charge_currency_value": "INR"
         },
         "charges3": {
-          "charge_name_key": "documentation_fee",
+          "charge_name_key": "documentation",
           "charge_name_value": "20",
-          "charge_name_min_key": "documentation_fee_min",
+          "charge_name_min_key": "documentation_min",
           "charge_name_min_value": "12",
-          "charge_basis_key": "documentation_fee_basis",
+          "charge_basis_key": "documentation_basis",
           "charge_basis_value": "per_shipment",
-          "charge_currency_key": "documentation_fee_currency",
+          "charge_currency_key": "documentation_currency",
           "charge_currency_value": "INR"
         },
         "charges4": {
@@ -1440,13 +1440,13 @@
           "charge_currency_value": "INR"
         },
         "charges2": {
-          "charge_name_key": "fsc",
+          "charge_name_key": "fuel",
           "charge_name_value": "400",
-          "charge_name_min_key": "fsc_min",
+          "charge_name_min_key": "fuel_min",
           "charge_name_min_value": "122.30",
-          "charge_basis_key": "fsc_basis",
+          "charge_basis_key": "fuel_basis",
           "charge_basis_value": "per_cbm",
-          "charge_currency_key": "fsc_currency",
+          "charge_currency_key": "fuel_currency",
           "charge_currency_value": "INR"
         },
         "charges3": {
@@ -1460,13 +1460,13 @@
           "charge_currency_value": "INR"
         },
         "charges4": {
-          "charge_name_key": "ssc",
+          "charge_name_key": "security",
           "charge_name_value": "700",
-          "charge_name_min_key": "ssc_min",
+          "charge_name_min_key": "security_min",
           "charge_name_min_value": "220",
-          "charge_basis_key": "ssc_basis",
+          "charge_basis_key": "security_basis",
           "charge_basis_value": "per shipping bill",
-          "charge_currency_key": "ssc_currency",
+          "charge_currency_key": "security_currency",
           "charge_currency_value": "INR"
         },
         "charges5": {
