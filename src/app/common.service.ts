@@ -276,7 +276,7 @@ export class CommonService {
     charge4_l1_min: FclData.FCL[0].L1.charges4.charge_min_key,
     charge4_l1_min_value: FclData.FCL[0].L1.charges4.charge_min_value,
     charge4_l1_basis: FclData.FCL[0].L1.charges4.charge_basis_key,
-    charge4_l1_basis_value: FclData.FCL[0].L1.charges2.charge_basis_value,
+    charge4_l1_basis_value: FclData.FCL[0].L1.charges4.charge_basis_value,
     charge4_l1_currency: FclData.FCL[0].L1.charges4.charge_currency_key,
     charge4_l1_currency_value: FclData.FCL[0].L1.charges4.charge_currency_value,
     charge5_l1_name: FclData.FCL[0].L1.charges5.charge_name_key,
@@ -319,7 +319,7 @@ export class CommonService {
     charge4_l5_min: FclData.FCL[0].L5.charges4.charge_min_key,
     charge4_l5_min_value: FclData.FCL[0].L5.charges4.charge_min_value,
     charge4_l5_basis: FclData.FCL[0].L5.charges4.charge_basis_key,
-    charge4_l5_basis_value: FclData.FCL[0].L5.charges2.charge_basis_value,
+    charge4_l5_basis_value: FclData.FCL[0].L5.charges4.charge_basis_value,
     charge4_l5_currency: FclData.FCL[0].L5.charges4.charge_currency_key,
     charge4_l5_currency_value: FclData.FCL[0].L5.charges4.charge_currency_value,
     charge5_l5_name: FclData.FCL[0].L5.charges5.charge_name_key,
@@ -676,7 +676,7 @@ export class CommonService {
     data.append("charge", "");
     data.append("inputFileSource", "PLATFORM");
     data.append("fclType", "FCL-RATES");
-    data.append("inputFile", "64355e864a23272147a3dce4");
+    data.append("inputFile", "64831ccc79b8916b29b23616");
     data.append("zohoTicketNumber", "");
     data.append("dateReceived", this.dateReceived());
     data.append("file", file, fileName);

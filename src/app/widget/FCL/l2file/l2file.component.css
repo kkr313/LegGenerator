@@ -68,3 +68,9 @@ select:focus-visible {
     outline: none;
     text-transform: none;
   }
+
+.currency-field,
+.basis-field {
+  width: 100%;
+  text-align: center;
+}

@@ -38,7 +38,7 @@
         <th class="header-label">{{charge2_currency_key}}</th>
         <th class="header-label">{{charge3_name_key}}</th>
         <th class="header-label">{{charge3_min_key}}</th>
-        <th class="header-label">{{charge3_basis_key}}</th>
+        <th class="header-label" style="min-width: 200px;">{{charge3_basis_key}}</th>
         <th class="header-label">{{charge3_currency_key}}</th>
         <th class="header-label">{{charge4_name_key}}</th>
         <th class="header-label">{{charge4_min_key}}</th>
@@ -286,13 +286,6 @@
                             [selected]="load === '20GP'">{{ load }}
                         </option>
                 </select>
-            <!-- <select id="laodType" [(value)]="load_type_value" (change)="updateNewValue($event, 'load_type_value')">
-                <option value="" disabled selected>Select Load Type</option>
-                <option value="20GP">20GP</option>
-                <option value="40GP">40GP</option>
-                <option value="40HC">40HC</option>
-                <option value="45HC">45HC</option>
-            </select> -->
               </td>
               <td class="input_field">
                   <input 
@@ -311,20 +304,26 @@
                   >
               </td>
               <td class="input_field">
-                  <input style="text-transform: none;"
-                      name="return_mt_to_terminal_basis"
-                      type="text" 
-                      [value]="charge1_basis_value" 
-                      (keyup)="updateNewValue($event, 'charge1_l5_basis_value')"
-                  >
+                <select class="basis-field"
+                    id="return_mt_to_terminal_basis" 
+                    [(value)]="charge1_basis_value"
+                    (change)="updateNewValue($event, 'charge1_l5_basis_value')">
+                        <option *ngFor="let basis of defineBasis" 
+                            [value]="basis" 
+                            [selected]="basis === charge1_basis_value">{{ basis }}
+                        </option>
+                </select>
               </td>
               <td class="input_field">
-                  <input
-                      name="return_mt_to_terminal_currency"
-                      type="text" 
-                      [value]="charge1_currency_value" 
-                      (keyup)="updateNewValue($event, 'charge1_l5_currency_value')"
-                  >
+                <select class="currency-field"
+                    id="return_mt_to_terminal_currency" 
+                    [(value)]="charge1_currency_value"
+                    (change)="updateNewValue($event, 'charge1_l5_currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === charge1_currency_value">{{ code }}
+                        </option>
+                </select>
               </td>
               <td class="input_field">
                   <input 
@@ -343,20 +342,38 @@
                   >
               </td>
               <td class="input_field">
-                  <input style="text-transform: none;"
+                <select class="basis-field"
+                    id="hazardous_goods_surcharge_basis" 
+                    [(value)]="charge2_basis_value"
+                    (change)="updateNewValue($event, 'charge2_l5_basis_value')">
+                        <option *ngFor="let basis of defineBasis" 
+                            [value]="basis" 
+                            [selected]="basis === charge2_basis_value">{{ basis }}
+                        </option>
+                </select>
+                  <!-- <input style="text-transform: none;"
                       name="hazardous_goods_surcharge_basis"
                       type="text" 
                       [value]="charge2_basis_value" 
                       (keyup)="updateNewValue($event, 'charge2_l5_basis_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
-                  <input
+                <select class="currency-field"
+                    id="hazardous_goods_surcharge_currency" 
+                    [(value)]="charge2_currency_value"
+                    (change)="updateNewValue($event, 'charge2_l5_currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === charge2_currency_value">{{ code }}
+                        </option>
+                </select>
+                  <!-- <input
                       name="hazardous_goods_surcharge_currency"
                       type="text" 
                       [value]="charge2_currency_value" 
                       (keyup)="updateNewValue($event, 'charge2_l5_currency_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
                   <input 
@@ -375,20 +392,38 @@
                   >
               </td>
               <td class="input_field">
-                  <input style="text-transform: none;"
+                <select class="basis-field"
+                    id="pickup_charge_basis" 
+                    [(value)]="charge3_basis_value"
+                    (change)="updateNewValue($event, 'charge3_l5_basis_value')">
+                        <option *ngFor="let basis of defineBasis" 
+                            [value]="basis" 
+                            [selected]="basis === charge3_basis_value">{{ basis }}
+                        </option>
+                </select>
+                  <!-- <input style="text-transform: none;"
                       name="pickup_charge_basis"
                       type="text" 
                       [value]="charge3_basis_value" 
                       (keyup)="updateNewValue($event, 'charge3_l5_basis_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
-                  <input
+                <select class="currency-field"
+                    id="pickup_charge_currency" 
+                    [(value)]="charge3_currency_value"
+                    (change)="updateNewValue($event, 'charge3_l5_currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === charge3_currency_value">{{ code }}
+                        </option>
+                </select>
+                  <!-- <input
                       name="pickup_charge_currency"
                       type="text" 
                       [value]="charge3_currency_value" 
                       (keyup)="updateNewValue($event, 'charge3_l5_currency_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
                   <input 
@@ -407,20 +442,38 @@
                   >
               </td>
               <td class="input_field">
-                  <input style="text-transform: none;"
+                <select class="basis-field"
+                    id="adc_basis" 
+                    [(value)]="charge4_basis_value"
+                    (change)="updateNewValue($event, 'charge4_l5_basis_value')">
+                        <option *ngFor="let basis of defineBasis" 
+                            [value]="basis" 
+                            [selected]="basis === charge4_basis_value">{{ basis }}
+                        </option>
+                </select>
+                  <!-- <input style="text-transform: none;"
                       name="adc_basis"
                       type="text" 
                       [value]="charge4_basis_value" 
                       (keyup)="updateNewValue($event, 'charge4_l5_basis_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
-                  <input
+                <select class="currency-field"
+                    id="adc_currency" 
+                    [(value)]="charge4_currency_value"
+                    (change)="updateNewValue($event, 'charge4_l5_currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === charge4_currency_value">{{ code }}
+                        </option>
+                </select>
+                  <!-- <input
                       name="adc_currency"
                       type="text" 
                       [value]="charge4_currency_value" 
                       (keyup)="updateNewValue($event, 'charge4_l5_currency_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
                   <input 
@@ -439,20 +492,38 @@
                   >
               </td>
               <td class="input_field">
-                  <input style="text-transform: none;"
+                <select class="basis-field"
+                    id="overweight_surcharge_basis" 
+                    [(value)]="charge5_basis_value"
+                    (change)="updateNewValue($event, 'charge5_l5_basis_value')">
+                        <option *ngFor="let basis of defineBasis" 
+                            [value]="basis" 
+                            [selected]="basis === charge5_basis_value">{{ basis }}
+                        </option>
+                </select>
+                  <!-- <input style="text-transform: none;"
                       name="overweight_surcharge_basis"
                       type="text" 
                       [value]="charge5_basis_value" 
                       (keyup)="updateNewValue($event, 'charge5_l5_basis_value')"
-                  >
+                  > -->
               </td>
               <td class="input_field">
-                  <input
+                <select class="currency-field"
+                    id="overweight_surcharge_currency" 
+                    [(value)]="charge5_currency_value"
+                    (change)="updateNewValue($event, 'charge5_l5_currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === charge5_currency_value">{{ code }}
+                        </option>
+                </select>
+                  <!-- <input
                       name="overweight_surcharge_currency"
                       type="text" 
                       [value]="charge5_currency_value" 
                       (keyup)="updateNewValue($event, 'charge5_l5_currency_value')"
-                  >
+                  > -->
               </td>
             </tr>
     </tbody>
