@@ -337,10 +337,16 @@ export class CommonService {
     charge5_l5_currency: FclData.FCL[0].L5.charges5.charge_currency_key,
     charge5_l5_currency_value: FclData.FCL[0].L5.charges5.charge_currency_value,
 
-    // slab_value: 1000,
-    // dangerous_cargo_value: '',
-    // from_slab_value: 0,
-    // to_slab_value: 25000
+    // Slab Data
+
+    slab: FclData.FCL[0].Slab.col1.key,
+    slab_value: FclData.FCL[0].Slab.col1.value,
+    dangerous_cargo:  FclData.FCL[0].Slab.col2.key,
+    dangerous_cargo_value: FclData.FCL[0].Slab.col2.value,
+    from_slab:  FclData.FCL[0].Slab.col3.key,
+    from_slab_value:  FclData.FCL[0].Slab.col3.value,
+    to_slab:  FclData.FCL[0].Slab.col4.key,
+    to_slab_value:  FclData.FCL[0].Slab.col4.value,
 
   }
 
@@ -354,6 +360,8 @@ export class CommonService {
     }else if(key.includes('L4ChaHeader')){
       legs = key.substring(0, 2).toLowerCase();
       legs = legs+"_cha"
+    }else if(key.includes('L3_SLABHeader')){
+      key = key.substring(0, 2).toLowerCase() + 'SlabHeader';
     }else{
       legs = key.substring(0, 2).toLowerCase();
     }
@@ -622,24 +630,24 @@ export class CommonService {
         this.FileData.charge5_l5_basis,
         this.FileData.charge5_l5_currency,
       ],
-      // L3SlabHeader:[
-      //   "from_port",
-      //   "to_port",
-      //   "service_type",
-      //   "commodity",
-      //   "cargo_type",
-      //   "contract",
-      //   "load_type",
-      //   "currency",
-      //   "value",
-      //   "mode_of_transportation",
-      //   "dangerous_cargo",
-      //   "transit_time",
-      //   "start_date",
-      //   "expiry_date",
-      //   "from_slab",
-      //   "to_slab"
-      // ]
+      l3SlabHeader:[
+        "from_port",
+        "to_port",
+        "service_type",
+        "commodity",
+        "cargo_type",
+        "contract",
+        "load_type",
+        "currency",
+        "value",
+        "mode_of_transportation",
+        "dangerous_cargo",
+        "transit_time",
+        "start_date",
+        "expiry",
+        "from_slab",
+        "to_slab"
+      ]
     }
 
     let csvData = this.ConvertToCSV(legsData, obj[key]);

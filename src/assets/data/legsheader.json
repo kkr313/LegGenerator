@@ -486,6 +486,24 @@
           "charge_currency_key": "delivery_fee_currency",
           "charge_currency_value": "INR"
         }
+      },
+      "Slab":{
+        "col1": {
+          "key": "value",
+          "value": 100
+        },
+        "col2": {
+          "key": "dangerous_cargo",
+          "value": ""
+        },
+        "col3": {
+          "key": "from_slab",
+          "value": 0
+        },
+        "col4": {
+          "key": "to_slab",
+          "value": 25000
+        }
       }
     }
   ],

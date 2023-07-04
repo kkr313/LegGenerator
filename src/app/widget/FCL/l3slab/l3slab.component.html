@@ -1,0 +1,177 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th class="header-label">from_port</th>
+        <th class="header-label">to_port</th>
+        <th class="header-label">{{service_type_key}}</th>
+        <th class="header-label">commodity</th>
+        <th class="header-label">{{cargo_type_key}}</th>
+        <th class="header-label">contract</th>
+        <th class="header-label">{{load_type_key}}</th>
+        <th class="header-label">currency</th>
+        <th class="header-label">{{slab_key}}</th>
+        <th class="header-label">mode_of_transportation</th>
+        <th class="header-label">{{dangerous_cargo_key}}</th>
+        <th class="header-label">{{transit_time_key}}</th>
+        <th class="header-label">{{start_date_key}}</th>
+        <th class="header-label">{{expiry_key}}</th>
+        <th class="header-label">{{from_slab_key}}</th>
+        <th class="header-label">{{to_slab_key}}</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="input_field">
+                <div>
+                    <input 
+                        name="from_port"
+                        type="text" 
+                        [value]="from_port_value" 
+                        (keyup)="updateNewValue($event, 'from_port_value')"
+                    >
+                </div>
+            </td>
+            <td class="input_field">
+                <div>
+                    <input 
+                        name="to_port"
+                        type="text" 
+                        [value]="to_port_value" 
+                        (keyup)="updateNewValue($event, 'to_port_value')"
+                    >
+                </div>
+            </td>
+            <td class="input_field">
+                <input 
+                    name="service_type"
+                    type="text" 
+                    [value]="service_type_value" 
+                    (keyup)="updateNewValue($event, 'service_type_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input 
+                    name="commodity"   
+                    type="text" 
+                    [value]="commodity_value" 
+                    (keyup)="updateNewValue($event, 'commodity_value')"
+                >
+            </td>
+            <td class="input_field">
+                <div>
+                <select id="cargoType" [(value)]="cargo_type_value" (change)="updateNewValue($event, 'cargo_type_value')">
+                    <option value="" disabled selected>Select Cargo Type</option>
+                    <option value="FAK" selected>FAK</option>
+                    <option value="PERISHABLE">Perishable</option>
+                    <option value="NON_PERISHABLE">Non-Perishable</option>
+                    <option value="HAZARDOUS">Hazardous</option>
+                    <option value="CHILLED">Chilled</option>
+                    <option value="OUT_OF_GAUGE">Out of Gauge</option>
+                    <option value="FLEXI_BAGS">Flexi-Bags</option>
+                </select>
+                </div>
+            </td>
+            <td class="input_field">
+                <div>
+                    <input 
+                        name="contract"
+                        type="text" 
+                        [value]="contract_value" 
+                        (keyup)="updateNewValue($event, 'contract_value')"
+                    >
+                </div>
+            </td>
+            <td class="input_field">
+                <select
+                    id="laodType" 
+                    [(value)]="load_type_value"
+                    (change)="updateNewValue($event, 'load_type_value')">
+                        <option *ngFor="let load of loadTypes" 
+                            [value]="load" 
+                            [selected]="load === load_type_value">{{ load }}
+                        </option>
+                </select>
+            </td>
+            <td class="input_field">
+                <select class="currency-field"
+                    id="currency" 
+                    [(value)]="currency_value"
+                    (change)="updateNewValue($event, 'currency_value')">
+                        <option *ngFor="let code of currencyCodes" 
+                            [value]="code" 
+                            [selected]="code === currency_value">{{ code }}
+                        </option>
+                </select>
+            </td>
+            <td class="input_field">
+                <input 
+                    name="slab"
+                    type="text" 
+                    [value]="slab_value" 
+                    (keyup)="updateNewValue($event, 'slab_value')"
+                >
+            </td>
+            <td class="input_field">
+                <select id="transportation mode" [(value)]="mode_of_transportation_value" (change)="updateNewValue($event, 'mode_of_transportation_value')" style="width:100%">
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="Road" selected>Road</option>
+                    <option value="Rail">Rail</option>
+                    <option value="Barge">Barge</option>
+                    <option value="Others">Others</option>
+                </select>
+            </td>
+            <td class="input_field">
+                <input 
+                    name="dangerous_cargo"
+                    type="text" 
+                    [value]="dangerous_cargo_value" 
+                    (keyup)="updateNewValue($event, 'dangerous_cargo_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input 
+                    name="transit_time"
+                    type="text" 
+                    [value]="transit_time_value" 
+                    (keyup)="updateNewValue($event, 'transit_time_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input 
+                    name="start_date" 
+                    placeholder="DD-MM-YYYY"
+                    type="text" 
+                    [value]="start_date_value" 
+                    (keyup)="updateNewValue($event, 'start_date_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input 
+                    name="expiry" 
+                    placeholder="DD-MM-YYYY"
+                    type="text" 
+                    [value]="expiry_value" 
+                    (keyup)="updateNewValue($event, 'expiry_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input
+                    name="from_slab"  
+                    type="text" 
+                    [value]="from_slab_value" 
+                    (keyup)="updateNewValue($event, 'from_slab_value')"
+                >
+            </td>
+            <td class="input_field">
+                <input
+                    name="to_slab"  
+                    type="text" 
+                    [value]="to_slab_value" 
+                    (keyup)="updateNewValue($event, 'to_slab_value')"
+                >
+            </td>
+        </tr>
+    </tbody>
+    <!-- </ng-container> -->
+</table>

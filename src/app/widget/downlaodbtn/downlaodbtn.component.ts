@@ -185,7 +185,7 @@ export class DownlaodbtnComponent implements OnInit {
     let l4chadata = JSON.parse(localStorage.getItem('L4ChadataSource')!);
     let l1data = JSON.parse(localStorage.getItem('L1dataSource')!);
     let l5data = JSON.parse(localStorage.getItem('L5dataSource')!);
-    // let l3slab = JSON.parse(localStorage.getItem('L3slab')!);
+    let l3slab = JSON.parse(localStorage.getItem('L3slab')!);
 
     this.legsData = {
       L3Data: [
@@ -485,26 +485,26 @@ export class DownlaodbtnComponent implements OnInit {
           delivery_fee_currency: l5data.charge5_l5_currency_value,
         },
       ],
-      // L3Slab: [
-      //   {
-      //     from_port: l3slab.from_port_value,
-      //     to_port: l3slab.to_port,
-      //     service_type: l3slab.service_type_value,
-      //     commodity: l3slab.commodity_value,
-      //     cargo_type: l3slab.cargo_type_value,
-      //     contract: l3slab.contract_value,
-      //     load_type: l3slab.load_type_value,
-      //     currency: l3slab.currency_value,
-      //     value: l3slab.slab_value,
-      //     mode_of_transportation: l3slab.mode_of_transportation_value,
-      //     dangerous_cargo: l3slab.dangerous_cargo_value,
-      //     transit_time: l3slab.transit_time_value,
-      //     start_date: l3slab.start_date_value,
-      //     expiry: l3slab.expiry_value,
-      //     from_slab: l3slab.from_slab_value,
-      //     to_slab: l3slab.to_slab_value
-      //   }
-      // ]
+      L3Slab: [
+        {
+          from_port: l3slab.origin_port_value,
+          to_port: l3slab.destination_port_value,
+          service_type: l3slab.service_type_value,
+          commodity: l3slab.commodities_value,
+          cargo_type: l3slab.cargo_type_value,
+          contract: l3slab.contract_number_value,
+          load_type: l3slab.load_type_value,
+          currency: l3slab.charge1_l3_currency_value,
+          value: l3slab.slab_value,
+          mode_of_transportation: l3slab.transport_mode_value,
+          dangerous_cargo: l3slab.dangerous_cargo_value,
+          transit_time: l3slab.transit_time_value,
+          start_date: l3slab.start_date_value,
+          expiry: l3slab.expiry_value,
+          from_slab: l3slab.from_slab_value,
+          to_slab: l3slab.to_slab_value
+        }
+      ]
     };
 
     const legSelected: any = JSON.parse(

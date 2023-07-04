@@ -44,6 +44,10 @@ import { AirL4chafileComponent } from './widget/AIR/air-l4chafile/air-l4chafile.
 import { AirL2chafileComponent } from './widget/AIR/air-l2chafile/air-l2chafile.component';
 import { AirL1fileComponent } from './widget/AIR/air-l1file/air-l1file.component';
 import { AirL5fileComponent } from './widget/AIR/air-l5file/air-l5file.component';
+import { L3slabComponent } from './widget/FCL/l3slab/l3slab.component';
+import { L2ihcComponent } from './widget/FCL/l2ihc/l2ihc.component';
+import { L4ihcComponent } from './widget/FCL/l4ihc/l4ihc.component';
+import { DndComponent } from './widget/FCL/dnd/dnd.component';
 
 
 
@@ -86,6 +90,10 @@ import { AirL5fileComponent } from './widget/AIR/air-l5file/air-l5file.component
     AirL2chafileComponent,
     AirL1fileComponent,
     AirL5fileComponent,
+    L3slabComponent,
+    L2ihcComponent,
+    L4ihcComponent,
+    DndComponent,
   ],
   imports: [
     BrowserModule,

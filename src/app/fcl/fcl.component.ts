@@ -16,7 +16,11 @@ export class FclComponent implements OnInit {
       { name: 'L4', value: false },
       { name: 'L5', value: false },
       { name: 'L2Cha', value: false },
-      { name: 'L4Cha', value: false }
+      { name: 'L4Cha', value: false },
+      { name: 'L2_IHC', value: false },
+      { name: 'L4_IHC', value: false },
+      { name: 'L3_SLAB', value: false },
+      { name: 'DND', value: false },
     ]
 
   };
@@ -41,7 +45,6 @@ export class FclComponent implements OnInit {
 
   saveCheckboxValues() {
     localStorage.setItem('selectedLegs', JSON.stringify(this.selectedLegs));
-    // localStorage.removeItem('selectedLegs');
   }
 
 }
