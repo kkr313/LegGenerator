@@ -130,7 +130,7 @@
       "L2": {
         "col6": {
           "key": "cfs_stuffing",
-          "value": "1"
+          "value": "0"
         },
         "charges1": {
           "charge_name_key": "origin_terminal_handling_charge_othc",
