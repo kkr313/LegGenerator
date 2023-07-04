@@ -19,6 +19,9 @@
             <th class="header-label">{{remarks_key}}</th>
             <th class="header-label">{{inclusions_key}}</th>
             <th class="header-label">{{load_type_key}}</th>
+            <th class="header-label">{{origin_freight_service_type_key}}</th>
+            <th class="header-label">{{destination_freight_service_type_key}}</th>
+            <th class="header-label">{{depot_rate_only_key}}</th>
             <th class="header-label">{{charge1_name_key}}</th>
             <th class="header-label">{{charge1_basis_key}}</th>
             <th class="header-label">{{charge1_currency_key}}</th>
@@ -213,6 +216,30 @@
                             [selected]="load === load_type_value">{{ load }}
                         </option>
                     </select>
+                </td>
+                <td class="input_field">
+                    <input 
+                        name="origin_freight_service_type"
+                        type="text" 
+                        [value]="origin_freight_service_type_value" 
+                        (keyup)="updateNewValue($event, 'origin_freight_service_type_value')"
+                    >
+                </td>
+                <td class="input_field">
+                    <input 
+                        name="destination_freight_service_type"
+                        type="text" 
+                        [value]="destination_freight_service_type_value" 
+                        (keyup)="updateNewValue($event, 'destination_freight_service_type_value')"
+                    >
+                </td>
+                <td class="input_field">
+                    <input 
+                        name="depot_rate_only"
+                        type="text" 
+                        [value]="depot_rate_only_value" 
+                        (keyup)="updateNewValue($event, 'depot_rate_only_value')"
+                    >
                 </td>
 
                 <td class="input_field">

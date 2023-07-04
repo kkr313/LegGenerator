@@ -11,23 +11,23 @@ export class DownlaodbtnComponent implements OnInit {
 
   QaVendors: any[];
   QaSubVendors: any[];
-  StagingVendors: any [];
-  StagingSubVendors: any [];
+  StagingVendors: any[];
+  StagingSubVendors: any[];
 
   constructor(private commonService: CommonService) {
     const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
     const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
 
-    const QaSubVendorsString : any = localStorage.getItem('QaVendors');
+    const QaSubVendorsString: any = localStorage.getItem('QaVendors');
     this.QaVendors = JSON.parse(QaSubVendorsString);
 
-    const QaVendorsString : any = localStorage.getItem('QaSubVendors');
+    const QaVendorsString: any = localStorage.getItem('QaSubVendors');
     this.QaSubVendors = JSON.parse(QaVendorsString);
 
-    const StagingVendorsString : any = localStorage.getItem('StagingVendors');
+    const StagingVendorsString: any = localStorage.getItem('StagingVendors');
     this.StagingVendors = JSON.parse(StagingVendorsString);
 
-    const StagingSubVendorsString : any = localStorage.getItem('StagingSubVendors');
+    const StagingSubVendorsString: any = localStorage.getItem('StagingSubVendors');
     this.StagingSubVendors = JSON.parse(StagingSubVendorsString);
 
     if (QA_STAG_ENABLED === 'true') {
@@ -66,21 +66,21 @@ export class DownlaodbtnComponent implements OnInit {
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
-        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
+        localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         break;
       case 'Staging':
         this.selectedSecondDropdownValue = '';
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.StagingVendors;
-        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
+        localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         break;
       case 'Prod':
         this.selectedSecondDropdownValue = '';
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
-        localStorage.setItem('ModeSelected',this.selectedFirstDropdownValue)
+        localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         break;
     }
     this.updateThirdDropdownOptions();
@@ -127,7 +127,7 @@ export class DownlaodbtnComponent implements OnInit {
           localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
         }
       });
-    }else if(this.selectedFirstDropdownValue === 'Staging'){
+    } else if (this.selectedFirstDropdownValue === 'Staging') {
       this.secondDropdownOptions.map((option) => {
         if (this.selectedSecondDropdownValue == option.value) {
           this.selectedSecondDropdownValue = option.value;
@@ -145,7 +145,7 @@ export class DownlaodbtnComponent implements OnInit {
           localStorage.setItem('subVendorId', this.selectedThirdDropdownValue);
         }
       });
-    }else if(this.selectedFirstDropdownValue === 'Staging'){
+    } else if (this.selectedFirstDropdownValue === 'Staging') {
       this.thirdDropdownOptions.map((option) => {
         if (this.selectedThirdDropdownValue == option.value) {
           this.selectedThirdDropdownValue = option.value;
@@ -185,6 +185,7 @@ export class DownlaodbtnComponent implements OnInit {
     let l4chadata = JSON.parse(localStorage.getItem('L4ChadataSource')!);
     let l1data = JSON.parse(localStorage.getItem('L1dataSource')!);
     let l5data = JSON.parse(localStorage.getItem('L5dataSource')!);
+    // let l3slab = JSON.parse(localStorage.getItem('L3slab')!);
 
     this.legsData = {
       L3Data: [
@@ -207,13 +208,15 @@ export class DownlaodbtnComponent implements OnInit {
           remarks: l3data.remarks_value,
           inclusions: l3data.inclusions_value,
           load_type: l3data.load_type_value,
+          origin_freight_service_type: l3data.origin_freight_service_type_value,
+          destination_freight_service_type: l3data.destination_freight_service_type_value,
+          depot_rate_only: l3data.depot_rate_only_value,
           basic_ocean_freight: l3data.charge1_l3_name_value,
           basic_ocean_freight_basis: l3data.charge1_l3_basis_value,
           basic_ocean_freight_currency: l3data.charge1_l3_currency_value,
           bunker_adjustment_charge_baf: l3data.charge2_l3_name_value,
           bunker_adjustment_charge_baf_basis: l3data.charge2_l3_basis_value,
-          bunker_adjustment_charge_baf_currency:
-            l3data.charge2_l3_currency_value,
+          bunker_adjustment_charge_baf_currency: l3data.charge2_l3_currency_value,
           carrier_security_surcharge: l3data.charge3_l3_name_value,
           carrier_security_surcharge_basis: l3data.charge3_l3_basis_value,
           carrier_security_surcharge_currency: l3data.charge3_l3_currency_value,
@@ -407,6 +410,7 @@ export class DownlaodbtnComponent implements OnInit {
           remarks: l1data.remarks_value,
           inclusions: l1data.inclusions_value,
           load_type: l1data.load_type_value,
+          origin_freight_service_type: l1data.origin_freight_service_type_value,
           return_mt_to_terminal: l1data.charge1_l1_name_value,
           return_mt_to_terminal_min: l1data.charge1_l1_min_value,
           return_mt_to_terminal_basis: l1data.charge1_l1_basis_value,
@@ -458,6 +462,7 @@ export class DownlaodbtnComponent implements OnInit {
           remarks: l5data.remarks_value,
           inclusions: l5data.inclusions_value,
           load_type: l5data.load_type_value,
+          destination_freight_service_type: l5data.destination_freight_service_type_value,
           return_mt_to_terminal: l5data.charge1_l5_name_value,
           return_mt_to_terminal_min: l5data.charge1_l5_min_value,
           return_mt_to_terminal_basis: l5data.charge1_l5_basis_value,
@@ -480,6 +485,26 @@ export class DownlaodbtnComponent implements OnInit {
           delivery_fee_currency: l5data.charge5_l5_currency_value,
         },
       ],
+      // L3Slab: [
+      //   {
+      //     from_port: l3slab.from_port_value,
+      //     to_port: l3slab.to_port,
+      //     service_type: l3slab.service_type_value,
+      //     commodity: l3slab.commodity_value,
+      //     cargo_type: l3slab.cargo_type_value,
+      //     contract: l3slab.contract_value,
+      //     load_type: l3slab.load_type_value,
+      //     currency: l3slab.currency_value,
+      //     value: l3slab.slab_value,
+      //     mode_of_transportation: l3slab.mode_of_transportation_value,
+      //     dangerous_cargo: l3slab.dangerous_cargo_value,
+      //     transit_time: l3slab.transit_time_value,
+      //     start_date: l3slab.start_date_value,
+      //     expiry: l3slab.expiry_value,
+      //     from_slab: l3slab.from_slab_value,
+      //     to_slab: l3slab.to_slab_value
+      //   }
+      // ]
     };
 
     const legSelected: any = JSON.parse(
@@ -489,12 +514,22 @@ export class DownlaodbtnComponent implements OnInit {
     const ls = legSelected.options;
 
     for (let i = 0; i < ls.length; i++) {
+      console.log(this.legsData.L3Slab)
       if (ls[i].value) {
-        this.commonService.downloadFile(
-          this.legsData[`${ls[i].name}Data`],
-          `FCL-${ls[i].name}`,
-          `${ls[i].name}Header`
-        );
+        if (ls[i].name.includes("SLAB")) {
+          this.commonService.downloadFile(
+            this.legsData.L3Slab,
+            `FCL-${ls[i].name}`,
+            `${ls[i].name}Header`
+          );
+
+        } else {
+          this.commonService.downloadFile(
+            this.legsData[`${ls[i].name}Data`],
+            `FCL-${ls[i].name}`,
+            `${ls[i].name}Header`
+          );
+        }
       }
     }
   }

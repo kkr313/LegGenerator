@@ -74,6 +74,8 @@ export class L5fileComponent implements OnInit {
   inclusions_value: any;
   load_type_key: any;
   load_type_value: any;
+  destination_freight_service_type_key: any;
+  destination_freight_service_type_value: any;
   charge1_name_key: any;
   charge1_name_value: any;
   charge1_min_key: any;
@@ -172,6 +174,8 @@ export class L5fileComponent implements OnInit {
           this.inclusions_value = Res?. inclusions_value;
           this.load_type_key = Res?. load_type;
           this.load_type_value = Res?. load_type_value;
+          this.destination_freight_service_type_key = Res?. destination_freight_service_type;
+          this.destination_freight_service_type_value = Res?. destination_freight_service_type_value;
           this.charge1_name_key = Res?. charge1_l5_name;
           this.charge1_name_value = Res?. charge1_l5_name_value;
           this.charge1_min_key = Res?. charge1_l5_min;
@@ -213,7 +217,13 @@ export class L5fileComponent implements OnInit {
           this.charge5_currency_key = Res?. charge5_l5_currency;
           this.charge5_currency_value = Res?. charge5_l5_currency_value;
       }
-      localStorage.setItem('L5dataSource', JSON.stringify(Res));
+      let localStorageData: any = {};
+      Object.keys(Res).forEach((key, index) => {
+        if (index % 2 !== 0) {
+          localStorageData[key] = Res[key];
+        }
+      });
+      localStorage.setItem('L5dataSource', JSON.stringify(localStorageData));
     })
   }
 

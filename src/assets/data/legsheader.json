@@ -74,6 +74,18 @@
           "key": "load_type",
           "value": "20GP"
         },
+        "col19": {
+          "key": "origin_freight_service_type",
+          "value": ""
+        },
+        "col20": {
+          "key": "destination_freight_service_type",
+          "value": ""
+        },
+        "col21": {
+          "key": "depot_rate_only",
+          "value": ""
+        },
         "charges1": {
           "charge_name_key": "basic_ocean_freight",
           "charge_name_value": "2000",
@@ -240,7 +252,7 @@
           "charge_name_key": "vgm_transmission",
           "charge_name_value": "10",
           "charge_basis_key": "vgm_transmission_basis",
-          "charge_basis_value": "per container",
+          "charge_basis_value": "per kg",
           "charge_currency_key": "vgm_transmission_currency",
           "charge_currency_value": "INR"
         }
@@ -370,11 +382,11 @@
         },
         "charges1": {
           "charge_name_key": "return_mt_to_terminal",
-          "charge_name_value": "100",
+          "charge_name_value": "10",
           "charge_min_key": "return_mt_to_terminal_min",
-          "charge_min_value": "200",
+          "charge_min_value": "20",
           "charge_basis_key": "return_mt_to_terminal_basis",
-          "charge_basis_value": "per equipment",
+          "charge_basis_value": "% on pickup",
           "charge_currency_key": "return_mt_to_terminal_currency",
           "charge_currency_value": "INR"
         },
@@ -390,11 +402,11 @@
         },
         "charges3": {
           "charge_name_key": "pickup_charge",
-          "charge_name_value": "20",
+          "charge_name_value": "4000",
           "charge_min_key": "pickup_charge_min",
-          "charge_min_value": "12",
+          "charge_min_value": "1200",
           "charge_basis_key": "pickup_charge_basis",
-          "charge_basis_value": "% on pickup",
+          "charge_basis_value": "per equipment",
           "charge_currency_key": "pickup_charge_currency",
           "charge_currency_value": "INR"
         },
@@ -426,11 +438,11 @@
         },
         "charges1": {
           "charge_name_key": "return_mt_to_terminal",
-          "charge_name_value": "100",
+          "charge_name_value": "10",
           "charge_min_key": "return_mt_to_terminal_min",
-          "charge_min_value": "200",
+          "charge_min_value": "20",
           "charge_basis_key": "return_mt_to_terminal_basis",
-          "charge_basis_value": "per equipment",
+          "charge_basis_value": "% on delivery",
           "charge_currency_key": "return_mt_to_terminal_currency",
           "charge_currency_value": "INR"
         },
@@ -466,11 +478,11 @@
         },
         "charges5": {
           "charge_name_key": "delivery_fee",
-          "charge_name_value": "20",
+          "charge_name_value": "2000",
           "charge_min_key": "delivery_fee_min",
-          "charge_min_value": "30",
+          "charge_min_value": "3000",
           "charge_basis_key": "delivery_fee_basis",
-          "charge_basis_value": "% on delivery",
+          "charge_basis_value": "per equipment",
           "charge_currency_key": "delivery_fee_currency",
           "charge_currency_value": "INR"
         }

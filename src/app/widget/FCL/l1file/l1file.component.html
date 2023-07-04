@@ -28,6 +28,7 @@
         <th class="header-label">{{remarks_key}}</th>
         <th class="header-label">{{inclusions_key}}</th>
         <th class="header-label">{{load_type_key}}</th>
+        <th class="header-label">{{origin_freight_service_type_key}}</th>
         <th class="header-label">{{charge1_name_key}}</th>
         <th class="header-label">{{charge1_min_key}}</th>
         <th class="header-label">{{charge1_basis_key}}</th>
@@ -287,6 +288,15 @@
                         </option>
                 </select>
               </td>
+              <td class="input_field">
+                <input 
+                    name="origin_freight_service_type"
+                    type="text" 
+                    [value]="origin_freight_service_type_value" 
+                    (keyup)="updateNewValue($event, 'origin_freight_service_type_value')"
+                >
+            </td>
+
               <td class="input_field">
                   <input 
                       name="return_mt_to_terminal"

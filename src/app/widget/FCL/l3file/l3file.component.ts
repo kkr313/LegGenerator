@@ -56,6 +56,12 @@ export class L3fileComponent implements OnInit {
   inclusions_value: any;
   load_type_key: any;
   load_type_value: any;
+  origin_freight_service_type_key: any;
+  origin_freight_service_type_value: any;
+  destination_freight_service_type_key: any;
+  destination_freight_service_type_value: any;
+  depot_rate_only_key: any;
+  depot_rate_only_value: any;
   charge1_name_key: any;
   charge1_name_value: any;
   charge1_basis_key: any;
@@ -92,6 +98,7 @@ export class L3fileComponent implements OnInit {
 
   ngOnInit(): void {
     this.commonService.updateValue.subscribe((Res: any) => {
+     
       if (Res) {
           this.origin_port_key = Res?.origin_port,
           this.origin_port_value = Res?.origin_port_value,
@@ -129,6 +136,12 @@ export class L3fileComponent implements OnInit {
           this.inclusions_value = Res?. inclusions_value;
           this.load_type_key = Res?. load_type;
           this.load_type_value = Res?. load_type_value;
+          this.origin_freight_service_type_key = Res?. origin_freight_service_type;
+          this.origin_freight_service_type_value = Res?. origin_freight_service_type_value;
+          this.destination_freight_service_type_key = Res?. destination_freight_service_type;
+          this.destination_freight_service_type_value = Res?. destination_freight_service_type_value;
+          this.depot_rate_only_key = Res?. depot_rate_only;
+          this.depot_rate_only_value = Res?. depot_rate_only_value;
           this.charge1_name_key = Res?. charge1_l3_name;
           this.charge1_name_value = Res?. charge1_l3_name_value;
           this.charge1_basis_key = Res?. charge1_l3_basis;
@@ -160,7 +173,13 @@ export class L3fileComponent implements OnInit {
           this.charge5_currency_key = Res?. charge5_l3_currency;
           this.charge5_currency_value = Res?. charge5_l3_currency_value;
       }
-      localStorage.setItem('L3dataSource', JSON.stringify(Res));
+      let localStorageData: any = {};
+      Object.keys(Res).forEach((key, index) => {
+        if (index % 2 !== 0) {
+          localStorageData[key] = Res[key];
+        }
+      });
+      localStorage.setItem('L3dataSource', JSON.stringify(localStorageData));
     })
   }
 

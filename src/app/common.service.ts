@@ -54,6 +54,12 @@ export class CommonService {
     inclusions_value: FclData.FCL[0].L3.col17.value,
     load_type: FclData.FCL[0].L3.col18.key,
     load_type_value: FclData.FCL[0].L3.col18.value,
+    origin_freight_service_type : FclData.FCL[0].L3.col19.key,
+    origin_freight_service_type_value : FclData.FCL[0].L3.col19.value,
+    destination_freight_service_type : FclData.FCL[0].L3.col20.key,
+    destination_freight_service_type_value : FclData.FCL[0].L3.col20.value,
+    depot_rate_only : FclData.FCL[0].L3.col21.key,
+    depot_rate_only_value : FclData.FCL[0].L3.col21.value,
     charge1_l3_name: FclData.FCL[0].L3.charges1.charge_name_key,
     charge1_l3_name_value: FclData.FCL[0].L3.charges1.charge_name_value,
     charge1_l3_basis: FclData.FCL[0].L3.charges1.charge_basis_key,
@@ -330,6 +336,12 @@ export class CommonService {
     charge5_l5_basis_value: FclData.FCL[0].L5.charges5.charge_basis_value,
     charge5_l5_currency: FclData.FCL[0].L5.charges5.charge_currency_key,
     charge5_l5_currency_value: FclData.FCL[0].L5.charges5.charge_currency_value,
+
+    // slab_value: 1000,
+    // dangerous_cargo_value: '',
+    // from_slab_value: 0,
+    // to_slab_value: 25000
+
   }
 
   updateValue = new BehaviorSubject(this.FileData);
@@ -371,6 +383,9 @@ export class CommonService {
         this.FileData.remarks,
         this.FileData.inclusions,
         this.FileData.load_type,
+        this.FileData.origin_freight_service_type,
+        this.FileData.destination_freight_service_type,
+        this.FileData.depot_rate_only,
         this.FileData.charge1_l3_name,
         this.FileData.charge1_l3_basis,
         this.FileData.charge1_l3_currency,
@@ -535,6 +550,7 @@ export class CommonService {
         this.FileData.remarks,
         this.FileData.inclusions,
         this.FileData.load_type,
+        this.FileData.origin_freight_service_type,
         this.FileData.charge1_l1_name,
         this.FileData.charge1_l1_min,
         this.FileData.charge1_l1_basis,
@@ -584,6 +600,7 @@ export class CommonService {
         this.FileData.remarks,
         this.FileData.inclusions,
         this.FileData.load_type,
+        this.FileData.destination_freight_service_type,
         this.FileData.charge1_l5_name,
         this.FileData.charge1_l5_min,
         this.FileData.charge1_l5_basis,
@@ -605,6 +622,24 @@ export class CommonService {
         this.FileData.charge5_l5_basis,
         this.FileData.charge5_l5_currency,
       ],
+      // L3SlabHeader:[
+      //   "from_port",
+      //   "to_port",
+      //   "service_type",
+      //   "commodity",
+      //   "cargo_type",
+      //   "contract",
+      //   "load_type",
+      //   "currency",
+      //   "value",
+      //   "mode_of_transportation",
+      //   "dangerous_cargo",
+      //   "transit_time",
+      //   "start_date",
+      //   "expiry_date",
+      //   "from_slab",
+      //   "to_slab"
+      // ]
     }
 
     let csvData = this.ConvertToCSV(legsData, obj[key]);
