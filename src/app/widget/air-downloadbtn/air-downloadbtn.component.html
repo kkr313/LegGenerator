@@ -1,4 +1,4 @@
-<!-- <select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()">
+<select [(ngModel)]="selectedFirstDropdownValue" (ngModelChange)="updateSecondDropdownOptions()">
     <option value="">Select Env.</option>
     <option *ngFor="let option of EnvDropdownOptions" [value]="option.value">{{ option.label }}</option>
 </select>
@@ -6,23 +6,23 @@
 <select [(ngModel)]="selectedSecondDropdownValue" (ngModelChange)="updateThirdDropdownOptions(); selectVendor()">
     <option value="">Select Vendor</option>
     <option *ngFor="let option of secondDropdownOptions" [value]="option.value">{{ option.name }}</option>
-</select> -->
+</select>
 
 <!-- <select [(ngModel)]="selectedSecondDropdownValue" (ngModelChange)="updateThirdDropdownOptions(); selectVendor()">
     <option value="">Select SubVendor</option>
     <option *ngFor="let option of secondDropdownOptions" [value]="option.value">{{ option.name }}</option>
 </select> -->
 
-<!-- <select [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()">
+<select [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectLinear()">
     <option value="">Select Airline</option>
     <option *ngFor="let option of thirdDropdownOptions" [value]="option.value">{{ option.name }}</option>
-</select> -->
+</select>
 
 <!-- <select [(ngModel)]="selectedThirdDropdownValue" (ngModelChange)="selectFile()">
   <option value="">Select FileName</option>
   <option *ngFor="let option of fourthDropdownOptions" [value]="option.id">{{ option.fileName }}</option>
 </select> -->
 
-<!-- <button class="dwld-btn" (click)="directUpload()">Direct Upload</button> -->
+<button class="dwld-btn" (click)="directUpload()">Direct Upload</button>
 
 <button class="dwld-btn" (click)="fileDownload()">Download File</button>
