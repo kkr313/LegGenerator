@@ -684,7 +684,7 @@ export class AirService {
   }
 
   directUpload(file: Blob, legs: string, vendorId: any, subVendorId: any, fileName: string) {
-
+    let zohoDeskNo = Math.floor(Math.random() * 90000) + 10000;
     const data = new FormData();
     data.append("mode", "AIR");
     data.append("leg", legs);
@@ -696,10 +696,10 @@ export class AirService {
     data.append("agent", "");
     data.append("airline", subVendorId);
     data.append("charge", "");
-    data.append("inputFileSource", "PLATFORM");
+    data.append("inputFileSource", "ZOHO-DESK");
     data.append("fclType", "AIR-RATES");
-    data.append("inputFile", "64355e864a23272147a3dce4");
-    data.append("zohoTicketNumber", "");
+    data.append("inputFile", "");
+    data.append("zohoTicketNumber", zohoDeskNo.toString());
     data.append("dateReceived", this.dateReceived());
     data.append("file", file, fileName);
     data.append("formId", "0");
