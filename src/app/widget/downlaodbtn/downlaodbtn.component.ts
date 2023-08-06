@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/common.service';
+import { ApiService } from '../../api.service'; 
 
 @Component({
   selector: 'app-downlaodbtn',
@@ -14,7 +15,7 @@ export class DownlaodbtnComponent implements OnInit {
   StagingVendors: any[];
   StagingSubVendors: any[];
 
-  constructor(private commonService: CommonService) {
+  constructor(private commonService: CommonService, private apiService : ApiService) {
     const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
     const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
 
@@ -59,6 +60,92 @@ export class DownlaodbtnComponent implements OnInit {
   selectedEnvironment: any;
 
 
+  qaApiCall(){
+    this.apiService.getQaFilenames().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("QaFileName", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("QaVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaSubVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("QaSubVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getQaAirlines().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("QaAirlines", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+  }
+
+  stageApiCall(){
+    this.apiService.getStagingFilenames().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingFileName", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getStagingVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getStagingSubVendors().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingSubVendors", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+
+    this.apiService.getStagingAirlines().subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StagingAirlines", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+  }
+ 
+
   updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
@@ -67,6 +154,7 @@ export class DownlaodbtnComponent implements OnInit {
         localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.QaVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
+        this.qaApiCall()
         break;
       case 'Staging':
         this.selectedSecondDropdownValue = '';
@@ -74,6 +162,7 @@ export class DownlaodbtnComponent implements OnInit {
         localStorage.removeItem('subVendorId');
         this.secondDropdownOptions = this.StagingVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
+        this.stageApiCall()
         break;
       case 'Prod':
         this.selectedSecondDropdownValue = '';

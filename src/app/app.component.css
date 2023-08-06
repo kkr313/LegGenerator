@@ -285,3 +285,34 @@ box-shadow: inset 0px 0px 13px 2px rgb(0 0 0 / 35%);
   transform: translateY(-3px);
   box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
 }
+
+.lgout_button {
+  color: #060606 !important;
+  padding: 10px !important;
+  width: 50px !important;
+  height: 20px !important;
+  cursor: pointer;
+ 
+  box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
+}
+
+.lgout_button:hover{
+  transform: translateY(-3px);
+}
+
+
+.title-container {
+  flex: 1;
+  text-align: center;
+}
+
+.logout-container {
+  position: relative;
+}
+
+
+.lgout_button {
+  position: absolute;
+  bottom: -35px;
+  right: 10px;
+}
