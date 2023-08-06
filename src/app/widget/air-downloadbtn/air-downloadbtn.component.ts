@@ -22,11 +22,11 @@ export class AirDownloadbtnComponent implements OnInit {
     const QaVendorsString : any = localStorage.getItem('QaVendors');
     this.QaVendors = JSON.parse(QaVendorsString);
 
-    const QaAirlineString : any = localStorage.getItem('QaAirlines');
-    this.QaAirlines = JSON.parse(QaAirlineString);
-
     const QaSubVendorString : any = localStorage.getItem('QaSubVendors');
     this.QaSubVendors = JSON.parse(QaSubVendorString);
+
+    const QaAirlineString : any = localStorage.getItem('QaAirlines');
+    this.QaAirlines = JSON.parse(QaAirlineString);
 
 
     const StagingVendorsString : any = localStorage.getItem('StagingVendors');
@@ -102,7 +102,7 @@ export class AirDownloadbtnComponent implements OnInit {
         break;
       case 'Staging':
         this.selectedThirdDropdownValue = '';
-        this.thirdDropdownOptions = this.StagingSubVendors;
+        this.thirdDropdownOptions = this.StagingAirlines;
         break;
       case 'Prod':
         this.selectedThirdDropdownValue = '';
