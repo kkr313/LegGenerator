@@ -48,6 +48,7 @@ import { L3slabComponent } from './widget/FCL/l3slab/l3slab.component';
 import { L2ihcComponent } from './widget/FCL/l2ihc/l2ihc.component';
 import { L4ihcComponent } from './widget/FCL/l4ihc/l4ihc.component';
 import { DndComponent } from './widget/FCL/dnd/dnd.component';
+import { LoaderComponent } from './widget/loader/loader.component';
 
 
 
@@ -94,6 +95,7 @@ import { DndComponent } from './widget/FCL/dnd/dnd.component';
     L2ihcComponent,
     L4ihcComponent,
     DndComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

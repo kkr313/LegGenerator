@@ -8,6 +8,7 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  loading: boolean = true;
 
   constructor(private apiService : ApiService, private keycloakService: KeycloakService ){}
 
@@ -38,14 +39,15 @@ export class AppComponent implements OnInit {
 
     this.keycloakService.init().then((auth) => {
       if (auth) {
+        this.loading = false;
         const accessToken = this.keycloakService.getAccessToken();
         if (accessToken) {
           localStorage.setItem('accessToken', accessToken); // Save access token to localStorage
           this.apiService.storeToken(accessToken);
         }
       }
-      console.log('Authenticated');
     }).catch((error: any) => {
+      this.loading = false;
       console.log('Error in initialization', error);
     });
 
