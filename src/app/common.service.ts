@@ -706,6 +706,7 @@ export class CommonService {
 
   directUpload(file: Blob, legs: string, vendorId: any , subVendorId: any, fileName: string ) {
     let zohoDeskNo = Math.floor(Math.random() * 90000) + 10000;
+    let fileNameAvaialable = localStorage.getItem('fileName');
     const data = new FormData();
     data.append("mode", "SEA-FCL");
     data.append("leg", legs);
@@ -717,10 +718,14 @@ export class CommonService {
     data.append("agent", "");
     data.append("airline", "");
     data.append("charge", "");
-    data.append("inputFileSource", "ZOHO-DESK");
+    if (fileNameAvaialable) {
+      data.append("inputFileSource", "PLATFORM");
+      data.append("inputFile", fileNameAvaialable);
+    } else {
+      data.append("inputFileSource", "ZOHO-DESK");
+      data.append("zohoTicketNumber", zohoDeskNo.toString());
+    }
     data.append("fclType", "FCL-RATES");
-    data.append("inputFile", "");
-    data.append("zohoTicketNumber", zohoDeskNo.toString());
     data.append("dateReceived", this.dateReceived());
     data.append("file", file, fileName);
     data.append("formId", "0");

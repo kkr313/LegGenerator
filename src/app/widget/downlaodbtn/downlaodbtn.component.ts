@@ -12,8 +12,11 @@ export class DownlaodbtnComponent implements OnInit {
 
   QaVendors: any[];
   QaSubVendors: any[];
+  QaFileNames: any;
   StagingVendors: any[];
   StagingSubVendors: any[];
+  SatgeFileNames: any;
+ 
 
   constructor(private commonService: CommonService, private apiService : ApiService) {
     const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
@@ -59,18 +62,8 @@ export class DownlaodbtnComponent implements OnInit {
   selectedFourthDropdownValue = '';
   selectedEnvironment: any;
 
-
+  
   qaApiCall(){
-    this.apiService.getQaFilenames().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("QaFileName", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
     this.apiService.getQaVendors().subscribe(
       (response: any) => {
         response = JSON.parse(response);
@@ -104,15 +97,15 @@ export class DownlaodbtnComponent implements OnInit {
   }
 
   stageApiCall(){
-    this.apiService.getStagingFilenames().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("StagingFileName", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
+    // this.apiService.getStagingFilenames().subscribe(
+    //   (response: any) => {
+    //     response = JSON.parse(response);
+    //     localStorage.setItem("StagingFileName", JSON.stringify(response.data))
+    //   },
+    //   (error: any) => {
+    //     console.log('Error fetching dropdown options:', error);
+    //   }
+    // );
 
     this.apiService.getStagingVendors().subscribe(
       (response: any) => {
@@ -150,16 +143,20 @@ export class DownlaodbtnComponent implements OnInit {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedSecondDropdownValue = '';
+        this.selectedFourthDropdownValue = '';
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
+        localStorage.removeItem('fileName');
         this.secondDropdownOptions = this.QaVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         this.qaApiCall()
         break;
       case 'Staging':
         this.selectedSecondDropdownValue = '';
+        this.selectedFourthDropdownValue = '';
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
+        localStorage.removeItem('fileName');
         this.secondDropdownOptions = this.StagingVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         this.stageApiCall()
@@ -173,7 +170,7 @@ export class DownlaodbtnComponent implements OnInit {
         break;
     }
     this.updateThirdDropdownOptions();
-    // this.updateFourthDropdownOptions();
+    this.updateFourthDropdownOptions()
   }
 
 
@@ -194,26 +191,36 @@ export class DownlaodbtnComponent implements OnInit {
     }
   }
 
-  // updateFourthDropdownOptions() {
-  //   switch (this.selectedFirstDropdownValue) {
-  //     case 'QA':
-  //       this.fourthDropdownOptions = this.QaFileName;
-  //       break;
-  //     case 'Staging':
-  //       this.fourthDropdownOptions = this.QaFileName;
-  //       break;
-  //     case 'Prod':
-  //       this.fourthDropdownOptions = this.QaFileName;
-  //       break;
-  //   }
-  // }
+  updateFourthDropdownOptions() {
+    console.log('4th dropdown')
+    switch (this.selectedFirstDropdownValue) {
+      case 'QA':
+        this.selectedFourthDropdownValue = '';
+        this.fourthDropdownOptions = this.QaFileNames;
+        break;
+      case 'Staging':
+        this.selectedFourthDropdownValue = '';
+        this.fourthDropdownOptions = this.SatgeFileNames;
+        break;
+      case 'Prod':
+        this.fourthDropdownOptions = this.QaFileNames;
+        break;
+    }
+  }
 
   selectVendor() {
+    localStorage.removeItem('fileName');
     if (this.selectedFirstDropdownValue === 'QA') {
       this.secondDropdownOptions.map((option) => {
         if (this.selectedSecondDropdownValue == option.value) {
           this.selectedSecondDropdownValue = option.value;
           localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+          this.getQaFile(this.selectedSecondDropdownValue)
+          setTimeout(() => {
+            const QaFilesString: any = localStorage.getItem('QaFileNames');
+            this.QaFileNames = JSON.parse(QaFilesString);
+            this.updateFourthDropdownOptions()
+          }, 1000);
         }
       });
     } else if (this.selectedFirstDropdownValue === 'Staging') {
@@ -221,6 +228,56 @@ export class DownlaodbtnComponent implements OnInit {
         if (this.selectedSecondDropdownValue == option.value) {
           this.selectedSecondDropdownValue = option.value;
           localStorage.setItem('vendorId', this.selectedSecondDropdownValue);
+          this.getStageFile(this.selectedSecondDropdownValue)
+          setTimeout(() => {
+            const StageFilesString: any = localStorage.getItem('StageFileNames');
+            this.SatgeFileNames = JSON.parse(StageFilesString);
+            this.updateFourthDropdownOptions()
+          }, 1000);
+        }
+      });
+    }
+  }
+
+  getQaFile(vendorID:string){
+    this.apiService.getQaFilenames(vendorID).subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("QaFileNames", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+    console.log("file api call")
+  }
+
+  getStageFile(vendorID:string){
+    this.apiService.getStagingFilenames(vendorID).subscribe(
+      (response: any) => {
+        response = JSON.parse(response);
+        localStorage.setItem("StageFileNames", JSON.stringify(response.data))
+      },
+      (error: any) => {
+        console.log('Error fetching dropdown options:', error);
+      }
+    );
+    console.log("file api call")
+  }
+
+  selectFile() {
+    if (this.selectedFirstDropdownValue === 'QA') {
+      this.fourthDropdownOptions.map((option) => {
+        if (this.selectedFourthDropdownValue == option.id) {
+          this.selectedFourthDropdownValue = option.id;
+          localStorage.setItem('fileName', this.selectedFourthDropdownValue);
+        }
+      });
+    } else if (this.selectedFirstDropdownValue === 'Staging') {
+      this.fourthDropdownOptions.map((option) => {
+        if (this.selectedFourthDropdownValue == option.id) {
+          this.selectedFourthDropdownValue = option.id;
+          localStorage.setItem('fileName', this.selectedFourthDropdownValue);
         }
       });
     }
@@ -260,6 +317,7 @@ export class DownlaodbtnComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem('vendorId');
     localStorage.removeItem('subVendorId');
+    localStorage.removeItem('fileName');
     localStorage.removeItem('ModeSelected');
   }
 

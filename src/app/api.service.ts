@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Express } from 'express';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 
 @Injectable({
   providedIn: 'root'
@@ -48,13 +50,22 @@ export class ApiService {
     };
   }
 
-  getQaFilenames(): Observable<string[]> {
+  getQaFilenames(vendorID: string): Observable<string[]> {
     const headers = new HttpHeaders().set('Authorization', this.QA_Staging_Token);
     const requestOptions = {
       headers: headers,
       responseType: 'text' as 'json'
     };
-    return this.http.get<string[]>(this.qaUrl+this.filenamePath+'?vendorId=252', requestOptions);
+    return this.http.get<string[]>(this.qaUrl+this.filenamePath+`?vendorId=${vendorID}`, requestOptions);
+  }
+
+  getStagingFilenames(vendorID: string): Observable<string[]> {
+    const headers = new HttpHeaders().set('Authorization', this.QA_Staging_Token);
+    const requestOptions = {
+      headers: headers,
+      responseType: 'text' as 'json'
+    };
+    return this.http.get<string[]>(this.stagingUrl+this.filenamePath+`?vendorId=${vendorID}`, requestOptions);
   }
 
   UploadQaFile(data : any ): Observable<any> {
@@ -99,22 +110,6 @@ export class ApiService {
       responseType: 'text' as 'json'
     };
     return this.http.get<string[]>(this.qaUrl+this.airlinePath, requestOptions);
-  }
-
-  getStagingFilenames(): Observable<string[]> {
-    // const headers = new HttpHeaders()
-    // .set('Authorization', this.QA_Staging_Token);
-    const headers = new HttpHeaders()
-    .set('Authorization', this.QA_Staging_Token)
-    .set('Accept', '*/*')
-    .set('Authority', 'stagingadminapi.freightify.in')
-    .set('Origin', 'https://stagingapp.freightify.in')
-    
-    const requestOptions = {
-      headers: headers,
-      responseType: 'text' as 'json'
-    };
-    return this.http.get<string[]>(this.stagingUrl+this.filenamePath+'?vendorId=108', requestOptions);
   }
 
   getStagingVendors(): Observable<string[]> {

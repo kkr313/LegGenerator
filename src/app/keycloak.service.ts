@@ -30,6 +30,7 @@ export class KeycloakService {
     if (this.keycloak) {
       this.keycloak.logout();
     }
+    localStorage.clear();
   }
 }
 
