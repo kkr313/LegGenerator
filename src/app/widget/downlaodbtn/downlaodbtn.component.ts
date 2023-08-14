@@ -9,7 +9,6 @@ import { ApiService } from '../../api.service';
 })
 
 export class DownlaodbtnComponent implements OnInit {
-
   QaVendors: any[];
   QaSubVendors: any[];
   QaFileNames: any;
@@ -62,84 +61,9 @@ export class DownlaodbtnComponent implements OnInit {
   selectedFourthDropdownValue = '';
   selectedEnvironment: any;
 
-  
-  qaApiCall(){
-    this.apiService.getQaVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("QaVendors", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaSubVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("QaSubVendors", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getQaAirlines().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("QaAirlines", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-  }
-
-  stageApiCall(){
-    // this.apiService.getStagingFilenames().subscribe(
-    //   (response: any) => {
-    //     response = JSON.parse(response);
-    //     localStorage.setItem("StagingFileName", JSON.stringify(response.data))
-    //   },
-    //   (error: any) => {
-    //     console.log('Error fetching dropdown options:', error);
-    //   }
-    // );
-
-    this.apiService.getStagingVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("StagingVendors", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getStagingSubVendors().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("StagingSubVendors", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-
-    this.apiService.getStagingAirlines().subscribe(
-      (response: any) => {
-        response = JSON.parse(response);
-        localStorage.setItem("StagingAirlines", JSON.stringify(response.data))
-      },
-      (error: any) => {
-        console.log('Error fetching dropdown options:', error);
-      }
-    );
-  }
  
 
-  updateSecondDropdownOptions() {
+updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedSecondDropdownValue = '';
@@ -147,9 +71,10 @@ export class DownlaodbtnComponent implements OnInit {
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         localStorage.removeItem('fileName');
+        const QaSubVendorsString: any = localStorage.getItem('QaVendors');
+        this.QaVendors = JSON.parse(QaSubVendorsString);
         this.secondDropdownOptions = this.QaVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
-        this.qaApiCall()
         break;
       case 'Staging':
         this.selectedSecondDropdownValue = '';
@@ -157,9 +82,10 @@ export class DownlaodbtnComponent implements OnInit {
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         localStorage.removeItem('fileName');
+        const StagingSubVendorsString: any = localStorage.getItem('StagingVendors');
+        this.StagingVendors = JSON.parse(StagingSubVendorsString);
         this.secondDropdownOptions = this.StagingVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
-        this.stageApiCall()
         break;
       case 'Prod':
         this.selectedSecondDropdownValue = '';
@@ -178,10 +104,14 @@ export class DownlaodbtnComponent implements OnInit {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedThirdDropdownValue = '';
+        const QaVendorsString: any = localStorage.getItem('QaSubVendors');
+        this.QaSubVendors = JSON.parse(QaVendorsString);
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
       case 'Staging':
         this.selectedThirdDropdownValue = '';
+        const StagingVendorsString: any = localStorage.getItem('StagingVendors');
+        this.StagingVendors = JSON.parse(StagingVendorsString);
         this.thirdDropdownOptions = this.StagingSubVendors;
         break;
       case 'Prod':
@@ -192,7 +122,6 @@ export class DownlaodbtnComponent implements OnInit {
   }
 
   updateFourthDropdownOptions() {
-    console.log('4th dropdown')
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedFourthDropdownValue = '';
