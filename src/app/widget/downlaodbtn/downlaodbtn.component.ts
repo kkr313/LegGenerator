@@ -21,11 +21,11 @@ export class DownlaodbtnComponent implements OnInit {
     const QA_STAG_ENABLED = localStorage.getItem('QA_STAG_ENABLED');
     const PROD_ENABLED = localStorage.getItem('PROD_ENABLED');
 
-    const QaSubVendorsString: any = localStorage.getItem('QaVendors');
-    this.QaVendors = JSON.parse(QaSubVendorsString);
+    const QaVendorsString: any = localStorage.getItem('QaVendors');
+    this.QaVendors = JSON.parse(QaVendorsString);
 
-    const QaVendorsString: any = localStorage.getItem('QaSubVendors');
-    this.QaSubVendors = JSON.parse(QaVendorsString);
+    const QaSubVendorsString: any = localStorage.getItem('QaSubVendors');
+    this.QaSubVendors = JSON.parse(QaSubVendorsString);
 
     const StagingVendorsString: any = localStorage.getItem('StagingVendors');
     this.StagingVendors = JSON.parse(StagingVendorsString);
@@ -71,8 +71,8 @@ updateSecondDropdownOptions() {
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         localStorage.removeItem('fileName');
-        const QaSubVendorsString: any = localStorage.getItem('QaVendors');
-        this.QaVendors = JSON.parse(QaSubVendorsString);
+        const QaVendorsString: any = localStorage.getItem('QaVendors');
+        this.QaVendors = JSON.parse(QaVendorsString);
         this.secondDropdownOptions = this.QaVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         break;
@@ -82,8 +82,8 @@ updateSecondDropdownOptions() {
         localStorage.removeItem('vendorId');
         localStorage.removeItem('subVendorId');
         localStorage.removeItem('fileName');
-        const StagingSubVendorsString: any = localStorage.getItem('StagingVendors');
-        this.StagingVendors = JSON.parse(StagingSubVendorsString);
+        const StagingVendorsString: any = localStorage.getItem('StagingVendors');
+        this.StagingVendors = JSON.parse(StagingVendorsString);
         this.secondDropdownOptions = this.StagingVendors;
         localStorage.setItem('ModeSelected', this.selectedFirstDropdownValue)
         break;
@@ -104,14 +104,14 @@ updateSecondDropdownOptions() {
     switch (this.selectedFirstDropdownValue) {
       case 'QA':
         this.selectedThirdDropdownValue = '';
-        const QaVendorsString: any = localStorage.getItem('QaSubVendors');
-        this.QaSubVendors = JSON.parse(QaVendorsString);
+        const QaSubVendorsString: any = localStorage.getItem('QaSubVendors');
+        this.QaSubVendors = JSON.parse(QaSubVendorsString);
         this.thirdDropdownOptions = this.QaSubVendors;
         break;
       case 'Staging':
         this.selectedThirdDropdownValue = '';
-        const StagingVendorsString: any = localStorage.getItem('StagingVendors');
-        this.StagingVendors = JSON.parse(StagingVendorsString);
+        const StagingSubVendorsString: any = localStorage.getItem('StagingSubVendors');
+        this.StagingSubVendors = JSON.parse(StagingSubVendorsString);
         this.thirdDropdownOptions = this.StagingSubVendors;
         break;
       case 'Prod':
