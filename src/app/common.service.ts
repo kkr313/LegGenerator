@@ -709,15 +709,25 @@ export class CommonService {
     let fileNameAvaialable = localStorage.getItem('fileName');
     const data = new FormData();
     data.append("mode", "SEA-FCL");
-    data.append("leg", legs);
+    if(fileName.includes('L3_SLAB')){
+      legs = 'L3_Slab'
+      data.append("leg", 'l3');
+      data.append("fclType", "FCL-IHC");
+      data.append("charge", "slab_overweight_surcharge");
+    }else{
+      data.append("leg", legs);
+      data.append("fclType", "FCL-RATES");
+      data.append("charge", "");
+    }
     data.append("vendor", vendorId);
     data.append("subVendor", subVendorId);
     if(legs.includes('l1') || legs.includes('l5') || legs.includes('l2_cha') || legs.includes('l4_cha')){
       data.append("combinationSubVendors", subVendorId);
+    }else{
+      data.append("combinationSubVendors","");
     }
     data.append("agent", "");
     data.append("airline", "");
-    data.append("charge", "");
     if (fileNameAvaialable) {
       data.append("inputFileSource", "PLATFORM");
       data.append("inputFile", fileNameAvaialable);
@@ -725,12 +735,12 @@ export class CommonService {
       data.append("inputFileSource", "ZOHO-DESK");
       data.append("zohoTicketNumber", zohoDeskNo.toString());
     }
-    data.append("fclType", "FCL-RATES");
     data.append("dateReceived", this.dateReceived());
     data.append("file", file, fileName);
     data.append("formId", "0");
 
     if(localStorage.getItem('ModeSelected') === 'QA'){
+      console.log('Legs = '+ legs)
       this.apiService.UploadQaFile(data).subscribe(
         (res) => {
           console.log(res);
